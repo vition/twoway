@@ -1,0 +1,192 @@
+[ 2017-04-01T14:51:37+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005001s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:53:26+08:00 ] ::1 /twoway/admin.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:53:28+08:00 ] ::1 /twoway/admin.php/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:54:22+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:54:29+08:00 ] ::1 /twoway/admin.php
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:55:54+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:58:00+08:00 ] ::1 /twoway/admin.php/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.007001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.008000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T14:59:17+08:00 ] ::1 /twoway/admin.php/admin
+ERR: 无法加载控制器:Admin
+
+[ 2017-04-01T15:00:16+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:00:44+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:00:46+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:00+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:35+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:38+08:00 ] ::1 /twoway/admin.php/index
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:41+08:00 ] ::1 /twoway/admin.php/index/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:45+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:03:47+08:00 ] ::1 /twoway/admin.php
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:04:03+08:00 ] ::1 /twoway/admin.php/admin
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:04:23+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:04:30+08:00 ] ::1 /twoway/admin.php/admin
+ERR: 无法加载控制器:Admin
+
+[ 2017-04-01T15:05:27+08:00 ] ::1 /twoway/index.php/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004001s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:05:41+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:09:17+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:10:14+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:10:28+08:00 ] ::1 /twoway/admin.php/home/
+ERR: 无法加载控制器:Home
+
+[ 2017-04-01T15:10:32+08:00 ] ::1 /twoway/admin.php/admin/
+ERR: 无法加载控制器:Admin
+
+[ 2017-04-01T15:10:41+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:12:16+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:12:18+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:12:19+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:14:07+08:00 ] ::1 /twoway/index.php/admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:14:17+08:00 ] ::1 /twoway/admin.php/
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:14:25+08:00 ] ::1 /twoway/index.php/admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载控制器:Index
+
+[ 2017-04-01T15:14:31+08:00 ] ::1 /twoway/index.php/admin/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.009000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.009000s ]
+ERR: 无法加载控制器:Index
+

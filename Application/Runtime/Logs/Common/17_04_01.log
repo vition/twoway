@@ -1,0 +1,42 @@
+[ 2017-04-01T14:42:25+08:00 ] ::1 /twoway/index.php/temp/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T14:42:28+08:00 ] ::1 /twoway/index.php/temp/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T14:43:15+08:00 ] ::1 /twoway/index.php/temp/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T14:43:42+08:00 ] ::1 /twoway/index.php/temp/temp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T14:45:30+08:00 ] ::1 /twoway/index.php/index/index/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.023002s ]
+ERR: 无法加载模块:Index
+
+[ 2017-04-01T16:35:51+08:00 ] ::1 /twoway/index.php/temp
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T16:36:09+08:00 ] ::1 /twoway/index.php/temp
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T16:36:33+08:00 ] ::1 /twoway/index.php/temp
+ERR: 无法加载模块:Temp
+
+[ 2017-04-01T16:36:46+08:00 ] ::1 /twoway/index.php/Temp
+ERR: 无法加载模块:Temp
+

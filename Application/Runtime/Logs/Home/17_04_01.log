@@ -673,3 +673,9 @@ ERR: 无法加载控制器:UI
 [ 2017-04-01T16:47:26+08:00 ] ::1 /twoway/index.php/Temp/button
 ERR: 非法操作:button
 
+[ 2017-04-01T16:53:09+08:00 ] ::1 /twoway/index.php/admin/login
+ERR: 非法操作:login
+
+[ 2017-04-01T16:53:49+08:00 ] ::1 /twoway/index.php/admin/
+ERR: 模板不存在:./Application/Home/View/Admin/login.html
+

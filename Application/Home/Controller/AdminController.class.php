@@ -36,7 +36,14 @@ class AdminController extends Controller {
 		session("isLogin",Null);
 		$this->display("login");
 	}
-	public function base(){
-		echo "不存在";
+	//重定向call方法
+	public function __call($method,$args){
+		if(session("isLogin")){
+			parent::__call($method,$args);
+		}else{
+			//$this->display("login");
+			$this->success('新增成功', 'index');
+		}
+		
 	}
 }

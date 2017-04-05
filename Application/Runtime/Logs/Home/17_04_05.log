@@ -1,0 +1,87 @@
+[ 2017-04-05T10:13:41+08:00 ] ::1 /twoway/index.php/Admin/admin.html
+ERR: 非法操作:admin
+
+[ 2017-04-05T10:35:13+08:00 ] ::1 /twoway/index.php/Admin/l
+ERR: 非法操作:l
+
+[ 2017-04-05T11:38:31+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:49:12+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:54:38+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:54:57+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:54:58+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:54:59+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T11:56:12+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 无法加载数据库驱动: Think\Db\Driver\
+
+[ 2017-04-05T12:13:37+08:00 ] ::1 /twoway/index.php/Admin/checklogin.html
+ERR: 1054:Champ 'id' inconnu dans field list
+ [ SQL语句 ] : SELECT `id` FROM `tw_user` WHERE `user_name` = 'vition' AND `user_psw` = '895B317C76B8E504C2FB32DBB4420178F60CE321' 
+
+[ 2017-04-05T16:12:27+08:00 ] ::1 /twoway/index.php/Admin/widgets.html
+ERR: 非法操作:widgets
+
+[ 2017-04-05T16:29:36+08:00 ] ::1 /twoway/index.php/Admin/widgets.html
+ERR: 非法操作:widgets
+
+[ 2017-04-05T16:31:26+08:00 ] ::1 /twoway/index.php/Admin/widgets.html
+ERR: 非法操作:widgets
+
+[ 2017-04-05T16:38:04+08:00 ] ::1 /twoway/index.php/documentation/index.html
+ERR: 无法加载控制器:Documentation
+
+[ 2017-04-05T16:43:16+08:00 ] ::1 /twoway/index.php/Temp/collapsed-sidebar.html
+ERR: 非法操作:collapsed-sidebar
+
+[ 2017-04-05T16:43:20+08:00 ] ::1 /twoway/index.php/widgets.html
+ERR: 无法加载控制器:Widgets
+
+[ 2017-04-05T16:43:31+08:00 ] ::1 /twoway/index.php/UI/general.html
+ERR: 无法加载控制器:UI
+
+[ 2017-04-05T16:44:15+08:00 ] ::1 /twoway/index.php/forms/general.html
+ERR: 无法加载控制器:Forms
+
+[ 2017-04-05T16:46:25+08:00 ] ::1 /twoway/index.php/Temp/r404.html
+ERR: 非法操作:r404
+
+[ 2017-04-05T16:46:32+08:00 ] ::1 /twoway/index.php/Temp/r500.html
+ERR: 非法操作:r500
+
+[ 2017-04-05T16:46:47+08:00 ] ::1 /twoway/index.php/Temp/pace.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.040003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2017-04-05T16:47:06+08:00 ] ::1 /twoway/index.php/documentation/index.html
+ERR: 无法加载控制器:Documentation
+
+[ 2017-04-05T16:53:13+08:00 ] ::1 /twoway/index.php/Admin/index2.html
+ERR: 非法操作:index2
+
+[ 2017-04-05T16:53:55+08:00 ] ::1 /twoway/index.php/forms/general.html
+ERR: 无法加载控制器:Forms
+

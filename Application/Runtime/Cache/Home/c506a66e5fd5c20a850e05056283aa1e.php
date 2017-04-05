@@ -44,9 +44,9 @@
     <!-- Logo -->
     <a href="index.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>TW</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>管理后台</b>Twoway</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -254,7 +254,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/twoway/Public/Temp/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">vition</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -287,7 +287,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo U('logout');?>" class="btn btn-default btn-flat">退出</a>
                 </div>
               </li>
             </ul>
@@ -311,8 +311,8 @@
           <img src="/twoway/Public/Temp/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p>vition</p>
+          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
         </div>
       </div>
       <!-- search form -->
@@ -328,67 +328,70 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">控制菜单</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>全局配置</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href=<?php echo U('index');?>><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href=<?php echo U('index2');?>><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li class="active"><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
+            <li><a href=<?php echo U('advconfig');?>><i class="fa fa-circle-o"></i> 高级配置</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
+            <i class="fa fa-edit"></i>
+            <span>文章管理</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=<?php echo U('top_nav');?>><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href=<?php echo U('boxed');?>><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href=<?php echo U('fixed');?>><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href=<?php echo U('collapsed_sidebar');?>><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href=<?php echo U('top_nav');?>><i class="fa fa-circle-o"></i>新建文章</a></li>
+            <li><a href=<?php echo U('boxed');?>><i class="fa fa-circle-o"></i>文章管理</a></li>
+            <li><a href=<?php echo U('collapsed_sidebar');?>><i class="fa fa-circle-o"></i>分类管理</a></li>
           </ul>
         </li>
         <li>
-          <a href=<?php echo U('widgets');?>>
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
+			 <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>单页管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=<?php echo U('chartjs');?>><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href=<?php echo U('morris');?>><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href=<?php echo U('flot');?>><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href=<?php echo U('inline');?>><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href=<?php echo U('chartjs');?>><i class="fa fa-circle-o"></i>新建页面</a></li>
+            <li><a href=<?php echo U('morris');?>><i class="fa fa-circle-o"></i>页面管理</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
+            <i class="fa fa-user"></i>
+            <span>用户管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i> General</a></li>
+            <li><a href=<?php echo U('chartjs');?>><i class="fa fa-circle-o"></i>新建用户</a></li>
+            <li><a href=<?php echo U('morris');?>><i class="fa fa-circle-o"></i>用户管理</a></li>
+            <li><a href=<?php echo U('flot');?>><i class="fa fa-circle-o"></i>分组管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-cog"></i>
+            <span>其它功能</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i>日志查看</a></li>
             <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i> Icons</a></li>
             <li><a href=<?php echo U('buttons');?>><i class="fa fa-circle-o"></i> Buttons</a></li>
             <li><a href=<?php echo U('sliders');?>><i class="fa fa-circle-o"></i> Sliders</a></li>
@@ -396,103 +399,6 @@
             <li><a href=<?php echo U('modals');?>><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href=<?php echo U('advanced');?>><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href=<?php echo U('editors');?>><i class="fa fa-circle-o"></i> Editors</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=<?php echo U('simple');?>><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href=<?php echo U('data');?>><i class="fa fa-circle-o"></i> Data tables</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href=<?php echo U('calendar');?>>
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href=<?php echo U('mailbox');?>>
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href=<?php echo U('invoice');?>><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href=<?php echo U('profile');?>><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href=<?php echo U('login');?>><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href=<?php echo U('register');?>><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href=<?php echo U('lockscreen');?>><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href=<?php echo U('r404');?>><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href=<?php echo U('r500');?>><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href=<?php echo U('blank');?>><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href=<?php echo U('pace');?>><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            <li>
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-          </ul>
-        </li>
-        <li><a href=<?php echo U('documentation/index');?>><i class="fa fa-book"></i> <span>Documentation</span></a></li>
         <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
@@ -1014,13 +920,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.6
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
+  
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

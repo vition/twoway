@@ -25,7 +25,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">控制菜单</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>全局配置</span>
             <span class="pull-right-container">
@@ -33,8 +33,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href={:U('base')}><i class="fa fa-circle-o"></i> 基本信息</a></li>
-            <li><a href={:U('advconfig')}><i class="fa fa-circle-o"></i> 高级配置</a></li>
+            <li class=""><a href={:U('base')}><i class="fa fa-circle-o"></i> 基本信息</a></li>
+            <li><a href={:U('advconfig')}><i class="fa fa-circle-o"></i>高级配置</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -46,9 +46,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href={:U('top_nav')}><i class="fa fa-circle-o"></i>新建文章</a></li>
-            <li><a href={:U('boxed')}><i class="fa fa-circle-o"></i>文章管理</a></li>
-            <li><a href={:U('collapsed_sidebar')}><i class="fa fa-circle-o"></i>分类管理</a></li>
+            <li><a href={:U('newposts')}><i class="fa fa-circle-o"></i>新建文章</a></li>
+            <li><a href={:U('postsman')}><i class="fa fa-circle-o"></i>文章管理</a></li>
+            <li><a href={:U('classman')}><i class="fa fa-circle-o"></i>分类管理</a></li>
           </ul>
         </li>
         <li>
@@ -78,6 +78,19 @@
             <li><a href={:U('flot')}><i class="fa fa-circle-o"></i>分组管理</a></li>
           </ul>
         </li>
+		 <li class="treeview">
+          <a href="#">
+            <i class="fa fa-photo"></i>
+            <span>资源管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href={:U('general')}><i class="fa fa-circle-o"></i>资源上传</a></li>
+            <li><a href={:U('icons')}><i class="fa fa-circle-o"></i>资源管理</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-cog"></i>
@@ -87,12 +100,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href={:U('general')}><i class="fa fa-circle-o"></i>日志查看</a></li>
-            <li><a href={:U('icons')}><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href={:U('buttons')}><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href={:U('sliders')}><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href={:U('timeline')}><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href={:U('modals')}><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href={:U('general')}><i class="fa fa-circle-o"></i>评论管理</a></li>
+            <li><a href={:U('icons')}><i class="fa fa-circle-o"></i>日志查看</a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>

@@ -1,0 +1,30 @@
+[ 2017-04-06T09:55:50+08:00 ] ::1 /twoway/index.php/Admin/top_nav.html
+ERR: 非法操作:top_nav
+
+[ 2017-04-06T13:59:59+08:00 ] ::1 /twoway/index.php/Admin/top_nav.html
+ERR: 非法操作:top_nav
+
+[ 2017-04-06T14:35:32+08:00 ] ::1 /twoway/index.php/layout/top-nav.html
+ERR: 无法加载控制器:Layout
+
+[ 2017-04-06T14:35:43+08:00 ] ::1 /twoway/index.php/temp/top-nav.html
+ERR: 非法操作:top-nav
+
+[ 2017-04-06T14:35:46+08:00 ] ::1 /twoway/index.php/layout/top-nav.html
+ERR: 无法加载控制器:Layout
+
+[ 2017-04-06T14:35:53+08:00 ] ::1 /twoway/index.php/admin/temp/top-nav.html
+ERR: 非法操作:temp
+
+[ 2017-04-06T14:35:57+08:00 ] ::1 /twoway/index.php/layout/top-nav.html
+ERR: 无法加载控制器:Layout
+
+[ 2017-04-06T14:36:04+08:00 ] ::1 /twoway/index.php/layout/fixed.html
+ERR: 无法加载控制器:Layout
+
+[ 2017-04-06T14:36:15+08:00 ] ::1 /twoway/index.php/charts/morris.html
+ERR: 无法加载控制器:Charts
+
+[ 2017-04-06T14:53:49+08:00 ] ::1 /twoway/index.php/Admin/classman.html
+ERR: 非法操作:classman
+

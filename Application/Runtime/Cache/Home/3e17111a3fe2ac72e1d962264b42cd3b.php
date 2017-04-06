@@ -336,7 +336,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
+            <li class=""><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
             <li><a href=<?php echo U('advconfig');?>><i class="fa fa-circle-o"></i> 高级配置</a></li>
           </ul>
         </li>
@@ -349,9 +349,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=<?php echo U('top_nav');?>><i class="fa fa-circle-o"></i>新建文章</a></li>
-            <li><a href=<?php echo U('boxed');?>><i class="fa fa-circle-o"></i>文章管理</a></li>
-            <li><a href=<?php echo U('collapsed_sidebar');?>><i class="fa fa-circle-o"></i>分类管理</a></li>
+            <li><a href=<?php echo U('newposts');?>><i class="fa fa-circle-o"></i>新建文章</a></li>
+            <li><a href=<?php echo U('postsman');?>><i class="fa fa-circle-o"></i>文章管理</a></li>
+            <li><a href=<?php echo U('classman');?>><i class="fa fa-circle-o"></i>分类管理</a></li>
           </ul>
         </li>
         <li>
@@ -390,12 +390,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i>日志查看</a></li>
-            <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href=<?php echo U('buttons');?>><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href=<?php echo U('sliders');?>><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href=<?php echo U('timeline');?>><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href=<?php echo U('modals');?>><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i>评论管理</a></li>
+            <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i> 日志查看</a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>
@@ -477,6 +473,36 @@
                 </label>
                 <label>
                   <input type="radio" name="register" class="flat-red">
+                </label>
+                <label>
+                  开启
+                </label>
+              </div>
+			  <div><label>网站是否开始评论</label></div>
+			  <div class="form-group">
+                <label>
+                  <input type="radio" name="comment" class="flat-red" checked>
+                </label>
+				<label>
+				 关闭
+                </label>
+                <label>
+                  <input type="radio" name="comment" class="flat-red">
+                </label>
+                <label>
+                  开启
+                </label>
+              </div>
+			  <div><label>评论是否审核</label></div>
+			  <div class="form-group">
+                <label>
+                  <input type="radio" name="comment-verify" class="flat-red" checked>
+                </label>
+				<label>
+				 关闭
+                </label>
+                <label>
+                  <input type="radio" name="comment-verify" class="flat-red">
                 </label>
                 <label>
                   开启

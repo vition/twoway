@@ -324,7 +324,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class=""><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
+            <li class="active"><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
             <li><a href=<?php echo U('advconfig');?>><i class="fa fa-circle-o"></i> 高级配置</a></li>
           </ul>
         </li>
@@ -396,13 +396,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        基本配置
+        新建文章
         <small>Twoway</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
-        <li><a href="#">全局配置</a></li>
-        <li class="active">基本配置</li>
+        <li><a href="#">文章管理</a></li>
+        <li class="active">新建文章</li>
       </ol>
     </section>
 
@@ -414,32 +414,46 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">网站的基本信息</h3>
+              <!-- <h3 class="box-title">网站的基本信息</h3> -->
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">网站名称：</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="这些填写网站的名称">
+                  <div class="form-group">
+					<label>文章分类</label>
+					<select class="form-control select2" style="width: 100%;">
+					  <option selected="selected">Alabama</option>
+					  <option>Alaska</option>
+					  <option>California</option>
+					  <option>Delaware</option>
+					  <option>Tennessee</option>
+					  <option>Texas</option>
+					  <option>Washington</option>
+					</select>
+				  </div>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">默认网址：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="这填写网站的默认网址（重要）">
+                  <label for="exampleInputPassword1">帖子标题：</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="帖子标题">
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">关键字：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="关键字以,隔开">
+                  <label for="exampleInputPassword1">封面图片：</label>
+                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="http://www.twoway.com.cn/1.jpg">
+				  <input type="file" id="exampleInputFile">
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">网站描述：</label>
+                  <label for="exampleInputPassword1">帖子标签：</label>
                   <input type="text" class="form-control" id="exampleInputPassword1" placeholder="这填写网站的网站描述">
                 </div>
-				 <div class="form-group">
-                  <label for="exampleInputPassword1">底部脚本：</label>
-                  <textarea class="form-control" rows="3" placeholder="支持HTML代码"></textarea>
-                </div>
+				<div class="box-body pad">
+					  <form>
+							<textarea id="editor1" name="editor1" rows="10" cols="80">
+													This is my textarea to be replaced with CKEditor.
+							</textarea>
+					  </form>
+					</div>
               </div>
               <!-- /.box-body -->
 
@@ -469,5 +483,17 @@
 <script src="/twoway/Public/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/twoway/Public/Temp/dist/js/demo.js"></script>
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="/twoway/Public/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5();
+  });
+</script>
 </body>
 </html>

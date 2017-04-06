@@ -13,12 +13,19 @@ class AdminController extends Controller {
     }
 	//判断登录方法
 	public function login(){
-		if($this->checklogin(I("username"),I("userpasswd"))){
-			session("isLogin",True);
-			$this->display("index");
+		if(session("isLogin")){
+			$this->success('已登录', 'index',1);
 		}else{
-			$this->display("login");
+			if($this->checklogin(I("username"),I("userpasswd"))){
+				session("isLogin",True);
+				$this->success('成功登录', 'base',1);
+				//$this->display("base");
+			}else{
+				$this->error('请重新登录', 'index',1);
+				//$this->display("login");
+			}
 		}
+		
 	}
 	//检验提交用户名登录方法
 	static function checklogin($username,$userpasswd){
@@ -34,15 +41,14 @@ class AdminController extends Controller {
 	//退出用户
 	public function logout(){
 		session("isLogin",Null);
-		$this->display("login");
+		$this->success('退出成功', 'index');
 	}
 	//重定向call方法
 	public function __call($method,$args){
 		if(session("isLogin")){
 			parent::__call($method,$args);
 		}else{
-			//$this->display("login");
-			$this->success('新增成功', 'index');
+			$this->success('请先登录', 'index');
 		}
 		
 	}

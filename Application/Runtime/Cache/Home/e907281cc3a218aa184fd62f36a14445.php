@@ -316,7 +316,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">控制菜单</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>全局配置</span>
             <span class="pull-right-container">
@@ -324,8 +324,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
-            <li><a href=<?php echo U('advconfig');?>><i class="fa fa-circle-o"></i> 高级配置</a></li>
+            <li class=""><a href=<?php echo U('base');?>><i class="fa fa-circle-o"></i> 基本信息</a></li>
+            <li><a href=<?php echo U('advconfig');?>><i class="fa fa-circle-o"></i>高级配置</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -369,6 +369,19 @@
             <li><a href=<?php echo U('flot');?>><i class="fa fa-circle-o"></i>分组管理</a></li>
           </ul>
         </li>
+		 <li class="treeview">
+          <a href="#">
+            <i class="fa fa-photo"></i>
+            <span>资源管理</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i>资源上传</a></li>
+            <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i>资源管理</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-cog"></i>
@@ -379,7 +392,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href=<?php echo U('general');?>><i class="fa fa-circle-o"></i>评论管理</a></li>
-            <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i> 日志查看</a></li>
+            <li><a href=<?php echo U('icons');?>><i class="fa fa-circle-o"></i>日志查看</a></li>
           </ul>
         </li>
         <li class="header">LABELS</li>

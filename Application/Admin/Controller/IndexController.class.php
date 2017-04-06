@@ -2,7 +2,54 @@
 namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+	//默认执行方法
     public function index(){
-        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px } a,a:hover{color:blue;}</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>版本 V{$Think.version}</div><script type="text/javascript" src="http://ad.topthink.com/Public/static/client.js"></script><thinkad id="ad_55e75dfae343f5a1"></thinkad><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
+		if(session("isLogin")){
+			$this->display("index");
+		}else{
+			$this->display("login");
+		}
+       
     }
+	//判断登录方法
+	public function login(){
+		if(session("isLogin")){
+			$this->success('已登录', 'index',1);
+		}else{
+			if($this->checklogin(I("username"),I("userpasswd"))){
+				session("isLogin",True);
+				$this->success('成功登录', 'base',1);
+				//$this->display("base");
+			}else{
+				$this->error('请重新登录', 'index',1);
+				//$this->display("login");
+			}
+		}
+		
+	}
+	//检验提交用户名登录方法
+	static function checklogin($username,$userpasswd){
+		$Model=M("tw_user");
+		$loginData=array("user_name"=>$username,"user_psw"=>strtoupper(sha1($userpasswd)));
+		$data=$Model->where($loginData)->field("user_id")->select();
+		if($data[0]["user_id"]>0){
+			return True;
+		}else{
+			return False;
+		}
+	}
+	//退出用户
+	public function logout(){
+		session("isLogin",Null);
+		$this->success('退出成功', 'index');
+	}
+	//重定向call方法
+	public function __call($method,$args){
+		if(session("isLogin")){
+			parent::__call($method,$args);
+		}else{
+			$this->success('请先登录', 'index');
+		}
+		
+	}
 }

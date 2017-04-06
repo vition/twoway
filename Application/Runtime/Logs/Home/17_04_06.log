@@ -34,3 +34,12 @@ ERR: 无法加载控制器:Widgets
 [ 2017-04-06T18:09:54+08:00 ] ::1 /twoway/index.php/Admin/chartjs.html
 ERR: 非法操作:chartjs
 
+[ 2017-04-06T22:21:05+08:00 ] ::1 /twoway/index.php/admin/test/index
+ERR: 无法加载控制器:Admin
+
+[ 2017-04-06T22:21:27+08:00 ] ::1 /twoway/index.php/admin/test/test
+ERR: 无法加载控制器:Admin
+
+[ 2017-04-06T22:22:20+08:00 ] ::1 /twoway/index.php/Admin/test/test
+ERR: 无法加载控制器:Admin
+

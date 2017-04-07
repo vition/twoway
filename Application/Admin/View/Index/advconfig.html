@@ -76,13 +76,13 @@
 			  <div><label>网站是否开启</label></div>
               <div class="form-group">
                 <label>
-                  <input type="radio" name="action" class="flat-red" checked>
+                  <input type="radio" name="action" class="flat-red" {$advconfig["web_start"][0]}>
                 </label>
 				 <label>
                   启动
                 </label>
                 <label>
-                  <input type="radio" name="action" class="flat-red">
+                  <input type="radio" name="action" class="flat-red" {$advconfig["web_start"][1]}>
                 </label>
                 <label>
                   关闭
@@ -92,13 +92,13 @@
 			  <div class="form-group">
 			  
                 <label>
-                  <input type="radio" name="open" class="flat-red" checked>
+                  <input type="radio" name="open" class="flat-red" {$advconfig["web_open_up"][0]}>
 					<label>
 					  所有人
 					</label>
                 </label>
                 <label>
-                  <input type="radio" name="open" class="flat-red">
+                  <input type="radio" name="open" class="flat-red" {$advconfig["web_open_up"][1]}>
                 </label>
 					<label>
 					  仅会员
@@ -107,46 +107,46 @@
 			  <div><label>网站是否开放注册</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="register" class="flat-red" checked>
+                  <input type="radio" name="register" class="flat-red" {$advconfig["web_open_reg"][0]}>
                 </label>
 				<label>
-					关闭
+					开启
                 </label>
                 <label>
-                  <input type="radio" name="register" class="flat-red">
+                  <input type="radio" name="register" class="flat-red" {$advconfig["web_open_reg"][1]}>
                 </label>
                 <label>
-                  开启
+                  关闭
                 </label>
               </div>
 			  <div><label>网站是否开始评论</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="comment" class="flat-red" checked>
+                  <input type="radio" name="comment" class="flat-red" {$advconfig["web_comment"][0]}>
                 </label>
 				<label>
-				 关闭
+				 开启
                 </label>
                 <label>
-                  <input type="radio" name="comment" class="flat-red">
+                  <input type="radio" name="comment" class="flat-red" {$advconfig["web_comment"][1]}>
                 </label>
                 <label>
-                  开启
+                  关闭
                 </label>
               </div>
-			  <div><label>评论是否审核</label></div>
+			  <div><label>是否开启评论审核</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="comment-verify" class="flat-red" checked>
+                  <input type="radio" name="comment-verify" class="flat-red" {$advconfig["web_com_review"][0]}>
                 </label>
 				<label>
-				 关闭
+				 开启
                 </label>
                 <label>
-                  <input type="radio" name="comment-verify" class="flat-red">
+                  <input type="radio" name="comment-verify" class="flat-red" {$advconfig["web_com_review"][1]}>
                 </label>
                 <label>
-                  开启
+                  关闭
                 </label>
               </div>
             </div>

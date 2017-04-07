@@ -64,14 +64,10 @@
                 <div class="form-group">
                   <div class="form-group">
 					<label>文章分类</label>
-					<select class="form-control select2" style="width: 100%;">
-					  <option selected="selected">Alabama</option>
-					  <option>Alaska</option>
-					  <option>California</option>
-					  <option>Delaware</option>
-					  <option>Tennessee</option>
-					  <option>Texas</option>
-					  <option>Washington</option>
+					<select class="form-control select2" style="width:10%;min-width:160px;">
+					<volist name="class" id="cla">
+					 <option>{$cla.class_name}</option>
+					</volist>
 					</select>
 				  </div>
                 </div>

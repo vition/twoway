@@ -2,12 +2,9 @@
 namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends Controller {
-	//全局配置项
-	protected $globConfig;
 	//默认执行方法
-    public function index(){	
+    public function index(){
 		if(session("isLogin")){
-			//$this->display("base");
 			$this->success('成功登录', 'base',1);
 		}else{
 			$this->display("login");
@@ -55,12 +52,10 @@ class IndexController extends Controller {
 		
 	}
 	//获取全局配置
-	public function get_glob_config($cover=false){
-		if($cover==True || empty($this->globConfig)){
-			$Model=M("tw_config");
-			$config=$Model->field("config_key,config_value")->select();
-			$this->globConfig=$config;
-		}
+	public function get_glob_config(){
+		$Model=M("tw_config");
+		$config=$Model->field("config_key,config_value")->select();
+		return ($this->key_value($config));
 	}
 	//获取数据库转数组
 	public function key_value($array){
@@ -72,14 +67,54 @@ class IndexController extends Controller {
 	}
 	//基本配置
 	public function base(){
-		$this->get_glob_config();
-		$config=$this->key_value($this->globConfig);
-		//dump($config);
-		$this->assign('config',$this->key_value($this->globConfig));
+		$this->assign('config',$this->get_glob_config());
 		$this->display("base");
 	}
 	//高级配置
 	public function advconfig(){
+		$globConfig=$this->get_glob_config();
 		
+		$strArray=array("web_start","web_open_up","web_open_reg","web_comment","web_com_review");
+		$adv=$this->change2check($globConfig,$strArray);
+
+		$this->assign("advconfig",$adv);
+		$this->display("advconfig");
+	}
+	//转换高级配置选项
+	public function change2check($conArr,$strArr){
+		$adv=array();
+		foreach($strArr as $str){
+			if($conArr[$str]=="true"){
+				$adv[$str]=array("checked","");
+			}else{
+				$adv[$str]=array("","checked");
+			}
+		}
+		return $adv;
+	}
+	//新建文章
+	public function newposts(){
+		$this->assign("class",$this->get_pclass());
+		$this->display("newposts");
+	}
+	//获取分类
+	public function get_pclass(){
+		$twClass=M("tw_class");
+		$data=$twClass->select();
+		return($data);
+	}
+	//文章管理
+	public function postsman(){
+		$posts=M("tw_posts");
+		$lists=$posts->where("tw_posts.posts_class=tw_class.class_id")->table("tw_posts")->join("tw_class")->field("posts_id,class_name,posts_title,posts_content,posts_cover,posts_author,posts_create_time,posts_edit_time,posts_state,posts_tags")->limit(0,10)->select();
+		$this->assign("list",$lists);
+		$this->display("postsman");
+	}
+	//分类管理
+	public function classman(){
+		$this->assign("class",$this->get_pclass());
+		$this->display("classman");
 	}
 }
+
+

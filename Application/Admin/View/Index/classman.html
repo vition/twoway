@@ -95,11 +95,9 @@
                 <div class="form-group">
                   <label>分类列表</label>
                   <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+					<volist name="class" id="cla">
+					 <option>{$cla.class_name}</option>
+					</volist>
                   </select>
                 </div>
               </form>

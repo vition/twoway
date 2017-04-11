@@ -67,6 +67,7 @@ class IndexController extends Controller {
 	}
 	//基本配置
 	public function base(){
+		echo  ACTION_NAME;
 		$this->assign('config',$this->get_glob_config());
 		$this->display("base");
 	}
@@ -132,6 +133,7 @@ class IndexController extends Controller {
 	//分组管理
 	public function groupman(){
 		$this->assign("list",$this->get_group());
+		$this->assign("active",ACTION_NAME);
 		$this->display("groupman");
 	}
 }

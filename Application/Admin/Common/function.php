@@ -11,3 +11,7 @@ function ini_state($state){
 		return "待审核";
 	}
 }
+//判断选中
+function is_select(){
+	
+}

@@ -1,3 +1,6 @@
+<!-- jQuery 2.2.3 -->
+<script src="__PUBLIC__/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
+
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -25,7 +28,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">控制菜单</li>
-        <li class="treeview">
+        <li class="treeview ">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>全局配置</span>
             <span class="pull-right-container">
@@ -112,3 +115,12 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script>
+$(function(){
+	//alert("{$active}")
+	$(".sidebar-menu .fa").removeClass("active");
+	//alert($("[href='{:U($active)}']").parent().parent().html());
+	$("[href='{:U($active)}']").parent().addClass("active");
+	$("[href='{:U($active)}']").parent().parent().parent().addClass("active");
+})
+</script>

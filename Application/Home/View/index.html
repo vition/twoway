@@ -624,7 +624,7 @@
     }
     function createMap(){ 
       map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(113.281654,23.137694),18);
+      map.centerAndZoom(new BMap.Point(113.281016,23.138284),18);
     }
     function setMapEvent(){
       map.enableScrollWheelZoom();
@@ -639,7 +639,6 @@
     }
     function addMapOverlay(){
       var markers = [
-        {content:"德政北路538号达信大厦8楼",title:"广州睿基营销策划有限公司",imageOffset: {width:0,height:3},position:{lat:23.138002,lng:113.281295}}
       ];
       for(var index = 0; index < markers.length; index++ ){
         var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
@@ -657,6 +656,32 @@
         addClickHandler(marker,infoWindow);
         map.addOverlay(marker);
       };
+      var labels = [
+        {position:{lng:113.281726,lat:23.137802},content:"我的标记"}
+      ];
+      for(var index = 0; index < labels.length; index++){
+        var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
+        var label = new BMap.Label(labels[index].content,opt);
+        map.addOverlay(label);
+      };
+      var plOpts = [
+        {strokeColor:"#00f",strokeWeight:"4",strokeOpacity:"0.6"}
+      ];
+      var plPath = [
+        [
+          new BMap.Point(113.28107,23.138052),
+          new BMap.Point(113.281717,23.138052),
+          new BMap.Point(113.281744,23.137761),
+          new BMap.Point(113.28107,23.137736),
+          new BMap.Point(113.281061,23.138035),
+          new BMap.Point(113.281061,23.138035),
+          new BMap.Point(113.281061,23.138035)
+        ],
+      ];
+      for(var index = 0; index < plOpts.length; index++){
+        var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
+        map.addOverlay(polyline);
+      }
     }
     //向地图添加控件
     function addMapControl(){

@@ -115,6 +115,25 @@ class IndexController extends Controller {
 		$this->assign("class",$this->get_pclass());
 		$this->display("classman");
 	}
+	//用户管理
+	public function userman(){
+		$user=M("tw_user");
+		$data=$user->where("tw_user.user_group=tw_group.group_id")->table("tw_user")->join("tw_group")->select();
+		
+		$this->assign("list",$data);
+		$this->display("userman");
+	}
+	//获取分组
+	public function get_group(){
+		$twGroup=M("tw_group");
+		$data=$twGroup->select();
+		return($data);
+	}
+	//分组管理
+	public function groupman(){
+		$this->assign("list",$this->get_group());
+		$this->display("groupman");
+	}
 }
 
 

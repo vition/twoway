@@ -37,7 +37,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        分类管理
+        分组管理
         <small>Preview</small>
       </h1>
       <ol class="breadcrumb">
@@ -95,11 +95,9 @@
                 <div class="form-group">
                   <label>分类列表</label>
                   <select class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
+                    <volist name="list" id="group">
+					 <option>{$group.group_name}</option>
+					</volist>
                   </select>
                 </div>
               </form>

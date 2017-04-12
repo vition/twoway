@@ -67,9 +67,24 @@ class IndexController extends Controller {
 	}
 	//基本配置
 	public function base(){
-		echo  ACTION_NAME;
-		$this->assign('config',$this->get_glob_config());
-		$this->display("base");
+		if(!empty($_POST)){
+			$config=M("tw_config");
+			foreach($_POST as $key=>$value){
+				$config->config_value=$value;
+				$return+=$config->where("config_key='{$key}'")->save();
+			}
+			if($return>0){
+				echo "成功修改配置！";
+			}else{
+				echo "没有修改任何数据！";
+			}
+		}else{
+			$this->assign('config',$this->get_glob_config());
+			$this->assign('webTitle',$this->get_web_title());
+			$this->display("base");
+		}
+		
+		
 	}
 	//高级配置
 	public function advconfig(){
@@ -77,7 +92,7 @@ class IndexController extends Controller {
 		
 		$strArray=array("web_start","web_open_up","web_open_reg","web_comment","web_com_review");
 		$adv=$this->change2check($globConfig,$strArray);
-
+		$this->assign('webTitle',$this->get_web_title());
 		$this->assign("advconfig",$adv);
 		$this->display("advconfig");
 	}
@@ -96,6 +111,7 @@ class IndexController extends Controller {
 	//新建文章
 	public function newposts(){
 		$this->assign("class",$this->get_pclass());
+		$this->assign('webTitle',$this->get_web_title());
 		$this->display("newposts");
 	}
 	//获取分类
@@ -114,6 +130,7 @@ class IndexController extends Controller {
 	//分类管理
 	public function classman(){
 		$this->assign("class",$this->get_pclass());
+		$this->assign('webTitle',$this->get_web_title());
 		$this->display("classman");
 	}
 	//用户管理
@@ -122,6 +139,7 @@ class IndexController extends Controller {
 		$data=$user->where("tw_user.user_group=tw_group.group_id")->table("tw_user")->join("tw_group")->select();
 		
 		$this->assign("list",$data);
+		$this->assign('webTitle',$this->get_web_title());
 		$this->display("userman");
 	}
 	//获取分组
@@ -135,6 +153,12 @@ class IndexController extends Controller {
 		$this->assign("list",$this->get_group());
 		$this->assign("active",ACTION_NAME);
 		$this->display("groupman");
+	}
+	//获取网站名称
+	public function get_web_title(){
+		$config=M("tw_config");
+		$data=$config->field("config_value")->where("config_key='web_name'")->select();
+		return $data[0]["config_value"];
 	}
 }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>twoway官网后台管理界面</title>
+  <title>{$webTitle}后台管理界面</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -59,35 +59,34 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">网站名称：</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" value="{$config['web_name']}" placeholder="这些填写网站的名称">
+                  <input type="text" class="form-control" name="web_name" value="{$config['web_name']}" placeholder="这些填写网站的名称">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">默认网址：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" value="{$config['web_url']}" placeholder="这填写网站的默认网址（重要）">
+                  <input type="text" class="form-control" name="web_url" value="{$config['web_url']}" placeholder="这填写网站的默认网址（重要）">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">关键字：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" value="{$config['web_keys']}" placeholder="关键字以,隔开">
+                  <input type="text" class="form-control" name="web_keys" value="{$config['web_keys']}" placeholder="关键字以,隔开">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">网站描述：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" value="{$config['web_description']}" placeholder="这填写网站的网站描述">
+                  <input type="text" class="form-control" name="web_description" value="{$config['web_description']}" placeholder="这填写网站的网站描述">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">底部脚本：</label>
-                  <textarea class="form-control" rows="3" placeholder="支持HTML代码"></textarea>
+                  <textarea class="form-control" rows="3" name="web_footer" placeholder="支持HTML代码"></textarea>
                 </div>
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">提交修改</button>
+                <button type="submit" id="submit-config" class="btn btn-primary">提交修改</button>
               </div>
-            </form>
+ 
           </div>
           <!-- /.box -->
       <!-- /.tab-pane -->
@@ -110,5 +109,24 @@
 <script src="__PUBLIC__/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
+<script>
+	//提交修改配置
+	$("#submit-config").click(function(){
+		datas={};
+		form=$(".form-control");
+		for(var i=0;i<form.length;i++){
+			datas[form.eq(i).attr("name")]=form.eq(i).val();
+		}
+		$.ajax({
+			url:"{:U('base')}",
+			data:datas,
+			dataType:"html",
+			type:"post", 
+			success:function(data){
+				alert(data)
+			}
+		})
+	})
+</script>
 </body>
 </html>

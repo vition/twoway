@@ -121,9 +121,14 @@ class IndexController extends Controller {
 	}
 	//新建文章
 	public function newposts(){
-		$this->assign("class",$this->get_pclass());
-		$this->assign('webTitle',$this->get_web_title());
-		$this->display("newposts");
+		if(!empty($_FILES)){
+			print_r($_FILES);
+		}else{
+			$this->assign("class",$this->get_pclass());
+			$this->assign('webTitle',$this->get_web_title());
+			$this->display("newposts");
+		}
+		
 	}
 	//获取分类
 	public function get_pclass(){

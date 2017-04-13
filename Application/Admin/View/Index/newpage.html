@@ -59,7 +59,6 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
               <div class="box-body">
                 <div class="form-group">
                   <div class="form-group">
@@ -77,16 +76,16 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">帖子标题：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="帖子标题">
+                  <input type="text" class="form-control" name="posts_title" placeholder="帖子标题">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">封面图片：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="http://www.twoway.com.cn/1.jpg">
-				  <input type="file" id="exampleInputFile">
+                  <input type="text" class="form-control" id="posts_cover" name="posts_cover" placeholder="http://www.twoway.com.cn/1.jpg">
+				  <input type="file" id="loadimg">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">帖子标签：</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="这填写网站的网站描述">
+                  <input type="text" class="form-control" name="posts_tags" placeholder="这填写网站的网站描述">
                 </div>
 				<div class="box-body pad">
 					  <form>
@@ -99,9 +98,8 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">提交修改</button>
+                <button type="submit" id="submit-posts" class="btn btn-primary">提交修改</button>
               </div>
-            </form>
           </div>
           <!-- /.box -->
       <!-- /.tab-pane -->
@@ -128,13 +126,38 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1');
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
+$(function () {
+
+	CKEDITOR.replace('editor1');
+	//bootstrap WYSIHTML5 - text editor
+	$(".textarea").wysihtml5();
+	//修改数据
+	$("#submit-posts").on("click",function(){
+		datas={};
+		$.ajax({
+			url:"{:U('newposts')}",
+			data:datas,
+			dataType:"html",
+			type:"post", 
+			success:function(data){
+				alert(data)
+			}
+		})
+	})
+});
+ //加载图片
+	$("#loadimg").on("change",loadImg)
+ //加载图片函数
+function loadImg(){
+	var file = this.files[0]; //选择上传的文件
+	var r = new FileReader();
+	r.readAsDataURL(file); //Base64
+	$(r).load(function(){
+		//alert(this.result)
+		$("#posts_cover").val(this.result);
+		$("#coverbox").css("display","none");
+	});
+}
 </script>
 </body>
 </html>

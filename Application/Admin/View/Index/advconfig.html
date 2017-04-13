@@ -76,13 +76,13 @@
 			  <div><label>网站是否开启</label></div>
               <div class="form-group">
                 <label>
-                  <input type="radio" name="action" class="flat-red" {$advconfig["web_start"][0]}>
+                  <input type="radio" name="web_start" data-bool="true" class="flat-green" {$advconfig["web_start"][0]}>
                 </label>
 				 <label>
                   启动
                 </label>
                 <label>
-                  <input type="radio" name="action" class="flat-red" {$advconfig["web_start"][1]}>
+                  <input type="radio" name="web_start" data-bool="false" class="flat-green" {$advconfig["web_start"][1]}>
                 </label>
                 <label>
                   关闭
@@ -92,13 +92,13 @@
 			  <div class="form-group">
 			  
                 <label>
-                  <input type="radio" name="open" class="flat-red" {$advconfig["web_open_up"][0]}>
+                  <input type="radio" name="web_open_up" data-bool="true" class="flat-green" {$advconfig["web_open_up"][0]}>
 					<label>
 					  所有人
 					</label>
                 </label>
                 <label>
-                  <input type="radio" name="open" class="flat-red" {$advconfig["web_open_up"][1]}>
+                  <input type="radio" name="web_open_up" data-bool="false" class="flat-green" {$advconfig["web_open_up"][1]}>
                 </label>
 					<label>
 					  仅会员
@@ -107,13 +107,13 @@
 			  <div><label>网站是否开放注册</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="register" class="flat-red" {$advconfig["web_open_reg"][0]}>
+                  <input type="radio" name="web_open_reg" data-bool="true" class="flat-green" {$advconfig["web_open_reg"][0]}>
                 </label>
 				<label>
 					开启
                 </label>
                 <label>
-                  <input type="radio" name="register" class="flat-red" {$advconfig["web_open_reg"][1]}>
+                  <input type="radio" name="web_open_reg" data-bool="false" class="flat-green" {$advconfig["web_open_reg"][1]}>
                 </label>
                 <label>
                   关闭
@@ -122,13 +122,13 @@
 			  <div><label>网站是否开始评论</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="comment" class="flat-red" {$advconfig["web_comment"][0]}>
+                  <input type="radio" name="web_comment" data-bool="true" class="flat-green" {$advconfig["web_comment"][0]}>
                 </label>
 				<label>
 				 开启
                 </label>
                 <label>
-                  <input type="radio" name="comment" class="flat-red" {$advconfig["web_comment"][1]}>
+                  <input type="radio" name="web_comment" data-bool="false" class="flat-green" {$advconfig["web_comment"][1]}>
                 </label>
                 <label>
                   关闭
@@ -137,13 +137,13 @@
 			  <div><label>是否开启评论审核</label></div>
 			  <div class="form-group">
                 <label>
-                  <input type="radio" name="comment-verify" class="flat-red" {$advconfig["web_com_review"][0]}>
+                  <input type="radio" name="web_com_review" data-bool="true" class="flat-green" {$advconfig["web_com_review"][0]}>
                 </label>
 				<label>
 				 开启
                 </label>
                 <label>
-                  <input type="radio" name="comment-verify" class="flat-red" {$advconfig["web_com_review"][1]}>
+                  <input type="radio" name="web_com_review" data-bool="false" class="flat-green" {$advconfig["web_com_review"][1]}>
                 </label>
                 <label>
                   关闭
@@ -183,6 +183,7 @@
 <script src="__PUBLIC__/Temp/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 <!-- date-range-picker -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
 <script src="__PUBLIC__/Temp/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- bootstrap datepicker -->
 <script src="__PUBLIC__/Temp/plugins/datepicker/bootstrap-datepicker.js"></script>
@@ -203,69 +204,85 @@
 <!-- Page script -->
 <script>
   $(function () {
-    //Initialize Select2 Elements
-    $(".select2").select2();
+	    //Initialize Select2 Elements
+   //$(".select2").select2();
 
     //Datemask dd/mm/yyyy
-    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //$("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
     //Datemask2 mm/dd/yyyy
-    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //$("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
     //Money Euro
-    $("[data-mask]").inputmask();
+    //$("[data-mask]").inputmask();
 
     //Date range picker
-    $('#reservation').daterangepicker();
+    //$('#reservation').daterangepicker();
     //Date range picker with time picker
-    $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+    //$('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
     //Date range as a button
-    $('#daterange-btn').daterangepicker(
-        {
-          ranges: {
-            'Today': [moment(), moment()],
-            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-            'This Month': [moment().startOf('month'), moment().endOf('month')],
-            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-          },
-          startDate: moment().subtract(29, 'days'),
-          endDate: moment()
-        },
-        function (start, end) {
-          $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        }
-    );
+    //$('#daterange-btn').daterangepicker(
+       // {
+       //   ranges: {
+        //    'Today': [moment(), moment()],
+        //    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        //    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+       //     'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        //    'This Month': [moment().startOf('month'), moment().endOf('month')],
+        //    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+       //   },
+        //  startDate: moment().subtract(29, 'days'),
+       //   endDate: moment()
+       // },
+       // function (start, end) {
+       //   $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+       // }
+    //);
 
     //Date picker
-    $('#datepicker').datepicker({
-      autoclose: true
-    });
+    //$('#datepicker').datepicker({
+     // autoclose: true
+    //});
 
     //iCheck for checkbox and radio inputs
-    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-      checkboxClass: 'icheckbox_minimal-blue',
-      radioClass: 'iradio_minimal-blue'
-    });
+   // $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+    //  checkboxClass: 'icheckbox_minimal-blue',
+    //  radioClass: 'iradio_minimal-blue'
+   // });
     //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass: 'iradio_minimal-red'
-    });
+   // $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+    //  checkboxClass: 'icheckbox_minimal-red',
+    //  radioClass: 'iradio_minimal-red'
+   // });
     //Flat red color scheme for iCheck
-    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+    $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
       checkboxClass: 'icheckbox_flat-green',
       radioClass: 'iradio_flat-green'
     });
+	$(".iCheck-helper").on("click",function(){
+		//alert($(this).prev().attr("name"));
+		//alert($(this).prev().data("bool"));
+		datas={}
+		datas["type"]=$(this).prev().attr("name")
+		datas["value"]=$(this).prev().data("bool")
+		$.ajax({
+			url:"{:U('advconfig')}",
+			data:datas,
+			dataType:"html",
+			type:"post", 
+			success:function(data){
+				alert(data)
+			}
+		})
+	})
 
     //Colorpicker
-    $(".my-colorpicker1").colorpicker();
+   // $(".my-colorpicker1").colorpicker();
     //color picker with addon
-    $(".my-colorpicker2").colorpicker();
+    //$(".my-colorpicker2").colorpicker();
 
     //Timepicker
-    $(".timepicker").timepicker({
-      showInputs: false
-    });
+    //$(".timepicker").timepicker({
+    //  showInputs: false
+    //});
   });
 </script>
 </body>

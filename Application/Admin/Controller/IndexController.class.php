@@ -88,13 +88,24 @@ class IndexController extends Controller {
 	}
 	//高级配置
 	public function advconfig(){
-		$globConfig=$this->get_glob_config();
+		if(!empty($_POST)){
+			$config=M("tw_config");
+			$config->config_value="{$_POST["value"]}";
+			$return=$config->where("config_key='{$_POST["type"]}'")->save();
+			if($return>0){
+				echo "成功修改配置！";
+			}else{
+				echo "没有修改任何数据！";
+			}
+		}else{
+			$globConfig=$this->get_glob_config();
+			$strArray=array("web_start","web_open_up","web_open_reg","web_comment","web_com_review");
+			$adv=$this->change2check($globConfig,$strArray);
+			$this->assign('webTitle',$this->get_web_title());
+			$this->assign("advconfig",$adv);
+			$this->display("advconfig");
+		}
 		
-		$strArray=array("web_start","web_open_up","web_open_reg","web_comment","web_com_review");
-		$adv=$this->change2check($globConfig,$strArray);
-		$this->assign('webTitle',$this->get_web_title());
-		$this->assign("advconfig",$adv);
-		$this->display("advconfig");
 	}
 	//转换高级配置选项
 	public function change2check($conArr,$strArr){

@@ -128,26 +128,34 @@ class IndexController extends Controller {
 			$posts=M("tw_posts");
 			$data["posts_author"]=session("username");
 			foreach($_POST["data"] as $key=>$val){
-				$data[$key]="'{$val}'";
+				$data[$key]=$val;
 			}
 
 			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
+			if($_POST["cover-data"]!=""){
+				$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+			}
 			
-			if($_POST["post-type"]=="new"){
-				if($_POST["cover-data"]!=""){
-					$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
-				}
+			if($_POST["post-type"]=="new"){//新建文章
+				
 			$posts->add($data);//添加数据
 			
-			}else{
+			}else{//修改文章
 				$data["posts_edit_time"]=date("Y-m-d H:i:s");
-
+				//print_r($param);
+				$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
+				echo $posts->getLastSql();
 			}
 			
 		}else{
 			//初始化空白
-			if(get_param()){
+			$param=get_param();
+			if($param){
 				$this->assign("postType","edit");
+				$posts=M("tw_posts");
+				$postData=$posts->where("posts_id={$param[0]}")->find();
+				//dump($postData);
+				$this->assign("posts",$postData);
 			}
 			$this->assign("class",$this->get_pclass());
 			$this->assign('webTitle',$this->get_web_title());

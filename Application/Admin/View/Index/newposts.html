@@ -72,21 +72,22 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">文章标题</label>
-                  <input type="text" class="form-control posts-data" name="posts_title" placeholder="帖子标题">
+				  <input type="hidden" name="posts_id" class="posts-data" value="{$posts.posts_id|default=''}" >
+                  <input type="text" class="form-control posts-data" name="posts_title" placeholder="帖子标题" value="{$posts.posts_title|default=''}">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">封面图片</label>
-                  <input type="text" class="form-control posts-data" id="posts_cover" name="posts_cover" placeholder="http://www.twoway.com.cn/1.jpg">
+                  <input type="text" class="form-control posts-data" id="posts_cover" name="posts_cover" value="{$posts.posts_cover|default=''}" placeholder="http://www.twoway.com.cn/1.jpg">
 				  <input type="file" id="loadimg">
 				  <input type="hidden" id="cover-data" >
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">文章标签</label>
-                  <input type="text" class="form-control posts-data" name="posts_tags" placeholder="这填写网站的网站描述">
+                  <input type="text" class="form-control posts-data" name="posts_tags" value="{$posts.posts_tags|default=''}" placeholder="这填写网站的网站描述">
                 </div>
 				<div class="box-body pad">
 					   <label for="exampleInputPassword1">文章内容</label>
-					   <textarea id="editor1" class="posts-data" name="posts_content" rows="10" cols="80"></textarea>
+					   <textarea id="editor1" class="posts-data" name="posts_content" rows="10" cols="80">{$posts.posts_content|default=''}</textarea>
 					</div>
               </div>
               <!-- /.box-body -->
@@ -148,6 +149,8 @@ $(function () {
 					}else{
 						datas["data"][keyName]=content;
 					}
+			}else if(keyName=="posts_id" && valName!=""){
+				datas["posts_id"]=valName;
 			}else{
 				datas["data"][keyName]=valName;
 			}

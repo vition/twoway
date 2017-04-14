@@ -17,6 +17,7 @@ class IndexController extends Controller {
 		}else{
 			if($this->checklogin(I("username"),I("userpasswd"))){
 				session("isLogin",True);
+				session("username",I("username"));
 				$this->success('成功登录', 'base',1);
 				//$this->display("base");
 			}else{
@@ -121,14 +122,44 @@ class IndexController extends Controller {
 	}
 	//新建文章
 	public function newposts(){
-		if(!empty($_FILES)){
-			print_r($_FILES);
+		if(!empty($_POST)){
+			//新增或者修改数据
+			$data=array();
+			$posts=M("tw_posts");
+			$data["posts_author"]=session("username");
+			foreach($_POST["data"] as $key=>$val){
+				$data[$key]="'{$val}'";
+			}
+
+			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
+			
+			if($_POST["post-type"]=="new"){
+				if($_POST["cover-data"]!=""){
+					$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+				}
+			$posts->add($data);//添加数据
+			
+			}else{
+				$data["posts_edit_time"]=date("Y-m-d H:i:s");
+
+			}
+			
 		}else{
+			//初始化空白
+			if(get_param()){
+				$this->assign("postType","edit");
+			}
 			$this->assign("class",$this->get_pclass());
 			$this->assign('webTitle',$this->get_web_title());
 			$this->display("newposts");
 		}
 		
+	}
+	//分类文本转数字
+	function class_str2int($str){
+		$class=M("tw_class");
+		$classData=$class->where("class_name='{$str}'")->field("class_id")->select();
+		return $classData[0]["class_id"];
 	}
 	//获取分类
 	public function get_pclass(){

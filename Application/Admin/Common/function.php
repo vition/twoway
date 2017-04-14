@@ -11,3 +11,12 @@ function ini_state($state){
 		return "待审核";
 	}
 }
+//获取当前控制器含域名路径函数
+function get_controller(){
+	if($_SERVER["HTTPS"]){
+		$http="https://";
+	}else{
+		$http="http://";
+	}
+	return $http.$_SERVER["HTTP_HOST"].__CONTROLLER__;
+}

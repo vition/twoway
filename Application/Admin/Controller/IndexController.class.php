@@ -5,7 +5,7 @@ class IndexController extends Controller {
 	//默认执行方法
     public function index(){
 		if(session("isLogin")){
-			$this->success('成功登录', 'base',1);
+			$this->success('成功登录', get_controller().'/base',1);
 		}else{
 			$this->display("login");
 		}

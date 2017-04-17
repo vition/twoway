@@ -184,9 +184,22 @@ class IndexController extends Controller {
 	}
 	//分类管理
 	public function classman(){
-		$this->assign("class",$this->get_pclass());
-		$this->assign('webTitle',$this->get_web_title());
-		$this->display("classman");
+		if(!empty($_POST)){
+			$classMan=M("tw_class");
+			if(isset($_POST["class_id"])){
+				$classMan->where("class_id='{$_POST["class_id"]}'")->save($_POST["data"]);
+			}else if(isset($_POST["del_id"])){
+				$classMan->where("class_id='{$_POST["del_id"]}'")->delete();
+			}else{
+				$classMan->add($_POST["data"]);
+			}
+		}else{
+			$pClass=$this->get_pclass();
+			$this->assign("class",$pClass);
+			$this->assign('webTitle',$this->get_web_title());
+			$this->display("classman");
+		}
+		
 	}
 	//用户管理
 	public function userman(){

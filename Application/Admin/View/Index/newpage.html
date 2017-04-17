@@ -37,13 +37,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        新建文章
+        新建页面
         <small>Twoway</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
-        <li><a href="#">文章管理</a></li>
-        <li class="active">新建文章</li>
+        <li><a href="#">页面管理</a></li>
+        <li class="active">新建页面</li>
       </ol>
     </section>
 
@@ -61,36 +61,21 @@
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <div class="form-group">
-					<label>文章分类</label>
-					<select class="form-control select2" style="width: 100%;">
-					  <option selected="selected">Alabama</option>
-					  <option>Alaska</option>
-					  <option>California</option>
-					  <option>Delaware</option>
-					  <option>Tennessee</option>
-					  <option>Texas</option>
-					  <option>Washington</option>
-					</select>
-				  </div>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">帖子标题：</label>
-                  <input type="text" class="form-control" name="posts_title" placeholder="帖子标题">
+                  <label for="exampleInputPassword1">页面标题：</label>
+                  <input type="text" class="form-control" name="page_title" placeholder="帖子标题">
                 </div>
 				 <div class="form-group">
                   <label for="exampleInputPassword1">封面图片：</label>
-                  <input type="text" class="form-control" id="posts_cover" name="posts_cover" placeholder="http://www.twoway.com.cn/1.jpg">
+                  <input type="text" class="form-control" id="page_cover" name="posts_cover" placeholder="http://www.twoway.com.cn/1.jpg">
 				  <input type="file" id="loadimg">
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">帖子标签：</label>
-                  <input type="text" class="form-control" name="posts_tags" placeholder="这填写网站的网站描述">
+                  <label for="exampleInputPassword1">页面标签：</label>
+                  <input type="text" class="form-control" name="page_tags" placeholder="这填写网站的网站描述">
                 </div>
 				<div class="box-body pad">
 					  <form>
-							<textarea id="editor1" name="editor1" rows="10" cols="80">
-													This is my textarea to be replaced with CKEditor.
+							<textarea id="editor1" name="editor1" rows="10" cols="80">				
 							</textarea>
 					  </form>
 					</div>
@@ -98,7 +83,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" id="submit-posts" class="btn btn-primary">提交修改</button>
+                <button type="submit" id="submit-page" class="btn btn-primary">提交修改</button>
               </div>
           </div>
           <!-- /.box -->

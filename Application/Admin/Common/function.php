@@ -51,3 +51,10 @@ function blob2Img($blob,$dir="./Public/upload/images/"){
 	fclose($resource); 
 	return $dir.$imgname;
 }
+//新建html文件
+function create_html($name,$html,$url="./Public/html/"){
+	$fileName=md5($name).".html";
+	$file = fopen($url.$fileName , 'w+');
+	fwrite($file,$html);
+	fclose($file);
+}

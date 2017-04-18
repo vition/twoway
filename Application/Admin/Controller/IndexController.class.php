@@ -244,12 +244,13 @@ class IndexController extends Controller {
 			}
 			$data["pages_date"]=date("Y-m-d H:i:s");
 			if($_POST["pages-type"]=="new"){//新建文章
-				
+				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
 				$posts->add($data);//添加数据
 			
 			}else{//修改文章
 
 				//print_r($param);
+				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
 				$posts->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
 				//echo $posts->getLastSql();
 			}
@@ -268,6 +269,14 @@ class IndexController extends Controller {
 			$this->display("newpage");
 		}
 		
+	}
+	//中文转英文字母
+	function letter(){
+		if(!empty($_POST)){
+			import('Vendor.ChinesePinyin.ChinesePinyin');
+			$Pinyin = new \ChinesePinyin();
+			echo $Pinyin->encode($_POST["str"],True);
+		}
 	}
 }
 

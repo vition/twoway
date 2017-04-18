@@ -269,10 +269,6 @@ class IndexController extends Controller {
 		}
 		
 	}
-	//新建html文件
-	protected function create_html(){
-
-	}
 }
 
 

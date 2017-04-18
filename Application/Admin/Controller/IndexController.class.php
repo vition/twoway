@@ -228,6 +228,51 @@ class IndexController extends Controller {
 		$data=$config->field("config_value")->where("config_key='web_name'")->select();
 		return $data[0]["config_value"];
 	}
+	//新建页面
+	public function newpage(){
+		if(!empty($_POST)){
+			//新增或者修改数据
+			$data=array();
+			$posts=M("tw_pages");
+			//print_r($_POST);
+			foreach($_POST["data"] as $key=>$val){
+				$data[$key]=$val;
+			}
+
+			if($_POST["cover-data"]!=""){
+				$data["pages_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+			}
+			$data["pages_date"]=date("Y-m-d H:i:s");
+			if($_POST["pages-type"]=="new"){//新建文章
+				
+				$posts->add($data);//添加数据
+			
+			}else{//修改文章
+
+				//print_r($param);
+				$posts->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
+				//echo $posts->getLastSql();
+			}
+			
+		}else{
+			$param=get_param();
+			if($param){
+				$this->assign("pagesType","edit");
+				$pages=M("tw_pages");
+				$pagesData=$pages->where("pages_id={$param[0]}")->find();
+				//dump($pagesData);
+				$this->assign("pages",$pagesData);
+			}
+			//初始化空白
+			$this->assign('webTitle',$this->get_web_title());
+			$this->display("newpage");
+		}
+		
+	}
+	//新建html文件
+	protected function create_html(){
+
+	}
 }
 
 

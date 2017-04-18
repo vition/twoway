@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- WARNING: Respond.js doesn't work if you view the pages via file:// -->
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -32,9 +32,9 @@
   <!-- Left side column. contains the logo and sidebar -->
   <include file="left" />
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains pages content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
+    <!-- Content Header (pages header) -->
     <section class="content-header">
       <h1>
         新建页面
@@ -61,21 +61,23 @@
             <!-- form start -->
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputPassword1">页面标题：</label>
-                  <input type="text" class="form-control" name="page_title" placeholder="帖子标题">
+                  <label for="exampleInputPassword1">页面标题</label>
+                  <input type="text" class="form-control pages-data" name="pages_title" value="{$pages.pages_title|default=''}" placeholder="帖子标题">
+                  <input type="hidden" name="pages_id" class="pages-data" value="{$pages.pages_id|default=''}" >
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">封面图片：</label>
-                  <input type="text" class="form-control" id="page_cover" name="posts_cover" placeholder="http://www.twoway.com.cn/1.jpg">
-				  <input type="file" id="loadimg">
+                  <label for="exampleInputPassword1">封面图片</label>
+                  <input type="text" class="form-control pages-data" id="pages_cover" name="pages_cover" value="{$pages.pages_cover|default=''}" placeholder="http://www.twoway.com.cn/1.jpg">
+  				    <input type="file" id="loadimg">
+               <input type="hidden" id="cover-data" >
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">页面标签：</label>
-                  <input type="text" class="form-control" name="page_tags" placeholder="这填写网站的网站描述">
+                  <label for="exampleInputPassword1">页面标签</label>
+                  <input type="text" class="form-control pages-data" vlaue="{$pages.pages_tags|default=''}" name="pages_tags" placeholder="这填写网站的网站描述">
                 </div>
 				<div class="box-body pad">
 					  <form>
-							<textarea id="editor1" name="editor1" rows="10" cols="80">				
+							<textarea id="editor1" class="pages-data" name="pages_content" name="editor1" rows="10" cols="80">{$pages.pages_content|default=''}
 							</textarea>
 					  </form>
 					</div>
@@ -83,7 +85,8 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" id="submit-page" class="btn btn-primary">提交修改</button>
+                 <input type="hidden" id="pages-type" value="{$pagesType|default='new'}">
+                <button type="submit" id="submit-pages" class="btn btn-primary">提交修改</button>
               </div>
           </div>
           <!-- /.box -->
@@ -116,32 +119,70 @@ $(function () {
 	CKEDITOR.replace('editor1');
 	//bootstrap WYSIHTML5 - text editor
 	$(".textarea").wysihtml5();
-	//修改数据
-	$("#submit-posts").on("click",function(){
-		datas={};
-		$.ajax({
-			url:"{:U('newposts')}",
-			data:datas,
-			dataType:"html",
-			type:"post", 
-			success:function(data){
-				alert(data)
-			}
-		})
-	})
+	$("#submit-pages").on("click",function(){
+        datas={};
+        datas["cover-data"]=$("#cover-data").val();
+        datas["pages-type"]=$("#pages-type").val();
+        datas["data"]={};
+        var pagesClass=$(".pages-data");
+        for(var i=0;i<pagesClass.length;i++){
+            var keyName=pagesClass.eq(i).attr("name");
+            var valName=pagesClass.eq(i).val();
+            
+            if(keyName=="pages_title" && valName==""){
+                    alert(pagesClass.eq(i).prev().text()+"不能为空");
+                    return;
+            }else if(keyName=="pages_content"){
+                    var content = CKEDITOR.instances.editor1.getData();
+                    if(content.length<1){
+                        alert(pagesClass.eq(i).prev().text()+"不能为空");
+                        return;
+                    }else{
+                        datas["data"][keyName]=content;
+                    }
+            }else if(keyName=="pages_id" && valName!=""){
+                datas["pages_id"]=valName;
+            }else{
+                datas["data"][keyName]=valName;
+            }
+        }
+        $.ajax({
+            url:"{:U('newpage')}",
+            data:datas,
+            dataType:"html",
+            type:"post", 
+            success:function(data){
+                //alert(data)
+                location.reload();
+            }
+        })
+    })
 });
+
  //加载图片
 	$("#loadimg").on("change",loadImg)
  //加载图片函数
 function loadImg(){
-	var file = this.files[0]; //选择上传的文件
-	var r = new FileReader();
-	r.readAsDataURL(file); //Base64
-	$(r).load(function(){
-		//alert(this.result)
-		$("#posts_cover").val(this.result);
-		$("#coverbox").css("display","none");
-	});
+  var file = this.files[0]; //选择上传的文件
+  var fileName=file.name;
+  fN=fileName.split(".")
+  if(fN[fN.length-1]=="jpg" || fN[fN.length-1]=="png" || fN[fN.length-1]=="gif"){
+    if(file.size>2000000){
+      alert("文件不能大于2M")
+    }else{
+      var r = new FileReader();
+      r.readAsDataURL(file); //Base64
+      $(r).load(function(){
+        $("#cover-data").val(this.result);
+        $("#pages_cover").val(fileName);
+        $("#coverbox").css("display","none");
+      });
+    }
+  }else{
+    alert("不支持此文件类型")
+  }
+  
+  
 }
 </script>
 </body>

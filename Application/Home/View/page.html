@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>{$posts.posts_title}-广州睿基营销策划有限公司</title>
+    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/flexslider.css">
+	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/style.css">
+	<style>
+	#main-nav .navbar-header a {width:320px;height:60px;background:url("__PUBLIC__/temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
+	@media screen and (max-width: 600px) { #content{width:80%;margin:10px auto;border-top:5px solid #ADDBED;padding-top:20px;}}
+	@media screen and (min-width: 601px) { #content{width:60%;margin:10px auto;border-top:5px solid #ADDBED;padding-top:20px;}}
+	#content .posts-title{text-align: center;margin-bottom: 20px;font-size:1.5em;}
+	#content .posts-time{text-align: right;margin-bottom: 30px;font-size: 1.2em;padding-right:10%;color:#666666;}
+	#content .posts-share{padding-left:20%;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bhtm8oON1GR2FwAaSr5UY3K4nke8BD28"></script>
+</head>
+<body id="top" data-spy="scroll">
+	<!--top header-->
+
+	<header id="home">
+
+		<section class="top-nav hidden-xs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="top-left">
+
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+							</ul>
+
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="top-right">
+							<p>地址:<span>广州市越秀区德政北路538号达信大厦8楼</span></p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!--main-nav-->
+
+		<div id="main-nav">
+
+			<nav class="navbar">
+				<div class="container">
+
+					<div class="navbar-header">
+						<a href="index.html" class="navbar-brand"></a>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
+							<span class="sr-only">Toggle</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+
+					<div class="navbar-collapse collapse" id="ftheme">
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="{$Think.server.script_name}#home">Twoway</a></li>
+							<li><a href="{$Think.server.script_name}#about">关于TW</a></li>
+							<li><a href="{$Think.server.script_name}#about-bg">TW数据</a></li>
+							<li><a href="{$Think.server.script_name}#service">TW的服务</a></li>
+							<li><a href="{$Think.server.script_name}#portfolio">TW项目</a></li>
+							<li><a href="{$Think.server.script_name}#contact">联系TW</a></li>
+							<li class="hidden-sm hidden-xs">
+	                            <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
+	                        </li>
+						</ul>
+
+					</div>
+
+					<div class="search-form">
+	                    <form>
+	                        <input type="text" id="s" size="40" placeholder="Search..." />
+	                    </form>
+	                </div>
+
+				</div>
+			</nav>
+		</div>
+
+	</header>
+	<div id="content">
+		<h3 class="posts-title">{$posts.posts_title}</h3>
+		<div class="posts-time">发布时间：{$posts.posts_create_time}</div>
+		<div>{$posts.posts_content}</div>
+		<div class="posts-share">
+			<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_ty" data-cmd="ty" title="分享到天涯社区"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a></div>
+			<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+		</div>
+	</div>
+		<div id="bottom-footer" class="hidden-xs">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4">
+					</div>
+
+					<div class="col-md-8">
+						<div class="footer-right">
+                            <ul class="list-unstyled list-inline pull-right">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#service">Service</a></li>
+                                <li><a href="#portfolo">Portfolio</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                            </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        
+	
+	<!-- jQuery -->
+    <script src="__PUBLIC__/temp/home/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/temp/home/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/temp/home/js/jquery.flexslider.js"></script>
+    <script src="__PUBLIC__/temp/home/js/jquery.inview.js"></script>
+
+    <script src="__PUBLIC__/temp/home/js/script.js"></script>
+    <script src="__PUBLIC__/temp/home/js/contactform.js"></script>
+	<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+      createMap();//创建地图
+      setMapEvent();//设置地图事件
+      addMapControl();//向地图添加控件
+      addMapOverlay();//向地图添加覆盖物
+    }
+    function createMap(){ 
+      map = new BMap.Map("map"); 
+      map.centerAndZoom(new BMap.Point(113.281016,23.138284),18);
+    }
+    function setMapEvent(){
+      map.enableScrollWheelZoom();
+      map.enableKeyboard();
+      map.enableDragging();
+      map.enableDoubleClickZoom()
+    }
+    function addClickHandler(target,window){
+      target.addEventListener("click",function(){
+        target.openInfoWindow(window);
+      });
+    }
+    function addMapOverlay(){
+      var markers = [
+      ];
+      for(var index = 0; index < markers.length; index++ ){
+        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
+          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
+        })});
+        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+        var opts = {
+          width: 200,
+          title: markers[index].title,
+          enableMessage: false
+        };
+        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+        marker.setLabel(label);
+        addClickHandler(marker,infoWindow);
+        map.addOverlay(marker);
+      };
+      var labels = [
+        {position:{lng:113.281726,lat:23.137802},content:"广州睿基营销策划有限"}
+      ];
+      for(var index = 0; index < labels.length; index++){
+        var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
+        var label = new BMap.Label(labels[index].content,opt);
+        map.addOverlay(label);
+      };
+      var plOpts = [
+        {strokeColor:"#00f",strokeWeight:"4",strokeOpacity:"0.6"}
+      ];
+      var plPath = [
+        [
+          new BMap.Point(113.28107,23.138052),
+          new BMap.Point(113.281717,23.138052),
+          new BMap.Point(113.281744,23.137761),
+          new BMap.Point(113.28107,23.137736),
+          new BMap.Point(113.281061,23.138035),
+          new BMap.Point(113.281061,23.138035),
+          new BMap.Point(113.281061,23.138035)
+        ],
+      ];
+      for(var index = 0; index < plOpts.length; index++){
+        var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
+        map.addOverlay(polyline);
+      }
+    }
+    //向地图添加控件
+    function addMapControl(){
+      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
+      map.addControl(scaleControl);
+      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+      map.addControl(navControl);
+      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
+      map.addControl(overviewControl);
+    }
+    var map;
+      initMap();
+  </script>
+    
+</body>
+</html>

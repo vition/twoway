@@ -179,7 +179,7 @@ class IndexController extends Controller {
 	//文章管理
 	public function postsman(){
 		$posts=M("tw_posts");
-		$lists=$posts->where("tw_posts.posts_class=tw_class.class_id")->table("tw_posts")->join("tw_class")->field("posts_id,class_name,posts_title,posts_content,posts_cover,posts_author,posts_create_time,posts_edit_time,posts_state,posts_tags")->limit(0,10)->select();
+		$lists=$posts->where("tw_posts.posts_class=tw_class.class_id")->table("tw_posts")->join("tw_class")->field("posts_id,class_name,posts_title,posts_content,posts_cover,posts_author,posts_create_time,posts_edit_time,posts_state,posts_tags")->order('posts_create_time DESC')->select();
 		$this->assign("list",$lists);
 		$this->display("postsman");
 	}

@@ -390,7 +390,7 @@
 		    						<img src="././{$pro.posts_cover}" alt="">
 		    						<div class="caption">
 	                               		<i class="fa fa-search" aria-hidden="true"></i>
-	                               		<p>{$pro.posts_title}</p>
+	                               		<p><a target="_blank" href="{:U('page','','')}/{$pro.posts_id}">{$pro.posts_title}</a></p>
 	                            	</div>
 		    					</div>
 		    				</div>
@@ -541,10 +541,9 @@
 						<div class="footer-heading">
 							<h3><span>最新</span> 动态</h3>
 							<ul>
-								<li><a href="#">2017致享上市发布会（成都3月）</a></li>
-								<li><a href="#">2017猎豹汽车CT7发布及试驾会</a></li>
-								<li><a href="#">2016万力之夜（北京4月）</a></li>
-								<li><a href="#">2016年广汽丰田凯美瑞十周年纪念版发布会</a></li>
+								<volist name="inside" id="postsin">
+									<li><a target="_blank" href="{:U('page','','')}/{$postsin.posts_id}">{$postsin.posts_title}</a></li>
+								</volist>
 							</ul>
 						</div>
 					</div>
@@ -552,10 +551,9 @@
 						<div class="footer-heading">
 							<h3><span>行业</span> 动态</h3>
 							<ul>
-								<li><a href="#">2017致享上市发布会（成都3月）</a></li>
-								<li><a href="#">2017猎豹汽车CT7发布及试驾会</a></li>
-								<li><a href="#">2016万力之夜（北京4月）</a></li>
-								<li><a href="#">2016年广汽丰田凯美瑞十周年纪念版发布会</a></li>
+								<volist name="trade" id="poststr">
+									<li><a target="_blank" href="{:U('page','','')}/{$poststr.posts_id}">{$poststr.posts_title}</a></li>
+								</volist>
 							</ul>
 						</div>
 					</div>

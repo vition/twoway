@@ -9,9 +9,9 @@
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="__PUBLIC__/Temp/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -76,7 +76,7 @@
                   <input type="text" class="form-control posts-data" name="posts_title" placeholder="帖子标题" value="{$posts.posts_title|default=''}">
                 </div>
 				 <div class="form-group">
-                  <label for="exampleInputPassword1">封面图片</label>
+                  <label for="exampleInputPassword1">封面图片(封面图片尺寸请使用676 X 460)</label>
                   <input type="text" class="form-control posts-data" id="posts_cover" name="posts_cover" value="{$posts.posts_cover|default=''}" placeholder="http://www.twoway.com.cn/1.jpg">
 				  <input type="file" id="loadimg">
 				  <input type="hidden" id="cover-data" >
@@ -118,15 +118,19 @@
 <script src="__PUBLIC__/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script src="__PUBLIC__/Temp/plugins/ckeditor/ckeditor.js"></script>
+<script src="__PUBLIC__/Temp/plugins/editor/kindeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
 $(function () {
 
-	CKEDITOR.replace('editor1');
+	//CKEDITOR.replace('editor1');
+	 KindEditor.ready(function(K) {
+                window.editor = K.create('#editor1',{resizeType : 1,width:"100%",height:"300px"});
+        });
 	//bootstrap WYSIHTML5 - text editor
-	$(".textarea").wysihtml5();
+	//$(".textarea").wysihtml5();
 	//修改数据
 	$("#submit-posts").on("click",function(){
 		datas={};
@@ -142,7 +146,8 @@ $(function () {
 					alert(postsClass.eq(i).prev().text()+"不能为空");
 					return;
 			}else if(keyName=="posts_content"){
-					var content = CKEDITOR.instances.editor1.getData();
+					//var content = CKEDITOR.instances.editor1.getData();
+					var content = editor.html();
 					if(content.length<1){
 						alert(postsClass.eq(i).prev().text()+"不能为空");
 						return;
@@ -163,7 +168,12 @@ $(function () {
 			dataType:"html",
 			type:"post", 
 			success:function(data){
-				alert(data)
+				if(data==""){
+					location.reload();
+				}else{
+					alert(data)
+				}
+				
 			}
 		})
 	})

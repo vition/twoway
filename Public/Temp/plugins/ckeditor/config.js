@@ -7,4 +7,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+	config.image_previewText = ''; //清空预览区域显示内容
 };

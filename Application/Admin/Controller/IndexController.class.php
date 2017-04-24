@@ -122,15 +122,16 @@ class IndexController extends Controller {
 	}
 	//新建文章
 	public function newposts(){
+		$this->assign("active",ACTION_NAME);
 		if(!empty($_POST)){
 			//新增或者修改数据
+
 			$data=array();
 			$posts=M("tw_posts");
 			$data["posts_author"]=session("username");
 			foreach($_POST["data"] as $key=>$val){
 				$data[$key]=$val;
 			}
-
 			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
 			if($_POST["cover-data"]!=""){
 				$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据

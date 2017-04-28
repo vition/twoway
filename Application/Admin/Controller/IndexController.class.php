@@ -80,6 +80,7 @@ class IndexController extends Controller {
 				echo "没有修改任何数据！";
 			}
 		}else{
+			$this->assign('user',$this->get_user(session("username")));
 			$this->assign('config',$this->get_glob_config());
 			$this->assign('webTitle',$this->get_web_title());
 			$this->display("base");
@@ -278,6 +279,11 @@ class IndexController extends Controller {
 			$Pinyin = new \ChinesePinyin();
 			echo $Pinyin->encode($_POST["str"],True);
 		}
+	}
+	//取用户信息
+	protected function get_user($name){
+		$user=M("tw_user  a");
+		return $user->join("tw_group  b")->field("user_name,b.group_name  user_group,user_register,user_last,user_remark,user_avatar")->where("user_name='{$name}' AND a.user_group=b.group_id")->find();
 	}
 }
 

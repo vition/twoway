@@ -19,3 +19,13 @@ function get_param(){
 		return false;
 	}
 }
+//判断前缀
+function is_http($url){
+	preg_match("/^http/", $url,$matches);
+	if(empty($matches)){
+		return false;
+	}else{
+		return true;
+	}
+
+}

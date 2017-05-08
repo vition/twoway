@@ -12,7 +12,10 @@
 	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/style.css">
 	<style>
 	#main-nav .navbar-header a {width:320px;height:60px;background:url("__PUBLIC__/temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
-	.project .row .col-md-3{margin-bottom:20px;}
+  .newslist {border-top:5px solid #ADDBED;padding:20px;margin-top:10px;font-size: 1.1em;}
+  .newslist .row{margin-top:10px;}
+  .newslist a{color:#333333;}
+  .newslist a:hover{color:#0A88C9;}
 	</style>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bhtm8oON1GR2FwAaSr5UY3K4nke8BD28"></script>
 </head>
@@ -92,7 +95,7 @@
 		</div>
 
 	</header>
-	<div class="container project">
+	<div class="container newslist">
 			<volist name="news" id="posts">
         <div class="row">
   				<div class="col-md-9"><a target="_blank" href="{:U('page','','')}/{$posts.posts_id}" >{$posts.posts_title}</a></div>

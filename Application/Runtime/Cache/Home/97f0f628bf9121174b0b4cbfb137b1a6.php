@@ -304,6 +304,7 @@
   <!-- Left side column. contains the logo and sidebar -->
 	<aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
+	<h1>/twoway/index.php/Home/Temp</h1>
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">

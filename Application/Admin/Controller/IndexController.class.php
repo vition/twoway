@@ -285,6 +285,13 @@ class IndexController extends Controller {
 		$user=M("tw_user  a");
 		return $user->join("tw_group  b")->field("user_name,b.group_name  user_group,user_register,user_last,user_remark,user_avatar")->where("user_name='{$name}' AND a.user_group=b.group_id")->find();
 	}
+	//Banner管理
+	public function banner(){
+		$banner=M("tw_banner b");
+		$banData=$banner->select();
+		$this->assign("list",$banData);
+		$this->display("banner");
+	}
 }
 
 

@@ -21,7 +21,11 @@
   <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
    <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/iCheck/all.css">
-
+  <style>
+    #banner-list{text-align:center;}
+    #banner-list th, input{text-align:center;}
+    #banner-list .fa{font-size:large;cursor:pointer;}
+  </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -42,7 +46,7 @@
     <section class="content-header">
       <h1>
         Banner管理
-        <small>advanced tables</small>
+        <small>首页顶部banner</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -60,36 +64,97 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Table With Full Features</h3>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i>  新建Banner</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="banner-list" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>启用</th>
-                  <th>排序</th>
+                  <th class="col-xs-1 col-md-1">启用</th>
+                  <th class="col-xs-1 col-md-1">排序</th>
                   <th>标题</th>
                   <th>内容</th>
-                  <th>备注</th>
+                  <th>编辑</th>
+                  <th>选中</th>
+                  <th>删除</th>
                 </tr>
                 </thead>
                 <tbody>
                     <volist name="list" id="banlist">
+                        <input type="hidden" id="banner_id" value="{$banlist.banner_id}" />
                         <tr>
-                            <td><label>
-                  <input type="checkbox" class="flat-red" checked>
-                </label></td>
-                            <td>{$banlist.banner_sort}</td>
+                            <td>
+                                <label>
+                                    <input type="checkbox" class="flat-red" {$banlist.banner_state|isChecked}>
+                                </label>
+                            </td>
+                            <td><input type="text" value="{$banlist.banner_sort}"></td>
                             <td>{$banlist.banner_title}</td>
                             <td>{$banlist.banner_content|mb_substr=0,50,'utf-8'}</td>
-                            <td>{$banlist.banner_state}</td>
+                            <td style="vertical-align: middle;">
+                                <button type="button" class="btn-link" data-toggle="modal" id="edit-banner" data-target="#myModal">
+                                     <i class="fa fa-fw fa-edit"></i>
+                                </button>
+                            </td>
+                            <td>
+                               <input type="checkbox" class="minimal" style="margin-bottom: 2px;" checked>
+                            </td>
+                            <td><button type="button" class="btn btn-danger btn-xs">删除</button></td>
                         </tr>
                     </volist>              
                
                 </tbody>
               </table>
             </div>
+            
+            <!-- Modal -->
+            <!--弹窗-->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新建/修改banner</h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                        <label>启用：</label>
+                        <input type="checkbox" class="flat-red banner-info" name="banner_state">
+                    </div>
+                    <div class="form-group">
+                         <label>排序：</label>
+                        <input type="text" class="form-control banner-info" name="banner_sort">
+                    </div>
+                    <div class="form-group">
+                        <label>标题：</label>
+                        <input type="text" class="form-control banner-info" name="banner_title">
+                    </div>
+                    <div class="form-group">
+                        <label>内容：</label>
+                        <textarea class="form-control banner-info" name="banner_content"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>图片地址：</label>
+                        <input type="text" class="form-control banner-info" name="banner_imgurl">
+                    </div>
+                    <div class="form-group">
+                        <label>链接地址：</label>
+                        <input type="text" class="form-control banner-info" name="banner_url">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="insert">新建</button>
+                    <button type="button" class="btn btn-info">修改</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <!--弹窗-->
+
+
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -319,19 +384,69 @@
 <!-- page script -->
 <script>
   $(function () {
-     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+    //启用选框的样式初始化
+    $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
       checkboxClass: 'icheckbox_flat-green',
       radioClass: 'iradio_flat-green'
     });
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
+     //选中选框的样式初始化
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+      checkboxClass: 'icheckbox_minimal-blue',
+      radioClass: 'iradio_minimal-blue'
     });
+    //点击编辑
+    $(".edit-banner").on("click",function(){
+        var data={}
+        data["type"]="getinfo" 
+        data["data"]={}
+        data["data"]["banner_id"] = $("#banner_id").val()
+       
+        var info=$(".banner-info")
+        // //for(var i=0;i<info.length;i++){
+        //     data[info.eq(i).attr("name")]=info.eq(i).val()
+        // }
+        $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'json',
+            success:function(data){
+                var info=$(".banner-info")
+                bdata=JSON.parse(data)
+                for(var i=0;i<info.length;i++){
+                    if(info.eq(i).attr("name")=="banner_state"){
+                        if(bdata[info.eq(i).attr("name")]==1){
+                           // alert("ok")
+                            info.eq(i).prop("checked",true)
+                        }else{
+                           // alert("!ok")
+                            info.eq(i).prop("checked",false)
+                        }
+                    }
+                    info.eq(i).val(bdata[info.eq(i).attr("name")])
+                }
+            }
+        })
+    })
+    //新增Banner
+    $("#insert").on("click",function(){
+        var data={}
+        data["type"]="insert" 
+        data["data"]={}     
+        var info=$(".banner-info")
+        for(var i=0;i<info.length;i++){
+            data["data"][info.eq(i).attr("name")]=info.eq(i).val()
+        }
+         $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html',
+            success:function(data){
+                alert(data)
+            }
+        })
+    })
 
   });
 </script>

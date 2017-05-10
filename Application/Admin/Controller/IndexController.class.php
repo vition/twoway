@@ -2,6 +2,12 @@
 namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+	// //判断登录
+	// function islogin(){
+	// 	if(session("isLogin")){
+
+	// 	}
+	// }
 	//默认执行方法
     public function index(){
 		if(session("isLogin")){
@@ -43,27 +49,30 @@ class IndexController extends Controller {
 		}
 	}
 	//退出用户
-	public function logout(){
+	protected function logout(){
 		session("isLogin",Null);
+		session("username",Null);
 		$this->success('退出成功', 'index');
 	}
 	//重定向call方法
 	public function __call($method,$args){
 		if(session("isLogin")){
-			parent::__call($method,$args);
+			//parent::__call($method,$args);
+			//这样子做了一层保护，未登录的无法使用protected里的方法
+			call_user_func($this->$method(), $args);
 		}else{
 			$this->success('请先登录', 'index');
 		}
 		
 	}
 	//获取全局配置
-	public function get_glob_config(){
+	protected function get_glob_config(){
 		$Model=M("tw_config");
 		$config=$Model->field("config_key,config_value")->select();
 		return ($this->key_value($config));
 	}
 	//获取数据库转数组
-	public function key_value($array){
+	protected function key_value($array){
 		$tempArray=array();
 		foreach ($array as $item ){
 			$tempArray[$item['config_key']]=$item['config_value'];
@@ -71,7 +80,7 @@ class IndexController extends Controller {
 		return $tempArray;
 	}
 	//基本配置
-	public function base(){
+	protected function base(){
 		if(!empty($_POST)){
 			$config=M("tw_config");
 			foreach($_POST as $key=>$value){
@@ -93,7 +102,7 @@ class IndexController extends Controller {
 		
 	}
 	//高级配置
-	public function advconfig(){
+	protected function advconfig(){
 		if(!empty($_POST)){
 			$config=M("tw_config");
 			$config->config_value="{$_POST["value"]}";
@@ -114,7 +123,7 @@ class IndexController extends Controller {
 		
 	}
 	//转换高级配置选项
-	public function change2check($conArr,$strArr){
+	protected function change2check($conArr,$strArr){
 		$adv=array();
 		foreach($strArr as $str){
 			if($conArr[$str]=="true"){
@@ -126,7 +135,7 @@ class IndexController extends Controller {
 		return $adv;
 	}
 	//新建文章
-	public function newposts(){
+	protected function newposts(){
 		$this->assign("active",ACTION_NAME);
 		if(!empty($_POST)){
 			//新增或者修改数据
@@ -176,20 +185,20 @@ class IndexController extends Controller {
 		return $classData[0]["class_id"];
 	}
 	//获取分类
-	public function get_pclass(){
+	protected function get_pclass(){
 		$twClass=M("tw_class");
 		$data=$twClass->select();
 		return($data);
 	}
 	//文章管理
-	public function postsman(){
+	protected function postsman(){
 		$posts=M("tw_posts");
 		$lists=$posts->where("tw_posts.posts_class=tw_class.class_id")->table("tw_posts")->join("tw_class")->field("posts_id,class_name,posts_title,posts_content,posts_cover,posts_author,posts_create_time,posts_edit_time,posts_state,posts_tags")->order('posts_create_time DESC')->select();
 		$this->assign("list",$lists);
 		$this->display("postsman");
 	}
 	//分类管理
-	public function classman(){
+	protected function classman(){
 		if(!empty($_POST)){
 			$classMan=M("tw_class");
 			if(isset($_POST["class_id"])){
@@ -208,7 +217,7 @@ class IndexController extends Controller {
 		
 	}
 	//用户管理
-	public function userman(){
+	protected function userman(){
 		$user=M("tw_user");
 		$data=$user->where("tw_user.user_group=tw_group.group_id")->table("tw_user")->join("tw_group")->select();
 		
@@ -217,25 +226,25 @@ class IndexController extends Controller {
 		$this->display("userman");
 	}
 	//获取分组
-	public function get_group(){
+	protected function get_group(){
 		$twGroup=M("tw_group");
 		$data=$twGroup->select();
 		return($data);
 	}
 	//分组管理
-	public function groupman(){
+	protected function groupman(){
 		$this->assign("list",$this->get_group());
 		$this->assign("active",ACTION_NAME);
 		$this->display("groupman");
 	}
 	//获取网站名称
-	public function get_web_title(){
+	protected function get_web_title(){
 		$config=M("tw_config");
 		$data=$config->field("config_value")->where("config_key='web_name'")->select();
 		return $data[0]["config_value"];
 	}
 	//新建页面
-	public function newpage(){
+	protected function newpage(){
 		if(!empty($_POST)){
 			//新增或者修改数据
 			$data=array();
@@ -277,7 +286,7 @@ class IndexController extends Controller {
 		
 	}
 	//中文转英文字母
-	function letter(){
+	protected function letter(){
 		if(!empty($_POST)){
 			import('Vendor.ChinesePinyin.ChinesePinyin');
 			$Pinyin = new \ChinesePinyin();
@@ -290,16 +299,40 @@ class IndexController extends Controller {
 		return $user->join("tw_group  b")->field("user_name,b.group_name  user_group,user_register,user_last,user_remark,user_avatar")->where("user_name='{$name}' AND a.user_group=b.group_id")->find();
 	}
 	//Banner管理
-	public function banner(){
-		$banner=M("tw_banner b");
-		$banData=$banner->select();
-		$this->assign("list",$banData);
-		$this->display("banner");
+	protected function banner(){
+		$banner=M("tw_banner");
+		if(!empty($_POST)){
+			switch ($_POST["type"]) {
+				case 'getinfo':
+					$data=$banner->field("banner_state,banner_sort,banner_title,banner_content,banner_imgurl,banner_url")->where("banner_id={$_POST['data']['banner_id']}")->find();
+					echo json_encode($data);
+					break;
+				case 'insert':
+				$banner->add($_POST["data"]);
+				echo $banner->getLastSql();
+				break;
+				default:
+					# code...
+					break;
+			}
+		}else{
+			$banData=$banner->select();
+			// if($banData['banner_state']==1){
+			// 	$banData['banner_state']='checked';
+			// }else{
+			// 	$banData['banner_state']='';
+			// }
+			$this->assign("list",$banData);
+			$this->display("banner");
+		}
+		
 	}
+	//这里放回一个日志类
 	protected function logs(){
 		import('Vendor.Logs.Logs');
 		return new \Logs("tw_log");
 	}
+
 }
 
 

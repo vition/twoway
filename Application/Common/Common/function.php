@@ -27,5 +27,10 @@ function is_http($url){
 	}else{
 		return true;
 	}
-
+}
+//是否选中了
+function isChecked($state){
+	if($state==1){
+		echo "checked";
+	}
 }

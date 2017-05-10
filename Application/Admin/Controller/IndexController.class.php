@@ -18,9 +18,13 @@ class IndexController extends Controller {
 			if($this->checklogin(I("username"),I("userpasswd"))){
 				session("isLogin",True);
 				session("username",I("username"));
+				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."成功登录后台","log_date"=>date("Y-m-d H:i:s",time()));
+				$this->logs()->insert($data);
 				$this->success('成功登录', 'base',1);
 				//$this->display("base");
 			}else{
+				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."尝试登录后台，但是登录失败","log_date"=>date("Y-m-d H:i:s",time()));
+				$this->logs()->insert($data);
 				$this->error('请重新登录', 'index',1);
 				//$this->display("login");
 			}
@@ -291,6 +295,10 @@ class IndexController extends Controller {
 		$banData=$banner->select();
 		$this->assign("list",$banData);
 		$this->display("banner");
+	}
+	protected function logs(){
+		import('Vendor.Logs.Logs');
+		return new \Logs("tw_log");
 	}
 }
 

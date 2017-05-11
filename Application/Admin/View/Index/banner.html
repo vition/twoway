@@ -64,7 +64,10 @@
 
           <div class="box">
             <div class="box-header">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-square"></i>  新建Banner</button>
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bannerModal"><i class="fa fa-plus-square"></i>   新建Banner</button>
+              <button type="button" class="btn btn-danger" id="batch-del" ><i class="fa fa-remove"></i>  批量删除</button>
+              <button type="button" class="btn btn-success batch-state" data-state="1" ><i class="fa fa-check-square"></i>  批量启用</button>
+              <button type="button" class="btn btn-info batch-state" data-state="0" ><i class="fa fa-square"></i>  批量关闭</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -82,24 +85,22 @@
                 </thead>
                 <tbody>
                     <volist name="list" id="banlist">
-                        <tr>
+                        <tr data-id="{$banlist.banner_id}">
                             <td>
-                                <label>
-                                    <input type="checkbox" class="flat-red" {$banlist.banner_state|isChecked}>
-                                </label>
+                                <input type="checkbox" class="flat-red start_banner" {$banlist.banner_state|isChecked}>
                             </td>
-                            <td><input type="text" value="{$banlist.banner_sort}"></td>
+                            <td><input type="text" class="sort_banner" value="{$banlist.banner_sort}"></td>
                             <td>{$banlist.banner_title}</td>
                             <td>{$banlist.banner_content|mb_substr=0,50,'utf-8'}</td>
                             <td style="vertical-align: middle;">
-                                <button type="button" class="btn-link edit-banner" data-id="{$banlist.banner_id}" data-toggle="modal" data-target="#bannerModal">
+                                <button type="button" class="btn-link edit-banner"  data-toggle="modal" data-target="#bannerModal">
                                      <i class="fa fa-fw fa-edit"></i>
                                 </button>
                             </td>
                             <td>
-                               <input type="checkbox" class="minimal" style="margin-bottom: 2px;" checked>
+                               <input type="checkbox" class="minimal select-banner" style="margin-bottom: 2px;">
                             </td>
-                            <td><button type="button" class="btn btn-danger btn-xs">删除</button></td>
+                            <td><button type="button" class="btn btn-danger btn-xs del_banner">删除</button></td>
                         </tr>
                     </volist>              
                
@@ -384,6 +385,7 @@
 <!-- page script -->
 <script>
   $(function () {
+
     //启用选框的样式初始化
     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
       checkboxClass: 'icheckbox_flat-green',
@@ -399,7 +401,7 @@
         var data={}
         data["type"]="getinfo" 
         data["data"]={}
-        data["data"]["banner_id"] = $(this).data("id")
+        data["data"]["banner_id"] = $(this).parent().parent().data("id")
        
         var info=$(".banner-info")
         // //for(var i=0;i<info.length;i++){
@@ -418,9 +420,11 @@
                         if(bdata[info.eq(i).attr("name")]==1){
                            // alert("ok")
                             info.eq(i).parent().addClass("checked")
+                            info.eq(i).prop("checked",true)
                         }else{
                            // alert("!ok")
                             info.eq(i).parent().removeClass("checked")
+                            info.eq(i).prop("checked",false)
                         }
                     }
                     info.eq(i).val(bdata[info.eq(i).attr("name")])
@@ -462,8 +466,91 @@
             }
         })
     })
+    //单独启用
+    $(".start_banner").next().on("click",function(){
+        var data={};
+        data["type"]="update"
+        data["id"]=$(this).parent().parent().parent().data("id")
+        data["data"]={}
+        if($(this).prev().is(":checked")){
+            data["data"]["banner_state"]=1
+        }else{
+            data["data"]["banner_state"]=0
+        }
+        $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html',
+            success:function(data){
+            }
+        })
+    })
+    //单独sort
+    $(".sort_banner").on("input propertychange",function(){
+        var data={};
+        data["type"]="update"
+        data["id"]=$(this).parent().parent().data("id")
+        data["data"]={}
+        data["data"]["banner_sort"]=$(this).val();
+        $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html'
+        })
+    })
 
   });
+  //单独删除
+  $(".del_banner").on("click",function(){
+        var data={};
+        data["type"]="delete"
+        data["id"]=$(this).parent().parent().data("id")
+         $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html',
+            success:function(data){
+                location.reload()
+            }
+        })
+  })
+  //批量删除
+  $("#batch-del").on("click",function(){
+        var data={};
+        data["type"]="delete"
+        data["id"]=data["id"]=select_id();
+        $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html',
+            success:function(data){
+                location.reload()
+            }
+        })
+  })
+  //批量启用
+  $(".batch-state").on("click",function(){
+        var data={};
+        data["type"]="state"
+        data["id"]=select_id();
+        if(data["id"]){
+            data["state"]=$(this).data("state")
+            $.ajax({
+                url:"{:U('banner')}",
+                type:'post',
+                data:data,
+                datatype:'html',
+                success:function(data){
+                    location.reload()
+                }
+            })
+        }
+        
+  })
   //获取当前页面数据
   function get_info(){
     var data={}    
@@ -482,6 +569,21 @@
         }
     return data
   }
+  //获取选中的id
+  function select_id(){
+        var select=$(".select-banner:checked");
+        var delid=""
+        if(select.length<1){
+            return false
+        }else{
+            for(var i=0;i<select.length;i++){
+               delid+=select.eq(i).parent().parent().parent().data("id")+","
+            }
+            return delid;
+        }
+        
+  }
+
 </script>
 </body>
 </html>

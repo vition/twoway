@@ -265,7 +265,6 @@ class IndexController extends Controller {
 				$posts->add($data);//添加数据
 			
 			}else{//修改文章
-
 				//print_r($param);
 				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
 				$posts->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
@@ -309,12 +308,19 @@ class IndexController extends Controller {
 					$data=$banner->field("banner_state,banner_sort,banner_title,banner_content,banner_imgurl,banner_url,banner_id")->where("banner_id={$_POST['data']['banner_id']}")->find();
 					echo json_encode($data);
 					break;
-				case 'insert':
+				case 'insert'://插入新的
 				$banner->add($_POST["data"]);
 				echo $banner->getLastSql();
 				break;
-				case 'update':
+				case 'update'://所有修改
 				$banner->where("banner_id='{$_POST['id']}'")->save($_POST["data"]);
+				echo $banner->getLastSql();
+				break;
+				case 'delete'://删除
+				$banner->where("banner_id in (".rtrim($_POST['id'],",").")")->delete();
+				break;
+				case 'state';
+				$banner->where("banner_id in (".rtrim($_POST['id'],",").")")->save(array("banner_state"=>$_POST['state']));
 				echo $banner->getLastSql();
 				break;
 				default:

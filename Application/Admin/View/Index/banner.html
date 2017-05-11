@@ -25,6 +25,8 @@
     #banner-list{text-align:center;}
     #banner-list th, input{text-align:center;}
     #banner-list .fa{font-size:large;cursor:pointer;}
+    .box-header .btn{margin:5px;}
+    .sort_banner{width:3em;}
   </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,8 +79,8 @@
                   <th class="col-xs-1 col-md-1">启用</th>
                   <th class="col-xs-1 col-md-1">排序</th>
                   <th>标题</th>
-                  <th>内容</th>
-                  <th>编辑</th>
+                  <th class="hidden-xs">内容</th>
+                  <th >编辑</th>
                   <th>选中</th>
                   <th>删除</th>
                 </tr>
@@ -91,7 +93,7 @@
                             </td>
                             <td><input type="text" class="sort_banner" value="{$banlist.banner_sort}"></td>
                             <td>{$banlist.banner_title}</td>
-                            <td>{$banlist.banner_content|mb_substr=0,50,'utf-8'}</td>
+                            <td class="hidden-xs">{$banlist.banner_content|mb_substr=0,50,'utf-8'}</td>
                             <td style="vertical-align: middle;">
                                 <button type="button" class="btn-link edit-banner"  data-toggle="modal" data-target="#bannerModal">
                                      <i class="fa fa-fw fa-edit"></i>

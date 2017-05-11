@@ -77,12 +77,12 @@
     $("#username").val("");  
     $("#userpasswd").val("");
 
-    if(sessionStorage.reme!=undefined){
-        if(sessionStorage.reme=="true"){
-           // alert(sessionStorage.reme)
+    if(localStorage.reme!=undefined){
+        if(localStorage.reme=="true"){
+           // alert(localStorage.reme)
             $("#remember").attr('checked',"checked")
-            $("#username").val(sessionStorage.name);
-            $("#userpasswd").val(sessionStorage.psw);
+            $("#username").val(localStorage.name);
+            $("#userpasswd").val(localStorage.psw);
         }
     }
     $('input').iCheck({
@@ -92,13 +92,13 @@
     });
     $("#login").on("click",function(){
         if($("#remember").is(":checked")==true){
-            sessionStorage.name=$("#username").val();
-            sessionStorage.psw=$("#userpasswd").val();
-            sessionStorage.reme=true
+            localStorage.name=$("#username").val();
+            localStorage.psw=$("#userpasswd").val();
+            localStorage.reme=true
         }else{
-            sessionStorage.name="";
-            sessionStorage.psw="";
-            sessionStorage.reme=false
+            localStorage.name="";
+            localStorage.psw="";
+            localStorage.reme=false
         }
     })
   });

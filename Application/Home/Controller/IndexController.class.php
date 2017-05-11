@@ -6,7 +6,10 @@ class IndexController extends Controller {
     public function index(){
     	$pages=M("tw_pages");
     	$adata=$pages->select();
-
+        //banner
+        $banner=M("tw_banner");
+        $bdats=$banner->where("banner_state=1")->order('banner_sort,banner_id ASC')->select();
+        $this->assign("banner",$bdats);
         //取项目t图片
         $project=M("tw_posts");
         $pdata=$project->where("posts_class=1")->limit('0,8')->order('posts_edit_time DESC')->select();

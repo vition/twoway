@@ -58,6 +58,9 @@ class IndexController extends Controller {
 	public function __call($method,$args){
 		if(session("isLogin")){
 			//parent::__call($method,$args);
+			//把登陆者的所有信息传输过去
+			$this->assign('user',$this->get_user(session("username")));
+
 			//这样子做了一层保护，未登录的无法使用protected里的方法
 			call_user_func($this->$method(), $args);
 		}else{
@@ -93,7 +96,6 @@ class IndexController extends Controller {
 				echo "没有修改任何数据！";
 			}
 		}else{
-			$this->assign('user',$this->get_user(session("username")));
 			$this->assign('config',$this->get_glob_config());
 			$this->assign('webTitle',$this->get_web_title());
 			$this->display("base");
@@ -304,11 +306,15 @@ class IndexController extends Controller {
 		if(!empty($_POST)){
 			switch ($_POST["type"]) {
 				case 'getinfo':
-					$data=$banner->field("banner_state,banner_sort,banner_title,banner_content,banner_imgurl,banner_url")->where("banner_id={$_POST['data']['banner_id']}")->find();
+					$data=$banner->field("banner_state,banner_sort,banner_title,banner_content,banner_imgurl,banner_url,banner_id")->where("banner_id={$_POST['data']['banner_id']}")->find();
 					echo json_encode($data);
 					break;
 				case 'insert':
 				$banner->add($_POST["data"]);
+				echo $banner->getLastSql();
+				break;
+				case 'update':
+				$banner->where("banner_id='{$_POST['id']}'")->save($_POST["data"]);
 				echo $banner->getLastSql();
 				break;
 				default:

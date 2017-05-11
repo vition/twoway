@@ -99,49 +99,16 @@
 	<div id="slider" class="flexslider">
 
         <ul class="slides">
-            <li>
-            	<img src="__PUBLIC__/temp/home/images/slider/slider1.jpg">
-				<div class="caption">
-					<h3><span>slide标题一</span></h3> 
-					<h3><span>副标题</span></h3>
-					<p>2017年3月9日，广汽丰田致享正式上市，新车将全系标配VSC车身稳定系统。广汽丰田致享实为新款YARiS L致炫的三厢版，动力依然是提供1.3L和1.5L两款动力可选。根据配置共推出9款车型，售价区间为6.98-10.68万元。</p>
-					<button class="btn">阅读详细</button>                 
-	            </div>
-
-            </li>
-            <li>
-            	<img src="__PUBLIC__/temp/home/images/slider/slider2.jpg">
-
-				<div class="caption">
-					<h3><span>slide标题二</span></h3> 
-					<h3><span>副标题</span></h3>
-					<p>12月11日,2016年广州马拉松赛将开启大幕,3万跑者在广州“一江两岸”的城市赛道上奔跑,自然和人文景观星罗棋布,点缀在有2200多年历史的广州城</p>
-					<button class="btn">阅读详细</button>                 
-	            </div>
-
-            </li>
-            <li>
-            	<img src="__PUBLIC__/temp/home/images/slider/slider3.jpg">
-
-				<div class="caption">
-					<h3><span>2017致享上市发布会</span></h3> 
-					<h3><span>成都3月</span></h3>
-					<p>2017年3月9日，广汽丰田致享正式上市，新车将全系标配VSC车身稳定系统。广汽丰田致享实为新款YARiS L致炫的三厢版，动力依然是提供1.3L和1.5L两款动力可选。根据配置共推出9款车型，售价区间为6.98-10.68万元。</p>
-					<button class="btn">阅读详细</button>                 
-	            </div>
-
-            </li>
-			 <li>
-            	<img src="__PUBLIC__/temp/home/images/slider/slider4.jpg">
-
-				<div class="caption">
-					<h3><span>slide标题四</span></h3> 
-					<h3><span>副标题</span></h3>
-					<p>2017年3月9日，广汽丰田致享正式上市，新车将全系标配VSC车身稳定系统。广汽丰田致享实为新款YARiS L致炫的三厢版，动力依然是提供1.3L和1.5L两款动力可选。根据配置共推出9款车型，售价区间为6.98-10.68万元。</p>
-					<button class="btn">阅读详细</button>                 
-	            </div>
-
-            </li>
+        	<volist name="banner" id="anbanner">
+				<li>
+					<img src="__PUBLIC__/{$anbanner.banner_imgurl}">
+					<div class="caption hidden-xs">
+						<h3><span>{$anbanner.banner_title}</span></h3> 
+						<p>{$anbanner.banner_content}</p>
+						<a target="_blank" href="{$anbanner.banner_url}"><button class="btn">阅读详细</button></a>                 
+					</div>
+				</li>
+        	</volist>
         </ul>
 
     </div>

@@ -82,7 +82,6 @@
                 </thead>
                 <tbody>
                     <volist name="list" id="banlist">
-                        <input type="hidden" id="banner_id" value="{$banlist.banner_id}" />
                         <tr>
                             <td>
                                 <label>
@@ -93,7 +92,7 @@
                             <td>{$banlist.banner_title}</td>
                             <td>{$banlist.banner_content|mb_substr=0,50,'utf-8'}</td>
                             <td style="vertical-align: middle;">
-                                <button type="button" class="btn-link" data-toggle="modal" id="edit-banner" data-target="#myModal">
+                                <button type="button" class="btn-link edit-banner" data-id="{$banlist.banner_id}" data-toggle="modal" data-target="#bannerModal">
                                      <i class="fa fa-fw fa-edit"></i>
                                 </button>
                             </td>
@@ -110,7 +109,7 @@
             
             <!-- Modal -->
             <!--弹窗-->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="bannerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -144,9 +143,10 @@
                     </div>
                   </div>
                   <div class="modal-footer">
+                    <input type="hidden" id="banner_id" class="banner-info" name="banner_id"/>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" class="btn btn-primary" id="insert">新建</button>
-                    <button type="button" class="btn btn-info">修改</button>
+                    <button type="button" class="btn btn-info" id="update">修改</button>
                   </div>
                 </div>
               </div>
@@ -399,7 +399,7 @@
         var data={}
         data["type"]="getinfo" 
         data["data"]={}
-        data["data"]["banner_id"] = $("#banner_id").val()
+        data["data"]["banner_id"] = $(this).data("id")
        
         var info=$(".banner-info")
         // //for(var i=0;i<info.length;i++){
@@ -417,10 +417,10 @@
                     if(info.eq(i).attr("name")=="banner_state"){
                         if(bdata[info.eq(i).attr("name")]==1){
                            // alert("ok")
-                            info.eq(i).prop("checked",true)
+                            info.eq(i).parent().addClass("checked")
                         }else{
                            // alert("!ok")
-                            info.eq(i).prop("checked",false)
+                            info.eq(i).parent().removeClass("checked")
                         }
                     }
                     info.eq(i).val(bdata[info.eq(i).attr("name")])
@@ -430,25 +430,58 @@
     })
     //新增Banner
     $("#insert").on("click",function(){
-        var data={}
+        var data={};
         data["type"]="insert" 
-        data["data"]={}     
-        var info=$(".banner-info")
-        for(var i=0;i<info.length;i++){
-            data["data"][info.eq(i).attr("name")]=info.eq(i).val()
-        }
+        data["data"]=get_info();
          $.ajax({
             url:"{:U('banner')}",
             type:'post',
             data:data,
             datatype:'html',
             success:function(data){
-                alert(data)
+                //alert(data)
+                $('#bannerModal').modal('hide')
+                location.reload()
+            }
+        })
+    })
+    //修改Banner
+    $("#update").on("click",function(){
+        var data={};
+        data["type"]="update" 
+        data["data"]=get_info();
+        data["id"]=$("#banner_id").val();
+         $.ajax({
+            url:"{:U('banner')}",
+            type:'post',
+            data:data,
+            datatype:'html',
+            success:function(data){
+                $('#bannerModal').modal('hide')
+                location.reload()
             }
         })
     })
 
   });
+  //获取当前页面数据
+  function get_info(){
+    var data={}    
+        var info=$(".banner-info")
+        for(var i=0;i<info.length;i++){
+            if(info.eq(i).attr("name")=="banner_state"){
+                if(info.eq(i).is(":checked")){
+                    data[info.eq(i).attr("name")]=1
+                }else{
+                    data[info.eq(i).attr("name")]=0
+                }
+            }else if(info.eq(i).attr("name")!="banner_id"){
+                data[info.eq(i).attr("name")]=info.eq(i).val()
+            }
+            
+        }
+    return data
+  }
 </script>
 </body>
 </html>

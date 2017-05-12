@@ -10,11 +10,14 @@
 	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/bootstrap.min.css">
 	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/font-awesome.min.css">
 	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/style.css">
+	<link rel="stylesheet" href="__PUBLIC__/temp/home/css/timelinestyle.css" />
 	<style>
-	#main-nav .navbar-header a {width:320px;height:60px;background:url("__PUBLIC__/temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
+	#main-nav .navbar-header a {width:290px;background:url("__PUBLIC__/temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
 	.project-a{color:#FFFFFF;}
 	.project-a:hover{color:#FF0000;}
 	.caption > p{background-color: rgba(255, 255, 255, 0.7);color:#000000!important;padding:1em!important;line-height: 1.5em;font-size: 1.5em!important;}
+	.about-right i{color:#0758A4;font-size: 45px;padding: 0px 30px 0 0;}
+	.about-right p{color:#8E8E8E;font-size: 1.1em;padding-top:5px;padding-bottom:20px;}
 
 	</style>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bhtm8oON1GR2FwAaSr5UY3K4nke8BD28"></script>
@@ -112,11 +115,13 @@
         </ul>
 
     </div>
-
+		<div class="container">
+			{$TWOWAY.pages_content}	
+    	</div>
     <!--about-->
     <div id="about">
 
-    	<div class="container">
+    	<!-- <div class="container">
 
 			<div class="row">
 			 		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
@@ -126,47 +131,104 @@
 			 			</div>
 			 		</div>
 			 	</div> 	
-    	</div>
-
+    	</div> -->
     	<!--about wrapper left-->
     	<div class="container">
-
+		
     		<div class="row">
     			<div class="col-xs-12 hidden-sm col-md-5">
+    					<section id="cd-timeline" class="cd-container">
+    						<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-picture">
+									<i class="fa fa-group fa-2x"></i>
+								</div>
 
-    				<div class="about-left">
-    					<img src="__PUBLIC__/temp/home/images/about/about1.jpg" alt="">
-    				</div>
+								<div class="cd-timeline-content">
+									<h4><strong>2002年</strong></h4>
+									<p>公司成立，中国第一个专业运营&项目管理公司</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
+								<div class="cd-timeline-content">
+									<h4><strong>2004年</strong></h4>
+									<p>逐步在全国建立分公司：广州. 深圳. 上海. 武汉. 北京. 成都. 重庆…</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
 
+								<div class="cd-timeline-content">
+									<h4><strong>2006年</strong></h4>
+									<p>开始研讨/构建EVENT领域的“客户核心需求”，组建EVENT各专项领域专业团队,启动EVENT业务</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
+
+								<div class="cd-timeline-content">
+									<h4><strong>2009年</strong></h4>
+									<p>成为专业EVENT公司，具备行业“资质与资格”的EVENT公司</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
+
+								<div class="cd-timeline-content">
+									<h4><strong>2014年</strong></h4>
+									<p>为摆脱event领域日益激烈的“恶性竞争”开始研讨event领域的“核心竞争力”</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-location">
+									<i class="fa fa-map-marker fa-2x"></i>
+								</div>
+
+								<div class="cd-timeline-content">
+									<h4><strong>2015年</strong></h4>
+									<p>成立marketing&contents部,围绕客户在营销上的需求，构建tw新的核心业务板块 sports，体验营销，下沉整合营销，娱乐营销等4块核心业务</p>
+								</div>
+							</div>
+							<div class="cd-timeline-block">
+								<div class="cd-timeline-img cd-movie">
+									<i class="fa fa-arrow-circle-down fa-2x"></i>
+								</div>
+
+								<div class="cd-timeline-content">
+									<h4><strong>2016年</strong></h4>
+									<p>成立第一事业&第二事业本部,对EVENT业务板块进行重新整合,组建／强化“tw新核心产品”的建设团队;整合营业部门，强化既有客户的营业与经营能力;组建专职的“市场&新客户开发”团队</p>
+								</div>
+							</div>
+    					</section>
     			</div>
 
     			<!--about wrapper right-->
     			<div class="col-xs-12 col-md-7">
     				<div class="about-right">
-    					<div class="about-right-heading">
-    						<h1>我们</h1>
+    					<div>
+    						<h1>TWOWAY concept 之道</h1>
     					</div>
-  
-    					<div class="about-right-boot">
-    						<div class="about-right-wrapper">
-	    						<a href="#"><h3>公司愿景</h3></a>
-	    						<p>突破BTL，连接ATL，成为创新式全方位线上线下新媒体汽车营销专家突破BTL，连接ATL，成为创新式全方位线上线下新媒体汽车营销专家</p>
-    						</div>
-    					</div>
-
-    					<div class="about-right-best">
-    						<div class="about-right-wrapper">
-	    						<a href="#"><h3>企业文化</h3></a>
-	    						<p>睿基(TWOWAY)把古代智者的“平衡之道”引入到企业经营中从哲学的角度平衡工作与生活，破除现代的浮躁心态睿基(TWOWAY)把古代智者的“平衡之道”引入到企业经营中从哲学的角度平衡工作与生活</p>
-    						</div>
-    					</div>
-
-    					<div class="about-right-support">
-    						<div class="about-right-wrapper">
-	    						<a href="#"><h3>经营哲学</h3></a>
-	    						<p>万事万物都有阴阳两面性；居安思危，理性对待；不卑不亢，不急不躁；在此消彼长中学会平衡之道；均衡稳步持续地向前发展</p>
-    						</div>
-    					</div>
+  						<div>
+  							<h3><i class="fa fa-linode"></i>The first</h3>
+  							<p>1.最早发现客户与市场核心需求，2.最早满足客户与市场核心需求，3.并以此成为行业第一<br/></p>
+  						</div>
+  						<div>
+  							<h3><i class="fa fa-eercast"></i>Core value </h3>
+  							<p>以核心价值与核心产品，满足客户与市场的核心需求<br/></p>
+  						</div>
+  						<div>
+  							<h3><i class="fa fa-superpowers"></i>Only one</h3>
+  							<p>围绕客户与市场的核心需求&核心价值与产品，整合/构建核心资源，成为满足客户与市场需求的不可替代的唯一<br/></p>
+  						</div>
+ 
 
     				</div>
     			</div>
@@ -245,49 +307,41 @@
                     	
                         <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                                <h4>公关媒体推广</h4>
-                                <div class="text">综合性客户推广与策划 </div>
+                            	<div class="icon-box"><i class="fa fa-cubes" aria-hidden="true"></i></div>
+                                <h4><strong>综合舞台</strong></h4>
+                                <div class="text">综合舞台 演出现场执导<br/>音乐／视频等素材制作 舞台编导<br/>灯光&舞台视觉 舞美&器材 艺人&明星</div>
                             </div>
                         </div>
                         
                         <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-bar-chart" aria-hidden="true"></i></div>
-                                <h4>产品推广</h4>
-                                <div class="text">综合性项目管理</div>
+                            	<div class="icon-box"><i class="fa fa-tachometer" aria-hidden="true"></i></div>
+                                <h4><strong>综合驾控</strong></h4>
+                                <div class="text">驾控体验<br/>驾控培训&辅导<br/>性能驾控体验 生活形态驾控体验</div>
                             </div>
                         </div>
                         
                         <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-trophy" aria-hidden="true"></i></div>
-                                <h4>促量促进</h4>
-                                <div class="text">中和性企划推广</div>
+                            	<div class="icon-box"><i class="fa fa-automobile" aria-hidden="true"></i></div>
+                                <h4><strong>车展&移动巡展</strong></h4>
+                                <div class="text">国际车展<br/>地方车展<br/>移动巡展<br/>大篷车<br/>巡回EVENT </div>
                             </div>
                         </div>
                         
                         <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-bullhorn" aria-hidden="true"></i></div>
-                                <h4>MORTGAGE ADVISOR</h4>
-                                <div class="text">Leverage agile frameworks to provide a robust synopsis for high level overviews. </div>
+                            	<div class="icon-box"><i class="fa fa-ravelry" aria-hidden="true"></i></div>
+                                <h4><strong>展览展示&技术展示</strong></h4>
+                                <div class="text">车展展具<br/>演出舞台<br/>各EVENT展具<br/>技术可视化展具 </div>
                             </div>
                         </div>
                         
                         <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-lightbulb-o" aria-hidden="true"></i></div>
-                                <h4>RETIREMENT PLANNING</h4>
-                                <div class="text">Leverage agile frameworks to provide a robust synopsis for high level overviews. </div>
-                            </div>
-                        </div>
-                        
-                        <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        	<div class="inner-box">
-                            	<div class="icon-box"><i class="fa fa-money" aria-hidden="true"></i></div>
-                                <h4>SAVING AND INVESTING</h4>
-                                <div class="text">Leverage agile frameworks to provide a robust synopsis for high level overviews. </div>
+                            	<div class="icon-box"><i class="fa fa-sitemap" aria-hidden="true"></i></div>
+                                <h4><strong>项目管理&综合运营</strong></h4>
+                                <div class="text">各EVENT项目管理<br/>各EVENT现场运营<br/>常设馆／展厅运营  </div>
                             </div>
                         </div>
                     </div>
@@ -298,13 +352,35 @@
             <div class="content-column clearfix">
                 <div class="content-box">
                 	<div class="inner-box">
-                        <!--Section Title-->
-                        <div class="sec-title aligned-right">
-                            <h3>汽车<span>BTL领域活动</span></h3>
+                		<div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        	<div class="inner-box">
+                            	<div class="icon-box"><i class="fa fa-asterisk" aria-hidden="true"></i></div>
+                                <h4><strong>Tw-sports</strong></h4>
+                                <div class="text"> 赛事运作<br/>车队运作<br/>俱乐部运作<br/>赛车改装</div>
+                            </div>
                         </div>
-                        <div class="text">Lorem Ipsum is simply dummy text printing and typesetting industry. Lorem Ipsum has been industry's standard dummy text ever since 1500s, when an unknown printer specimen book. </div>
-                        
-                        <button class="btn">阅读详情</button>
+                        <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        	<div class="inner-box">
+                            	<div class="icon-box"><i class="fa fa-recycle" aria-hidden="true"></i></div>
+                                <h4><strong>体验营销</strong></h4>
+                                <div class="text">内容 & 传播<br/>筛选- 精准邀约- 转换<br/>F2F 转化营销<br/>365 & 闭环营销
+</div>
+                            </div>
+                        </div>
+                        <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        	<div class="inner-box">
+                            	<div class="icon-box"><i class="fa fa-map-o" aria-hidden="true"></i></div>
+                                <h4><strong>下沉整合营销</strong></h4>
+                                <div class="text">区域代理<br/>下沉/区域营销<br/>圈层营销</div>
+                            </div>
+                        </div>
+                        <div class="service-block col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        	<div class="inner-box">
+                            	<div class="icon-box"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+                                <h4><strong>娱乐营销</strong></h4>
+                                <div class="text">内容/娱乐植入&赞助<br/>内容放大&营销延展<br/>娱乐圈层营销</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -312,28 +388,6 @@
 
         </div>
     </section>
-
-
-
-			<!--service gapping-->
-			<div class="service-footer hidden-xs">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-7">
-							<div class="service-footer-left">
-								<h3>Need to <span>Consult with us</span> ? Book an appointment</h3>
-								<p>The Brady Bunch the Brady Bunch that's the way we all became the Brady Bunch</p>
-							</div>
-						</div>
-
-						<div class="col-md-5">
-							<div class="service-footer-right">
-								<button class="btn">阅读</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!--portfolio-->
@@ -385,7 +439,7 @@
 	    	</div>
 
 	    	<div id="baidu-map">
-				<div style="width:60%;height:400px;border:#ccc solid 1px;font-size:12px;margin:0 auto" id="map"></div> 
+			<!-- 	<div style="width:60%;height:400px;border:#ccc solid 1px;font-size:12px;margin:0 auto" id="map"></div>  -->
 			</div>
             
 		</div>

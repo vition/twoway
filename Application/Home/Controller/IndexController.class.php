@@ -5,7 +5,8 @@ class IndexController extends Controller {
     //首页
     public function index(){
     	$pages=M("tw_pages");
-    	$adata=$pages->select();
+    	$tdata=$pages->field("pages_content")->where("pages_title='TWOWAY'")->find();
+        $this->assign("TWOWAY",$tdata);
         //banner
         $banner=M("tw_banner");
         $bdats=$banner->where("banner_state=1")->order('banner_sort,banner_id ASC')->select();
@@ -23,9 +24,9 @@ class IndexController extends Controller {
         $tdata=$project->where("posts_class=3")->limit('0,5')->order('posts_edit_time DESC')->select();
         $this->assign("trade",$tdata);
 
-    	foreach($adata as $value){
-    		$this->assign("about","./Public/html/".md5("关于TW页面标题").".html");
-    	}
+    	// foreach($adata as $value){
+    	// 	$this->assign("about","./Public/html/".md5("关于TW页面标题").".html");
+    	// }
 		$this->display("./index");
     }
     //内容页面

@@ -397,7 +397,7 @@ textarea:focus {
 
 /*About*/
 #about {
-	padding: 80px;
+	padding: 20px 0;
 }
 
 #about .about-heading {
@@ -423,10 +423,10 @@ textarea:focus {
     z-index: 2;
 }
 
-#about .about-right:before {
+#about .about-right:before{
 	content: "";
     border: 8px solid #e5eef0;
-	width: 120%;
+	width: 100%;
     height: 100%;
     position: absolute;
     right: 0;
@@ -435,7 +435,7 @@ textarea:focus {
 
 #about .about-right {
 	position: relative;
-	padding: 0 80px 150px 80px;
+	padding: 100px 80px 150px 80px;
 }
 
 #about .about-right-heading h1 {
@@ -729,7 +729,7 @@ textarea:focus {
 
 /*Service*/
 #service {
-	margin-top: 100px;
+	margin-top: 20px;
 	background-attachment: scroll;
     padding-bottom: 0px;
     padding-top: 0px;
@@ -810,13 +810,13 @@ textarea:focus {
 	float: left;
 	width: 50%;
 	background: #1c1c1c;
-	text-align: right;
+	text-align: left;
 }
 
 .services-style-one .content-column .content-box {
 	position: relative;
 	float:left;
-	padding: 170px 20px 100px 320px;
+	padding: 54px 20px 100px 130px;
 	max-width: 700px;	
 }
 
@@ -839,7 +839,9 @@ textarea:focus {
 	color: #999999;
 	line-height: 25px;
 }
-
+.content-column h4 {
+	color:#C03B44;
+}
 .inner-box button {
 	background-color: #0758A4;
 	width: 120px;
@@ -851,7 +853,10 @@ textarea:focus {
 	background-color: #fff;
 	color: #0758A4;
 }
-
+.content-box .inner-box i{
+	font-size: 40px;
+	color:#FFFFFF;
+}
 /*Service Footer*/
 #service .service-footer {
 	background: #222222;

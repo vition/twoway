@@ -59,10 +59,16 @@ class IndexController extends Controller {
 		if(session("isLogin")){
 			//parent::__call($method,$args);
 			//把登陆者的所有信息传输过去
-			$this->assign('user',$this->get_user(session("username")));
+			
 
 			//这样子做了一层保护，未登录的无法使用protected里的方法
-			call_user_func($this->$method(), $args);
+			if (method_exists($this,$method)){
+				$this->assign('user',$this->get_user(session("username")));
+				call_user_func($this->$method(), $args);
+			}else{
+				$this->error("该页面尚未开放完成");
+			}
+			
 		}else{
 			$this->success('请先登录', 'index');
 		}
@@ -285,6 +291,10 @@ class IndexController extends Controller {
 			$this->display("newpage");
 		}
 		
+	}
+	//页面管理
+	protected function pagesman(){
+		$this->display("pagesman");
 	}
 	//中文转英文字母
 	protected function letter(){

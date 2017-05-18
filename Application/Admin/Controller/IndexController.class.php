@@ -160,7 +160,8 @@ class IndexController extends Controller {
 			}
 			
 			if($_POST["post-type"]=="new"){//新建文章
-				
+			$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
+			$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
 			$posts->add($data);//添加数据
 			
 			}else{//修改文章

@@ -2,6 +2,11 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+    public function _initialize(){
+        $config=M("tw_config");
+        $conData=$config->field("config_value")->where("config_key='web_name'")->find();
+        $this->assign("webname",$conData['config_value']);
+    }
     //首页
     public function index(){
     	$pages=M("tw_pages");
@@ -46,7 +51,7 @@ class IndexController extends Controller {
         $project=M("tw_posts");
         $pdata=$project->where("posts_class=1")->order('posts_edit_time DESC')->select();
         $this->assign("project",$pdata);
-        $this->display("./project");
+        $this->display("./tw_config");
     }
     //内部新闻
     public function company(){

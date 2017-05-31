@@ -412,7 +412,29 @@ class IndexController extends Controller {
 	}
 	//模板修改类
 	protected function template(){
-		$this->display("template");
+		if (!empty($_POST)) {
+			if($_POST["type"]=="gethtml"){
+				echo file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"]);
+			}elseif($_POST["type"]=="uphtml"){
+				delete(APP_PATH."/Home/View/".$_POST["htmlfile"]);
+				$htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"], "w+");
+				fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
+				fwrite($htmlFile, $_POST["html"]);
+				fclose($htmlFile);
+				//echo file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"], $_POST["html"]);
+			}
+		}else{
+			$htmlFiles=scandir(APP_PATH."/Home/View");
+			$htmls=array();
+			for($i=0;$i<count($htmlFiles);$i++){
+				preg_match("/[\S]*\.html$/", $htmlFiles[$i],$machts);
+				if(!empty($machts)){
+					array_push($htmls,$machts[0]);
+				}
+			}
+			$this->assign("templates",$htmls);
+			$this->display("template");
+		}
 	}
 	//这里放回一个日志类
 	protected function logs(){

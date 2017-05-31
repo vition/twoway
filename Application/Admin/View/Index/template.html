@@ -46,17 +46,17 @@
         <section class="content">
             <div class="row">
                 <div class="col-md-9">
-                <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">谨慎操作</h3>
-                        </div>
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>编辑对应模板代码</label>
-                                <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                            </div>
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                        <button type="button" class="btn btn-success btn-sm" id="update-html">更新</button>
+                    </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="label-danger">谨慎操作，随时影响网站的正常运行</label>
+                            <textarea class="form-control template-html" rows="20" placeholder="Enter ..."></textarea>
                         </div>
                     </div>
+                </div>
                 </div>
                 <div class="col-md-3">
                      <div class="box box-primary">
@@ -66,12 +66,10 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label>双击模板文件</label>
-                                <select multiple class="form-control">
-                                    <option>option 1</option>
-                                    <option>option 2</option>
-                                    <option>option 3</option>
-                                    <option>option 4</option>
-                                    <option>option 5</option>
+                                <select id="html-select" multiple class="form-control" style="min-height:300px">
+                                    <volist name="templates" id="htmlfile">
+                                        <option class="vime-html" value="{$htmlfile}">{$htmlfile}</option>
+                                    </volist>
                                 </select>
                             </div>
                         </div>
@@ -98,6 +96,41 @@
 <!-- Bootstrap WYSIHTML5 -->
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
+    $(function(){
+        $(".vime-html").on("dblclick",function(){
+            //alert($(this).val())
+            datas={}
+            datas["type"]="gethtml"
+            datas["htmlfile"]=$(this).val()
+            $.ajax({
+                url:"{:U('template')}",
+                type:"POST",
+                dataType:"html",
+                data:datas,
+                success:function(data){
+                    $(".template-html").text(data)
+                }
+            })
+        })
+        $("#update-html").on("click",function(){
+            if($("#html-select").val()!=null){
+                datas={}
+                datas["type"]="uphtml"
+                datas["htmlfile"]=$("#html-select").val()
+                datas["html"]=$(".template-html").text()
+                $.ajax({
+                    url:"{:U('template')}",
+                    type:"POST",
+                    dataType:"html",
+                    data:datas,
+                    success:function(data){
+                        alert(data)
+                    }
+                })
+            }
+            
+        })
+    })
 </script>
 </body>
 </html>

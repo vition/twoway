@@ -410,6 +410,10 @@ class IndexController extends Controller {
 		}
 		
 	}
+	//模板修改类
+	protected function template(){
+		$this->display("template");
+	}
 	//这里放回一个日志类
 	protected function logs(){
 		import('Vendor.Logs.Logs');

@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<!-- <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>{$posts.posts_title}-广州睿基营销策划有限公司</title>
+	<title>{$posts.posts_title}-{$webname}</title>
     <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/flexslider.css">
 	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/bootstrap.min.css">
 	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/font-awesome.min.css">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/style.css">
+	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/style.css"> -->
+  <include file="./headstyle" />
 	<style>
-	#main-nav .navbar-header a {width:320px;height:60px;background:url("__PUBLIC__/Temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
+	#main-nav .navbar-header a {width:240px;background:url("__PUBLIC__/Temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;    margin-left: 5px;}
 	@media screen and (max-width: 600px) { #content{width:80%;margin:10px auto;border-top:5px solid #ADDBED;padding-top:20px;}}
 	@media screen and (min-width: 601px) { #content{width:60%;margin:10px auto;border-top:5px solid #ADDBED;padding-top:20px;}}
 	#posts-contents img{display: block;max-width: 100%;height: auto;margin: 0 auto;}
@@ -23,80 +24,8 @@
 </head>
 <body id="top" data-spy="scroll">
 	<!--top header-->
-
-	<header id="home">
-
-		<section class="top-nav hidden-xs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="top-left">
-
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
-
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="top-right">
-							<p>地址:<span>广州市越秀区德政北路538号达信大厦8楼</span></p>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</section>
-
-		<!--main-nav-->
-
-		<div id="main-nav">
-
-			<nav class="navbar">
-				<div class="container">
-
-					<div class="navbar-header">
-						<a href="index.html" class="navbar-brand"></a>
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
-							<span class="sr-only">Toggle</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-
-					<div class="navbar-collapse collapse" id="ftheme">
-
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="{$Think.server.script_name}#home">Twoway</a></li>
-							<li><a href="{$Think.server.script_name}#about">关于TW</a></li>
-							<li><a href="{$Think.server.script_name}#about-bg">TW数据</a></li>
-							<li><a href="{$Think.server.script_name}#service">TW的服务</a></li>
-							<li><a href="{$Think.server.script_name}#portfolio">TW项目</a></li>
-							<li><a href="{$Think.server.script_name}#contact">联系TW</a></li>
-							<li class="hidden-sm hidden-xs">
-	                            <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
-	                        </li>
-						</ul>
-
-					</div>
-
-					<div class="search-form">
-	                    <form>
-	                        <input type="text" id="s" size="40" placeholder="Search..." />
-	                    </form>
-	                </div>
-
-				</div>
-			</nav>
-		</div>
-
-	</header>
+  <include file="./header" />
+	
 	<div id="content">
 		<h3 class="posts-title">{$posts.posts_title}</h3>
 		<div class="posts-time">发布时间：{$posts.posts_create_time}</div>
@@ -106,26 +35,8 @@
 			<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
 		</div>
 	</div>
-		<div id="bottom-footer" class="hidden-xs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-					</div>
-
-					<div class="col-md-8">
-						<div class="footer-right">
-                            <ul class="list-unstyled list-inline pull-right">
-                                <li><a href="#home">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#service">Service</a></li>
-                                <li><a href="#portfolo">Portfolio</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                            </ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<!--bottom footer--> 
+	<include file="./footer" /> 	
         
 	
 	<!-- jQuery -->

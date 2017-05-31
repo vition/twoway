@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>广州睿基营销策划有限公司</title>
-    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/flexslider.css">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/bootstrap.min.css">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/font-awesome.min.css">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/style.css">
-	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/timelinestyle.css" />
+	<include file="./headstyle" />
 	<style>
-	#main-nav .navbar-header a {width:290px;background:url("__PUBLIC__/Temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;}
-	.project-a{color:#FFFFFF;}
+	#main-nav .navbar-header a {width:240px;background:url("__PUBLIC__/Temp/home/images/logo.png") no-repeat;background-size:auto 60px;	color: #fff;    margin-left: 5px;}
+	.project-a{color:#055AA5;}
 	.project-a:hover{color:#FF0000;}
 	.caption > p{background-color: rgba(255, 255, 255, 0.7);color:#000000!important;padding:1em!important;line-height: 1.5em;font-size: 1.5em!important;}
 	.about-right i{color:#0758A4;font-size: 45px;padding: 0px 30px 0 0;}
@@ -24,80 +15,7 @@
 </head>
 <body id="top" data-spy="scroll">
 	<!--top header-->
-
-	<header id="home">
-
-		<section class="top-nav hidden-xs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="top-left">
-
-							<ul>
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-vk" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							</ul>
-
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="top-right">
-							<p>地址:<span>广州市越秀区德政北路538号达信大厦8楼</span></p>
-						</div>
-					</div>
-
-				</div>
-			</div>
-		</section>
-
-		<!--main-nav-->
-
-		<div id="main-nav">
-
-			<nav class="navbar">
-				<div class="container">
-
-					<div class="navbar-header">
-						<a href="" class="navbar-brand"></a>
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ftheme">
-							<span class="sr-only">Toggle</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-					</div>
-
-					<div class="navbar-collapse collapse" id="ftheme">
-
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="#home">Twoway</a></li>
-							<li><a href="#about">关于TW</a></li>
-							<li><a href="#about-bg">TW数据</a></li>
-							<li><a href="#service">TW的服务</a></li>
-							<li><a href="#portfolio">TW项目</a></li>
-							<li><a href="#contact">联系TW</a></li>
-							<li class="hidden-sm hidden-xs">
-	                            <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
-	                        </li>
-						</ul>
-
-					</div>
-
-					<div class="search-form">
-	                    <form>
-	                        <input type="text" id="s" size="40" placeholder="Search..." />
-	                    </form>
-	                </div>
-
-				</div>
-			</nav>
-		</div>
-
-	</header>
+	<include file="./header" />
 	<!--slider-->
 	<div id="slider" class="flexslider">
 
@@ -397,7 +315,7 @@
 
 					<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
 						<div class="portfolio-heading">
-							<h3>项目介绍</h3> 
+							<h3>项目介绍 <a href="{:U('project')}" target="_blank"><i class="fa fa-search" aria-hidden="true"></i>更多项目</a></h3> 
 							<p>风雨共济，互相信赖不随流，敢于创新与突破、激发无限的潜能与创造敢于分享乐于分享，从而达到1+1＞2分享中学习,打造自己的核心能力</p>
 						</div>
 					</div>
@@ -509,60 +427,12 @@
 							</ul>
 						</div>
 					</div>
-
-					<!-- <div class="col-md-4"> -->
-						<!-- <div class="footer-heading"> -->
-							<!-- <h3><span>follow</span> us</h3> -->
-							<!-- <div class="insta"> -->
-								<!-- <ul> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer1.jpg" alt=""> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer2.jpg" alt=""> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer3.jpg" alt=""> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer4.jpg" alt=""> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer5.jpg" alt=""> -->
-									<!-- <img src="__PUBLIC__/Temp/home/images/footer/footer6.jpg" alt=""> -->
-								<!-- </ul> -->
-							<!-- </div> -->
-						<!-- </div> -->
-					<!-- </div> -->
-
 				</div>
 			</div>
 		</div>
 
 		<!--bottom footer-->
-		<div id="bottom-footer" class="hidden-xs">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-					</div>
-
-					<div class="col-md-8">
-						<div class="footer-right">
-                            <ul class="list-unstyled list-inline pull-right">
-								<li><a href="#home">Twoway</a></li>
-								<li><a href="#about">关于TW</a></li>
-								<li><a href="#about-bg">TW数据</a></li>
-								<li><a href="#service">TW的服务</a></li>
-								<li><a href="#portfolio">TW项目</a></li>
-								<li><a href="#contact">联系TW</a></li>
-                            </ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-        
-
-	
-	<!-- jQuery -->
-    <script src="__PUBLIC__/Temp/home/js/jquery.min.js"></script>
-    <script src="__PUBLIC__/Temp/home/js/bootstrap.min.js"></script>
-    <script src="__PUBLIC__/Temp/home/js/jquery.flexslider.js"></script>
-    <script src="__PUBLIC__/Temp/home/js/jquery.inview.js"></script>
-
-    <script src="__PUBLIC__/Temp/home/js/script.js"></script>
-    <script src="__PUBLIC__/Temp/home/js/contactform.js"></script>
+	<include file="./footer" />	
 	<script type="text/javascript">
     //创建和初始化地图函数：
     function initMap(){

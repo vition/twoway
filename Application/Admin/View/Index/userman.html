@@ -79,7 +79,7 @@
 					<volist name="list" id="user">
 						 <tr>
 						  <th>{$user.user_id}</th>
-						  <th>{$user.user_name}</th>
+						  <th><a href="{:U('newuser','','')}/{$user.user_id}">{$user.user_name}</a></th>
 						  <th>********</th>
 						  <th>{$user.group_name}</th>
 						  <th>{$user.user_register}</th>

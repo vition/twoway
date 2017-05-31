@@ -2,6 +2,27 @@
 namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
+    public function _initialize(){
+        $config=M("tw_config");
+        $conData=$config->field("config_value")->where("config_key='web_name'")->find();
+        $this->assign("webname",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_footer'")->find();
+        $this->assign("web_footer",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_keys'")->find();
+        $this->assign("webkeys",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_description'")->find();
+        $this->assign("webdescription",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_start'")->find();
+        if($conData['config_value']!="true"){
+            $this->display("./lock");
+            exit();
+        }
+
+    }
     //首页
     public function index(){
     	$pages=M("tw_pages");
@@ -23,6 +44,7 @@ class IndexController extends Controller {
         //查找行业新闻
         $tdata=$project->where("posts_class=3")->limit('0,5')->order('posts_edit_time DESC')->select();
         $this->assign("trade",$tdata);
+
 
     	// foreach($adata as $value){
     	// 	$this->assign("about","./Public/html/".md5("关于TW页面标题").".html");
@@ -46,7 +68,7 @@ class IndexController extends Controller {
         $project=M("tw_posts");
         $pdata=$project->where("posts_class=1")->order('posts_edit_time DESC')->select();
         $this->assign("project",$pdata);
-        $this->display("./project");
+        $this->display("./tw_config");
     }
     //内部新闻
     public function company(){

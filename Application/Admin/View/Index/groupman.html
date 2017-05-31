@@ -41,9 +41,9 @@
         <small>Preview</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> 管理后台</a></li>
+        <li><a href="#">用户管理</a></li>
+        <li class="active">分组管理</li>
       </ol>
     </section>
 
@@ -55,28 +55,29 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">新建分类</h3>
+              <h3 class="box-title">新建分组</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">分类名称</label>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="分类名称">
+                  <label for="exampleInputEmail1">分组名称</label>
+                  <input type="hidden" id="group-id" />
+                  <input type="text" class="form-control" id="group-name" placeholder="分组名称">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="分类说明">
+                  <label for="exampleInputPassword1">分组说明</label>
+                  <input type="text" class="form-control" id="group-explain" placeholder="分组说明">
                 </div>
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-				<button type="submit" class="btn btn-primary">添加</button>
-                <button type="submit" class="btn btn-primary">修改</button>
+                    <button type="submit" id="create-group" class="btn btn-primary">新增分组</button>
+                    <button type="submit" id="updata-group" class="btn btn-primary">修改分组</button>
               </div>
-            </form>
+
           </div>
         </div>
         <!--/.col (left) -->
@@ -86,22 +87,31 @@
           <!-- general form elements disabled -->
           <div class="box box-warning">
             <div class="box-header with-border">
-              <h3 class="box-title">分类管理</h3>
+              <h3 class="box-title">分组管理</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <form role="form">
                 <!-- select -->
                 <div class="form-group">
-                  <label>分类列表</label>
-                  <select class="form-control">
-                    <volist name="list" id="group">
-					 <option>{$group.group_name}</option>
-					</volist>
+                  <label>分组列表</label>
+                  <select class="form-control" id="group-list">
+                    <volist name="grouplist" id="group">
+                        <option value="{$group.group_id}" data-explain="{$group.group_explain}">{$group.group_name}</option>
+                    </volist>
                   </select>
                 </div>
               </form>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">分组说明</label>
+                  <input type="text" class="form-control" id="group-exp" readonly="readonly" placeholder="">
+                </div>
+                <div class="box-footer">
+                 <button type="submit" id="edit-group" class="btn btn-primary">修改</button>
+                 <button type="submit" id="del-group" class="btn btn-primary">删除</button>
+                 </div>
             </div>
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -123,190 +133,7 @@
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
   </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
@@ -320,5 +147,61 @@
 <script src="__PUBLIC__/Temp/dist/js/app.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
+<script>
+    $(function(){
+       //初始化分类备注
+        $("#group-exp").val($("#group-list").find("option:selected").data("explain"));
+        //更改分类时修改对应的备注
+        $("#group-list").on("change",function(){
+            $("#group-exp").val($("#group-list").find("option:selected").data("explain"));
+        })
+        //点击修改按钮后执行
+        $("#edit-group").on("click",function(){
+             $("#group-id").val($("#group-list").find("option:selected").val());
+             $("#group-name").val($("#group-list").find("option:selected").text());
+             $("#group-explain").val($("#group-list").find("option:selected").data("explain"));
+        })
+        //新建分类
+        $("#create-group").on("click",function(){
+            datas={};
+            updata_class(datas);
+        })
+        //更新分类
+        $("#updata-group").on("click",function(){
+            datas={};
+            datas["group_id"]=$("#group-id").val();
+            updata_class(datas)
+
+        })
+        //删除分类
+        $("#del-group").on("click",function(){
+            datas={};
+            datas["del_id"]=$("#group-list").find("option:selected").val();
+            updata_class(datas)
+
+        })
+    })
+    //修改分类操作
+    function updata_class(datas){
+        datas["data"]={}
+        datas["data"]["group_name"]=$("#group-name").val();
+        datas["data"]["group_explain"]=$("#group-explain").val();
+        if(datas["data"]["group_name"]=="" || datas["del_id"]=="undefined"){
+            alert("分组名称不能为空");
+        }else{
+            $.ajax({
+                url:"{:U('groupman')}",
+                data:datas,
+                dataType:"html",
+                type:"post", 
+                success:function(data){
+                    //alert(data)
+                    location.reload()
+                }
+            })
+        }
+        
+    }
+</script>
 </body>
 </html>

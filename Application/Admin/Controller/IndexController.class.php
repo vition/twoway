@@ -150,6 +150,7 @@ class IndexController extends Controller {
 
 			$data=array();
 			$posts=M("tw_posts");
+			
 			$data["posts_author"]=session("username");
 			foreach($_POST["data"] as $key=>$val){
 				$data[$key]=$val;
@@ -160,8 +161,15 @@ class IndexController extends Controller {
 			}
 			
 			if($_POST["post-type"]=="new"){//新建文章
-				
-			$posts->add($data);//添加数据
+				$findPosts=$posts->field("posts_id")->where("posts_title='{$_POST["data"]["posts_title"]}'")->find();
+				if($findPosts["posts_id"]>0){
+					echo "文章已存在或者标题重复了";
+				}else{
+					$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
+					$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
+					$posts->add($data);//添加数据
+				}
+			
 			
 			}else{//修改文章
 				$data["posts_edit_time"]=date("Y-m-d H:i:s");
@@ -169,7 +177,6 @@ class IndexController extends Controller {
 				$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
 				echo $posts->getLastSql();
 			}
-			
 		}else{
 			//初始化空白
 			$param=get_param();
@@ -210,6 +217,7 @@ class IndexController extends Controller {
 		if(!empty($_POST)){
 			$classMan=M("tw_class");
 			if(isset($_POST["class_id"])){
+				print_r($_POST["data"]);
 				$classMan->where("class_id='{$_POST["class_id"]}'")->save($_POST["data"]);
 			}else if(isset($_POST["del_id"])){
 				$classMan->where("class_id='{$_POST["del_id"]}'")->delete();
@@ -221,6 +229,38 @@ class IndexController extends Controller {
 			$this->assign("class",$pClass);
 			$this->assign('webTitle',$this->get_web_title());
 			$this->display("classman");
+		}
+		
+	}
+	//新建用户
+	protected function newuser(){
+		$user=M("tw_user");
+		if(!empty($_POST)){
+			if($_POST["type"]=="new"){//新建用户
+				$_POST["data"]["user_psw"]=strtoupper(sha1($_POST["type"]["user_psw"]));
+				$_POST["data"]["user_register"]=date("Y-m-d H:i:s",time());
+				$_POST["data"]["user_last"]=date("Y-m-d H:i:s",time());
+				$_POST["data"]["user_login"]=0;
+				$_POST["data"]["user_state"]=$_POST["data"]["user_state"]=="on"?'1':'0';
+				$_POST["data"]["user_avatar"]="Temp/dist/img/avatar.png";
+				$user->add($_POST["data"]);	
+			}else{//其他皆为修改
+
+			}
+		}else{
+			$param=get_param();
+			if($param){
+				$this->assign("postType","edit");
+				$userData=$user->where("user_id={$param[0]}")->find();
+				// dump($pagesData);
+				$userData["user_state"]=$userData["user_state"]==1?"checked":"nochecked";
+
+				$this->assign("userinfo",$userData);
+			}
+			$group=M("tw_group");
+			$groupData=$group->select();
+			$this->assign("groups",$groupData);
+			$this->display("newuser");
 		}
 		
 	}
@@ -241,9 +281,21 @@ class IndexController extends Controller {
 	}
 	//分组管理
 	protected function groupman(){
-		$this->assign("list",$this->get_group());
-		$this->assign("active",ACTION_NAME);
-		$this->display("groupman");
+		if(!empty($_POST)){
+			$groupMan=M("tw_group");
+			if(isset($_POST["group_id"])){
+				print_r($_POST["data"]);
+				$groupMan->where("group_id='{$_POST["group_id"]}'")->save($_POST["data"]);
+			}else if(isset($_POST["del_id"])){
+				$groupMan->where("group_id='{$_POST["del_id"]}'")->delete();
+			}else{
+				$groupMan->add($_POST["data"]);
+			}
+		}else{
+			$this->assign("grouplist",$this->get_group());
+			$this->assign("active",ACTION_NAME);
+			$this->display("groupman");
+		}
 	}
 	//获取网站名称
 	protected function get_web_title(){
@@ -256,7 +308,7 @@ class IndexController extends Controller {
 		if(!empty($_POST)){
 			//新增或者修改数据
 			$data=array();
-			$posts=M("tw_pages");
+			$pages=M("tw_pages");
 			//print_r($_POST);
 			foreach($_POST["data"] as $key=>$val){
 				$data[$key]=$val;
@@ -267,23 +319,28 @@ class IndexController extends Controller {
 			}
 			$data["pages_date"]=date("Y-m-d H:i:s");
 			if($_POST["pages-type"]=="new"){//新建文章
-				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
-				$posts->add($data);//添加数据
+				$findPages=$pages->field("pages_id")->where("pages_title='{$_POST["data"]["pages_title"]}'")->find();
+				if($findPages["pages_id"]>0){
+					echo "页面已存在或者标题重复了";
+				}else{
+					create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
+					$pages->add($data);//添加数据
+				}
+				
 			
 			}else{//修改文章
 				//print_r($param);
 				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
-				$posts->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
+				$pages->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
 				//echo $posts->getLastSql();
-			}
-			
+			}	
 		}else{
 			$param=get_param();
 			if($param){
 				$this->assign("pagesType","edit");
 				$pages=M("tw_pages");
 				$pagesData=$pages->where("pages_id={$param[0]}")->find();
-				//dump($pagesData);
+				// dump($pagesData);
 				$this->assign("pages",$pagesData);
 			}
 			//初始化空白
@@ -294,6 +351,9 @@ class IndexController extends Controller {
 	}
 	//页面管理
 	protected function pagesman(){
+		$pages=M("tw_pages");
+		$lists=$pages->order('pages_date DESC')->select();
+		$this->assign("pagesList",$lists);
 		$this->display("pagesman");
 	}
 	//中文转英文字母
@@ -304,6 +364,7 @@ class IndexController extends Controller {
 			echo $Pinyin->encode($_POST["str"],True);
 		}
 	}
+
 	//取用户信息
 	protected function get_user($name){
 		$user=M("tw_user  a");
@@ -348,6 +409,10 @@ class IndexController extends Controller {
 			$this->display("banner");
 		}
 		
+	}
+	//模板修改类
+	protected function template(){
+		$this->display("template");
 	}
 	//这里放回一个日志类
 	protected function logs(){

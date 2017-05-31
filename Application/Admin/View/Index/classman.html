@@ -104,7 +104,7 @@
               </form>
                 <div class="form-group">
                   <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-exp" placeholder="">
+                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
                 </div>
                 <div class="box-footer">
                  <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
@@ -176,7 +176,9 @@
         datas["data"]={}
         datas["data"]["class_name"]=$("#class-name").val();
         datas["data"]["class_explain"]=$("#class-explain").val();
-        if(datas["data"]["class_name"]!="" || datas["del_id"]!="undefined"){
+        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
+            alert("分类名称不能为空");
+        }else{
             $.ajax({
                 url:"{:U('classman')}",
                 data:datas,
@@ -187,8 +189,6 @@
                     location.reload()
                 }
             })
-        }else{
-            alert("分类名称不能为空");
         }
         
     }

@@ -150,26 +150,34 @@ class IndexController extends Controller {
 
 			$data=array();
 			$posts=M("tw_posts");
-			$data["posts_author"]=session("username");
-			foreach($_POST["data"] as $key=>$val){
-				$data[$key]=$val;
+			$findPosts=$posts->field("posts_id")->where("posts_title='{$_POST["data"]["posts_title"]}'")->find();
+
+			if($findPosts["posts_id"]>0){
+				echo "文章已存在或者标题重复了";
+			}else{
+				$data["posts_author"]=session("username");
+				foreach($_POST["data"] as $key=>$val){
+					$data[$key]=$val;
+				}
+				$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
+				if($_POST["cover-data"]!=""){
+					$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+				}
+				
+				if($_POST["post-type"]=="new"){//新建文章
+				$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
+				$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
+				$posts->add($data);//添加数据
+				
+				}else{//修改文章
+					$data["posts_edit_time"]=date("Y-m-d H:i:s");
+					//print_r($param);
+					$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
+					echo $posts->getLastSql();
+				}
 			}
-			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
-			if($_POST["cover-data"]!=""){
-				$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
-			}
+
 			
-			if($_POST["post-type"]=="new"){//新建文章
-			$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
-			$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
-			$posts->add($data);//添加数据
-			
-			}else{//修改文章
-				$data["posts_edit_time"]=date("Y-m-d H:i:s");
-				//print_r($param);
-				$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
-				echo $posts->getLastSql();
-			}
 			
 		}else{
 			//初始化空白

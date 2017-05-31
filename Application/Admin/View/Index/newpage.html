@@ -172,7 +172,12 @@ $(function () {
             type:"post", 
             success:function(data){
                 //alert(data)
-                location.reload();
+                if(data!=""){
+                  alert(data)
+                }else{
+                  location.reload();
+                }
+                
             }
         })
     })

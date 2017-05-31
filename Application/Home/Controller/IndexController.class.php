@@ -6,9 +6,22 @@ class IndexController extends Controller {
         $config=M("tw_config");
         $conData=$config->field("config_value")->where("config_key='web_name'")->find();
         $this->assign("webname",$conData['config_value']);
-        
+
         $conData=$config->field("config_value")->where("config_key='web_footer'")->find();
         $this->assign("web_footer",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_keys'")->find();
+        $this->assign("webkeys",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_description'")->find();
+        $this->assign("webdescription",$conData['config_value']);
+
+        $conData=$config->field("config_value")->where("config_key='web_start'")->find();
+        if($conData['config_value']!="true"){
+            $this->display("./lock");
+            exit();
+        }
+
     }
     //首页
     public function index(){

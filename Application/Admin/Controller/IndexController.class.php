@@ -219,6 +219,7 @@ class IndexController extends Controller {
 		if(!empty($_POST)){
 			$classMan=M("tw_class");
 			if(isset($_POST["class_id"])){
+				print_r($_POST["data"]);
 				$classMan->where("class_id='{$_POST["class_id"]}'")->save($_POST["data"]);
 			}else if(isset($_POST["del_id"])){
 				$classMan->where("class_id='{$_POST["del_id"]}'")->delete();

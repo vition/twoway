@@ -150,35 +150,33 @@ class IndexController extends Controller {
 
 			$data=array();
 			$posts=M("tw_posts");
-			$findPosts=$posts->field("posts_id")->where("posts_title='{$_POST["data"]["posts_title"]}'")->find();
-
-			if($findPosts["posts_id"]>0){
-				echo "文章已存在或者标题重复了";
-			}else{
-				$data["posts_author"]=session("username");
-				foreach($_POST["data"] as $key=>$val){
-					$data[$key]=$val;
-				}
-				$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
-				if($_POST["cover-data"]!=""){
-					$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
-				}
-				
-				if($_POST["post-type"]=="new"){//新建文章
-				$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
-				$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
-				$posts->add($data);//添加数据
-				
-				}else{//修改文章
-					$data["posts_edit_time"]=date("Y-m-d H:i:s");
-					//print_r($param);
-					$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
-					echo $posts->getLastSql();
-				}
+			
+			$data["posts_author"]=session("username");
+			foreach($_POST["data"] as $key=>$val){
+				$data[$key]=$val;
 			}
-
+			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
+			if($_POST["cover-data"]!=""){
+				$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+			}
+			
+			if($_POST["post-type"]=="new"){//新建文章
+				$findPosts=$posts->field("posts_id")->where("posts_title='{$_POST["data"]["posts_title"]}'")->find();
+				if($findPosts["posts_id"]>0){
+					echo "文章已存在或者标题重复了";
+				}else{
+					$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
+					$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
+					$posts->add($data);//添加数据
+				}
 			
 			
+			}else{//修改文章
+				$data["posts_edit_time"]=date("Y-m-d H:i:s");
+				//print_r($param);
+				$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
+				echo $posts->getLastSql();
+			}
 		}else{
 			//初始化空白
 			$param=get_param();
@@ -266,7 +264,7 @@ class IndexController extends Controller {
 		if(!empty($_POST)){
 			//新增或者修改数据
 			$data=array();
-			$posts=M("tw_pages");
+			$pages=M("tw_pages");
 			//print_r($_POST);
 			foreach($_POST["data"] as $key=>$val){
 				$data[$key]=$val;
@@ -277,23 +275,28 @@ class IndexController extends Controller {
 			}
 			$data["pages_date"]=date("Y-m-d H:i:s");
 			if($_POST["pages-type"]=="new"){//新建文章
-				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
-				$posts->add($data);//添加数据
+				$findPages=$pages->field("pages_id")->where("pages_title='{$_POST["data"]["pages_title"]}'")->find();
+				if($findPages["pages_id"]>0){
+					echo "页面已存在或者标题重复了";
+				}else{
+					create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
+					$pages->add($data);//添加数据
+				}
+				
 			
 			}else{//修改文章
 				//print_r($param);
 				create_html($_POST["data"]["pages_title"],$_POST["data"]["pages_content"]);
-				$posts->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
+				$pages->where("pages_id={$_POST['pages_id']}")->save($data);//修改数据
 				//echo $posts->getLastSql();
-			}
-			
+			}	
 		}else{
 			$param=get_param();
 			if($param){
 				$this->assign("pagesType","edit");
 				$pages=M("tw_pages");
 				$pagesData=$pages->where("pages_id={$param[0]}")->find();
-				//dump($pagesData);
+				// dump($pagesData);
 				$this->assign("pages",$pagesData);
 			}
 			//初始化空白
@@ -304,6 +307,9 @@ class IndexController extends Controller {
 	}
 	//页面管理
 	protected function pagesman(){
+		$pages=M("tw_pages");
+		$lists=$pages->order('pages_date DESC')->select();
+		$this->assign("pagesList",$lists);
 		$this->display("pagesman");
 	}
 	//中文转英文字母

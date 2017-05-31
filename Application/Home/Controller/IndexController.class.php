@@ -6,6 +6,9 @@ class IndexController extends Controller {
         $config=M("tw_config");
         $conData=$config->field("config_value")->where("config_key='web_name'")->find();
         $this->assign("webname",$conData['config_value']);
+        
+        $conData=$config->field("config_value")->where("config_key='web_footer'")->find();
+        $this->assign("web_footer",$conData['config_value']);
     }
     //首页
     public function index(){
@@ -28,6 +31,7 @@ class IndexController extends Controller {
         //查找行业新闻
         $tdata=$project->where("posts_class=3")->limit('0,5')->order('posts_edit_time DESC')->select();
         $this->assign("trade",$tdata);
+
 
     	// foreach($adata as $value){
     	// 	$this->assign("about","./Public/html/".md5("关于TW页面标题").".html");

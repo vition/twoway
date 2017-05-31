@@ -232,6 +232,38 @@ class IndexController extends Controller {
 		}
 		
 	}
+	//新建用户
+	protected function newuser(){
+		$user=M("tw_user");
+		if(!empty($_POST)){
+			if($_POST["type"]=="new"){//新建用户
+				$_POST["data"]["user_psw"]=strtoupper(sha1($_POST["type"]["user_psw"]));
+				$_POST["data"]["user_register"]=date("Y-m-d H:i:s",time());
+				$_POST["data"]["user_last"]=date("Y-m-d H:i:s",time());
+				$_POST["data"]["user_login"]=0;
+				$_POST["data"]["user_state"]=$_POST["data"]["user_state"]=="on"?'1':'0';
+				$_POST["data"]["user_avatar"]="Temp/dist/img/avatar.png";
+				$user->add($_POST["data"]);	
+			}else{//其他皆为修改
+
+			}
+		}else{
+			$param=get_param();
+			if($param){
+				$this->assign("postType","edit");
+				$userData=$user->where("user_id={$param[0]}")->find();
+				// dump($pagesData);
+				$userData["user_state"]=$userData["user_state"]==1?"checked":"nochecked";
+
+				$this->assign("userinfo",$userData);
+			}
+			$group=M("tw_group");
+			$groupData=$group->select();
+			$this->assign("groups",$groupData);
+			$this->display("newuser");
+		}
+		
+	}
 	//用户管理
 	protected function userman(){
 		$user=M("tw_user");
@@ -249,9 +281,21 @@ class IndexController extends Controller {
 	}
 	//分组管理
 	protected function groupman(){
-		$this->assign("list",$this->get_group());
-		$this->assign("active",ACTION_NAME);
-		$this->display("groupman");
+		if(!empty($_POST)){
+			$groupMan=M("tw_group");
+			if(isset($_POST["group_id"])){
+				print_r($_POST["data"]);
+				$groupMan->where("group_id='{$_POST["group_id"]}'")->save($_POST["data"]);
+			}else if(isset($_POST["del_id"])){
+				$groupMan->where("group_id='{$_POST["del_id"]}'")->delete();
+			}else{
+				$groupMan->add($_POST["data"]);
+			}
+		}else{
+			$this->assign("grouplist",$this->get_group());
+			$this->assign("active",ACTION_NAME);
+			$this->display("groupman");
+		}
 	}
 	//获取网站名称
 	protected function get_web_title(){
@@ -320,6 +364,7 @@ class IndexController extends Controller {
 			echo $Pinyin->encode($_POST["str"],True);
 		}
 	}
+
 	//取用户信息
 	protected function get_user($name){
 		$user=M("tw_user  a");

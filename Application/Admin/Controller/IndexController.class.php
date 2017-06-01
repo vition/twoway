@@ -25,6 +25,9 @@ class IndexController extends Controller {
 				session("isLogin",True);
 				session("username",I("username"));
 				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."成功登录后台","log_date"=>date("Y-m-d H:i:s",time()));
+
+				$user=M("tw_user");
+				$user->where("user_name='".I("username")."'")->setInc("user_login");
 				$this->logs()->insert($data);
 				$this->success('成功登录', 'base',1);
 				//$this->display("base");
@@ -72,7 +75,6 @@ class IndexController extends Controller {
 		}else{
 			$this->success('请先登录', 'index');
 		}
-		
 	}
 	//获取全局配置
 	protected function get_glob_config(){
@@ -416,12 +418,24 @@ class IndexController extends Controller {
 			if($_POST["type"]=="gethtml"){
 				echo file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"]);
 			}elseif($_POST["type"]=="uphtml"){
+
 				//delete(APP_PATH."/Home/View/".$_POST["htmlfile"]);
 				$htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"], "w");
 				fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
 				fwrite($htmlFile, $_POST["html"]);
 				fclose($htmlFile);
 				//echo file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"], $_POST["html"]);
+
+				// $htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"][0], "w");
+				// $old=md5(fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"][0])));
+				// $state=fwrite($htmlFile, $_POST["html"]);
+				// fclose($htmlFile);
+				// 換個方式寫
+				$old=md5(file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0]));
+				file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0], $_POST["html"]);
+				$new=md5(file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0]));
+				if($old==$new) echo "更新失敗";else echo "更新成功";
+
 			}
 		}else{
 			$htmlFiles=scandir(APP_PATH."/Home/View");

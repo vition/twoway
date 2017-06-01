@@ -75,7 +75,6 @@ class IndexController extends Controller {
 		}else{
 			$this->success('请先登录', 'index');
 		}
-		
 	}
 	//获取全局配置
 	protected function get_glob_config(){
@@ -419,10 +418,15 @@ class IndexController extends Controller {
 			if($_POST["type"]=="gethtml"){
 				echo file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"]);
 			}elseif($_POST["type"]=="uphtml"){
-				$htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"][0], "w");
-				//fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
-				$state=fwrite($htmlFile, $_POST["html"]);
-				fclose($htmlFile);
+				// $htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"][0], "w");
+				// $old=md5(fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"][0])));
+				// $state=fwrite($htmlFile, $_POST["html"]);
+				// fclose($htmlFile);
+				// 換個方式寫
+				$old=md5(file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0]));
+				file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0], $_POST["html"]);
+				$new=md5(file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0]));
+				if($old==$new) echo "更新失敗";else echo "更新成功";
 			}
 		}else{
 			$htmlFiles=scandir(APP_PATH."/Home/View");

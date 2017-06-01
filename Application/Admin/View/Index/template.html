@@ -32,13 +32,13 @@
         <!-- Content Header (pages header) -->
         <section class="content-header">
             <h1>
-                新建页面
+                模板编辑
                 <small>Twoway</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
-                <li><a href="#">页面管理</a></li>
-                <li class="active">新建页面</li>
+                <li><a href="#"><i class="fa fa-dashboard"></i>后台管理</a></li>
+                <li><a href="#">高级代码</a></li>
+                <li class="active">模板编辑</li>
             </ol>
         </section>
 
@@ -47,16 +47,17 @@
             <div class="row">
                 <div class="col-md-9">
                 <div class="box box-success">
-                    <div class="box-header with-border">
-                        <button type="button" class="btn btn-success btn-sm" id="update-html">更新</button>
-                    </div>
                     <div class="box-body">
                         <div class="form-group">
-                            <label class="label-danger">谨慎操作，随时影响网站的正常运行</label>
+                            <p class="text-red">谨慎操作，随时影响网站的正常运行</p>
                             <textarea class="form-control template-html" rows="20" placeholder="Enter ..."></textarea>
                         </div>
                     </div>
+                    <div class="box-footer with-border">
+                        <button type="button" class="btn btn-success btn-sm" id="update-html">更新</button>
+                    </div>
                 </div>
+
                 </div>
                 <div class="col-md-3">
                      <div class="box box-primary">
@@ -97,39 +98,45 @@
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
     $(function(){
+        $("#html-select").val("index.html");
+        gethtml("index.html");
         $(".vime-html").on("dblclick",function(){
             //alert($(this).val())
-            datas={}
-            datas["type"]="gethtml"
-            datas["htmlfile"]=$(this).val()
-            $.ajax({
-                url:"{:U('template')}",
-                type:"POST",
-                dataType:"html",
-                data:datas,
-                success:function(data){
-                    $(".template-html").text(data)
-                }
-            })
+            gethtml($(this).val())
         })
         $("#update-html").on("click",function(){
             if($("#html-select").val()!=null){
                 datas={}
                 datas["type"]="uphtml"
                 datas["htmlfile"]=$("#html-select").val()
-                datas["html"]=$(".template-html").text()
+                datas["html"]=$(".template-html").val()
                 $.ajax({
                     url:"{:U('template')}",
                     type:"POST",
                     dataType:"html",
                     data:datas,
                     success:function(data){
-                        alert(data)
+                        // alert(data)
                     }
                 })
             }
             
         })
+        //取html函数
+        function gethtml(name){
+            datas={}
+            datas["type"]="gethtml"
+            datas["htmlfile"]=name
+            $.ajax({
+                url:"{:U('template')}",
+                type:"POST",
+                dataType:"html",
+                data:datas,
+                success:function(data){
+                    $(".template-html").val(data)
+                }
+            })
+        }
     })
 </script>
 </body>

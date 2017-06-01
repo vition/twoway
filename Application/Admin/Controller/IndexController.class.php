@@ -416,12 +416,13 @@ class IndexController extends Controller {
 			if($_POST["type"]=="gethtml"){
 				echo file_get_contents(APP_PATH."/Home/View/".$_POST["htmlfile"]);
 			}elseif($_POST["type"]=="uphtml"){
-				delete(APP_PATH."/Home/View/".$_POST["htmlfile"]);
-				$htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"], "w+");
-				fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
-				fwrite($htmlFile, $_POST["html"]);
+				$htmlFile=fopen(APP_PATH."/Home/View/".$_POST["htmlfile"][0], "w");
+				//fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
+				$state=fwrite($htmlFile, $_POST["html"]);
 				fclose($htmlFile);
-				//echo file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"], $_POST["html"]);
+				// echo $state;
+				// print_r($_POST);
+				// echo file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0],$_POST["html"]);
 			}
 		}else{
 			$htmlFiles=scandir(APP_PATH."/Home/View");

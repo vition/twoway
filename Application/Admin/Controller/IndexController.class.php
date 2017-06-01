@@ -25,6 +25,9 @@ class IndexController extends Controller {
 				session("isLogin",True);
 				session("username",I("username"));
 				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."成功登录后台","log_date"=>date("Y-m-d H:i:s",time()));
+
+				$user=M("tw_user");
+				$user->where("user_name='".I("username")."'")->setInc("user_login");
 				$this->logs()->insert($data);
 				$this->success('成功登录', 'base',1);
 				//$this->display("base");

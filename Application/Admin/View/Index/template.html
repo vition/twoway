@@ -19,6 +19,12 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
+    <!-- codemirror编辑器css -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/codemirror/addon/fold/foldgutter.css">
+    <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/codemirror/addon/dialog/dialog.css">
+    <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/codemirror/theme/monokai.css">
+    <style>.CodeMirror{font-size: 1.1em;}</style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -41,7 +47,7 @@
                 <li class="active">模板编辑</li>
             </ol>
         </section>
-
+                            
         <!-- Main content -->
         <section class="content">
             <div class="row">
@@ -50,7 +56,7 @@
                     <div class="box-body">
                         <div class="form-group">
                             <p class="text-red">谨慎操作，随时影响网站的正常运行</p>
-                            <textarea class="form-control template-html" rows="20" placeholder="Enter ..."></textarea>
+                            <textarea id="codeditor" class="form-control template-html" rows="20" placeholder="Enter ..."></textarea>
                         </div>
                     </div>
                     <div class="box-footer with-border">
@@ -96,10 +102,42 @@
 <script src="__PUBLIC__/Temp/plugins/ckeditor/ckeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- codemirror编辑器js -->
+<script src="__PUBLIC__/Temp/plugins/codemirror/lib/codemirror.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/search/searchcursor.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/search/search.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/dialog/dialog.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/edit/closebrackets.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/comment/comment.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/wrap/hardwrap.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/fold/foldcode.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/addon/fold/brace-fold.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/mode/xml/xml.js"></script>
+<script src="__PUBLIC__/Temp/plugins/codemirror/keymap/sublime.js"></script>
+
 <script>
     $(function(){
+        //初始化codemirror
+        var myTextarea = document.getElementById('codeditor');
+        var editor = CodeMirror.fromTextArea(myTextarea,{
+            lineNumbers: true,
+            mode: "text/html",
+            keyMap: "sublime",
+            autoCloseBrackets: true,
+            matchBrackets: true,
+            showCursorWhenSelecting: true,
+            theme: "monokai"
+        });
+        editor.setSize('auto','450px');
+
+
+        //初始化默认导入index文件
         $("#html-select").val("index.html");
         gethtml("index.html");
+
+        
+
         $(".vime-html").on("dblclick",function(){
             //alert($(this).val())
             gethtml($(this).val())
@@ -109,7 +147,8 @@
                 datas={}
                 datas["type"]="uphtml"
                 datas["htmlfile"]=$("#html-select").val()
-                datas["html"]=$(".template-html").val()
+                // datas["html"]=$(".template-html").val()
+                datas["html"]=editor.getValue();
                 $.ajax({
                     url:"{:U('template')}",
                     type:"POST",
@@ -133,7 +172,8 @@
                 dataType:"html",
                 data:datas,
                 success:function(data){
-                    $(".template-html").val(data)
+                    // $(".template-html").val(data)
+                    editor.setValue(data)
                 }
             })
         }

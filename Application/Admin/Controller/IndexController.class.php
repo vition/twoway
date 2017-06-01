@@ -420,9 +420,6 @@ class IndexController extends Controller {
 				//fread($htmlFile, filesize(APP_PATH."/Home/View/".$_POST["htmlfile"]));
 				$state=fwrite($htmlFile, $_POST["html"]);
 				fclose($htmlFile);
-				// echo $state;
-				// print_r($_POST);
-				// echo file_put_contents(APP_PATH."/Home/View/".$_POST["htmlfile"][0],$_POST["html"]);
 			}
 		}else{
 			$htmlFiles=scandir(APP_PATH."/Home/View");

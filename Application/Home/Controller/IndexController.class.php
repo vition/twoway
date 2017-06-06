@@ -53,15 +53,26 @@ class IndexController extends Controller {
     }
     //内容页面
     public function page(){
-        $param=get_param();
-        if($param){
-                $this->assign("postType","edit");
-                $posts=M("tw_posts");
-                $postData=$posts->where("posts_id={$param[0]}")->find();
-                $this->assign("posts",$postData);
-            }
-        $this->assign("about","./Public/html/".md5("关于TW页面标题").".html");
-        $this->display("./page");
+        $posts=M("tw_posts");
+        if(IS_POST){
+             $posts->where("posts_id={$_POST["id"]}")->setInc("posts_likes");
+             $postId=$posts->field("posts_likes")->where("posts_id={$_POST["id"]}")->find();
+             cookie('likes','value',3600);
+             echo $postId["posts_likes"];
+        }else{
+            $param=get_param();
+            if($param){
+                    $posts->where("posts_id={$param[0]}")->setInc("posts_views");
+                    $this->assign("postType","edit");
+                    $postData=$posts->where("posts_id={$param[0]}")->find();
+                    $this->assign("posts",$postData);
+                    
+                }
+
+            $this->assign("about","./Public/html/".md5("关于TW页面标题").".html");
+            $this->display("./page");
+        }
+        
     }
     //项目列表页面
     public function project(){

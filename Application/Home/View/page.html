@@ -19,8 +19,11 @@
 	#content .posts-title{text-align: center;margin-bottom: 20px;font-size:1.5em;}
 	#content .posts-time{text-align: right;margin-bottom: 30px;font-size: 1.2em;padding-right:10%;color:#666666;}
 	#content .posts-share{padding-left:20%;}
+  .posts-time span{display: inline-block;margin-left:20px;padding-left:5px;}
+  .posts-time span i::before{margin-right:5px;}
+  .posts-time .ilikes:hover{color:#0064AC;cursor:pointer;}
 	</style>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bhtm8oON1GR2FwAaSr5UY3K4nke8BD28"></script>
+
 </head>
 <body id="top" data-spy="scroll">
 	<!--top header-->
@@ -28,11 +31,14 @@
 	
 	<div id="content">
 		<h3 class="posts-title">{$posts.posts_title}</h3>
-		<div class="posts-time">发布时间：{$posts.posts_create_time}</div>
+		<div class="posts-time"><span>发布时间：{$posts.posts_create_time}</span><span><i class="glyphicon glyphicon-eye-open">阅读({$posts.posts_views})</i></span><span class="ilikes" data-id="{$posts.posts_id}"><i class="glyphicon glyphicon-thumbs-up">点赞({$posts.posts_likes})</i></span></div>
 		<div id="posts-contents">{$posts.posts_content}</div>
 		<div class="posts-share">
 			<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_ty" data-cmd="ty" title="分享到天涯社区"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a></div>
-			<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+			<literal>
+                <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                </script>
+            </literal>
 		</div>
 	</div>
 	<!--bottom footer--> 
@@ -48,86 +54,20 @@
     <script src="__PUBLIC__/Temp/home/js/script.js"></script>
     <script src="__PUBLIC__/Temp/home/js/contactform.js"></script>
 	<script type="text/javascript">
-    //创建和初始化地图函数：
-    function initMap(){
-      createMap();//创建地图
-      setMapEvent();//设置地图事件
-      addMapControl();//向地图添加控件
-      addMapOverlay();//向地图添加覆盖物
-    }
-    function createMap(){ 
-      map = new BMap.Map("map"); 
-      map.centerAndZoom(new BMap.Point(113.281016,23.138284),18);
-    }
-    function setMapEvent(){
-      map.enableScrollWheelZoom();
-      map.enableKeyboard();
-      map.enableDragging();
-      map.enableDoubleClickZoom()
-    }
-    function addClickHandler(target,window){
-      target.addEventListener("click",function(){
-        target.openInfoWindow(window);
-      });
-    }
-    function addMapOverlay(){
-      var markers = [
-      ];
-      for(var index = 0; index < markers.length; index++ ){
-        var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-        var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
-          imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
-        })});
-        var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
-        var opts = {
-          width: 200,
-          title: markers[index].title,
-          enableMessage: false
-        };
-        var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
-        marker.setLabel(label);
-        addClickHandler(marker,infoWindow);
-        map.addOverlay(marker);
-      };
-      var labels = [
-        {position:{lng:113.281726,lat:23.137802},content:"广州睿基营销策划有限"}
-      ];
-      for(var index = 0; index < labels.length; index++){
-        var opt = { position: new BMap.Point(labels[index].position.lng,labels[index].position.lat )};
-        var label = new BMap.Label(labels[index].content,opt);
-        map.addOverlay(label);
-      };
-      var plOpts = [
-        {strokeColor:"#00f",strokeWeight:"4",strokeOpacity:"0.6"}
-      ];
-      var plPath = [
-        [
-          new BMap.Point(113.28107,23.138052),
-          new BMap.Point(113.281717,23.138052),
-          new BMap.Point(113.281744,23.137761),
-          new BMap.Point(113.28107,23.137736),
-          new BMap.Point(113.281061,23.138035),
-          new BMap.Point(113.281061,23.138035),
-          new BMap.Point(113.281061,23.138035)
-        ],
-      ];
-      for(var index = 0; index < plOpts.length; index++){
-        var polyline = new BMap.Polyline(plPath[index],plOpts[index]);
-        map.addOverlay(polyline);
-      }
-    }
-    //向地图添加控件
-    function addMapControl(){
-      var scaleControl = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-      scaleControl.setUnit(BMAP_UNIT_IMPERIAL);
-      map.addControl(scaleControl);
-      var navControl = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-      map.addControl(navControl);
-      var overviewControl = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:true});
-      map.addControl(overviewControl);
-    }
-    var map;
-      initMap();
+        $(function(){
+           $(".ilikes").on("click",function(){
+                var pid=$(this).data("id");
+                $.ajax({
+                    url:"{:U('page')}",
+                    type:"post",
+                    data:{id:pid},
+                    dataType:"html",
+                    success:function(data){
+                        alert(data)
+                    }
+                })
+           })
+        })
   </script>
     
 </body>

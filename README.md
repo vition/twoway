@@ -53,3 +53,11 @@
 #### 高级功能
 * 模板编辑：编辑Home/view下所有html文件
 * 前端控制器：编写前端控制器功能了
+
+> 2017-6-6新增数据字段
+'''
+ALTER TABLE tw_posts ADD posts_likes INT(9) NOT NULL DEFAULT 0;
+ALTER TABLE tw_pages ADD pages_likes INT(9) NOT NULL DEFAULT 0;
+ALTER TABLE tw_posts ADD posts_views int (9) NOT NULL DEFAULT 1;
+ALTER TABLE tw_pages ADD pages_views int (9) NOT NULL DEFAULT 1;
+'''

@@ -55,10 +55,15 @@ class IndexController extends Controller {
     public function page(){
         $posts=M("tw_posts");
         if(IS_POST){
-             $posts->where("posts_id={$_POST["id"]}")->setInc("posts_likes");
-             $postId=$posts->field("posts_likes")->where("posts_id={$_POST["id"]}")->find();
-             cookie('likes','value',3600);
-             echo $postId["posts_likes"];
+            $cname='plikes'.$_POST["id"];
+            if(empty(cookie($cname))){
+                $posts->where("posts_id={$_POST["id"]}")->setInc("posts_likes");
+                $postId=$posts->field("posts_likes")->where("posts_id={$_POST["id"]}")->find();
+                cookie($cname,'true',86400);
+                echo json_encode(array("state"=>"success","msg"=>$postId["posts_likes"]));
+            }else{
+                echo json_encode(array("state"=>"error","msg"=>"您今天已点赞，明天再来吧！"));
+            }
         }else{
             $param=get_param();
             if($param){

@@ -55,9 +55,9 @@ class IndexController extends Controller {
     public function page(){
         $posts=M("tw_posts");
         if(IS_POST){
+
             $pname='plikes'.$_POST["id"];
             if(!session($pname)){
-                session(array("name"=>$pname,"expire"=>86400));
                 session($pname,"true");
                 $posts->where("posts_id={$_POST["id"]}")->setInc("posts_likes");
                 $postId=$posts->field("posts_likes")->where("posts_id={$_POST["id"]}")->find();

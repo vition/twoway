@@ -61,9 +61,14 @@
                     url:"{:U('page')}",
                     type:"post",
                     data:{id:pid},
-                    dataType:"html",
+                    dataType:"json",
                     success:function(data){
-                        alert(data)
+                        var json=eval(data)
+                        if(json.state=="success"){
+                            $(".ilikes i").text("点赞("+json.msg+")")
+                        }else{
+                            alert(json.msg)
+                        }
                     }
                 })
            })

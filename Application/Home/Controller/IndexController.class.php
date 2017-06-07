@@ -73,6 +73,20 @@ class IndexController extends Controller {
                     $posts->where("posts_id={$param[0]}")->setInc("posts_views");
                     $this->assign("postType","edit");
                     $postData=$posts->where("posts_id={$param[0]}")->find();
+
+  
+                    $prev=$posts->field("posts_id,posts_title")->where("posts_class={$postData['posts_class']} AND posts_id<{$param[0]}")->order("posts_id desc")->limit("0,1")->find();
+                    if($prev["posts_id"]>0){
+                        $prev["title"]="上一篇";
+                        // array_push($prev, "title"=>"上一篇");
+                        $this->assign("thisprev",$prev);
+                    }
+                    $next=$posts->field("posts_id,posts_title")->where("posts_class={$postData['posts_class']} AND posts_id>{$param[0]}")->order("posts_id asc")->limit("0,1")->find();
+                    if($next["posts_id"]>0){
+                        $next["title"]="下一篇";
+                        $this->assign("thisnext",$next);
+                    }
+
                     $this->assign("posts",$postData);
                     
                 }
@@ -87,7 +101,7 @@ class IndexController extends Controller {
         $project=M("tw_posts");
         $pdata=$project->where("posts_class=1")->order('posts_edit_time DESC')->select();
         $this->assign("project",$pdata);
-        $this->display("./tw_config");
+        $this->display("./project");
     }
     //内部新闻
     public function company(){

@@ -19,9 +19,11 @@
 	#content .posts-title{text-align: center;margin-bottom: 20px;font-size:1.5em;}
 	#content .posts-time{text-align: right;margin-bottom: 30px;font-size: 1.2em;padding-right:10%;color:#666666;}
 	#content .posts-share{padding-left:20%;}
-  .posts-time span{display: inline-block;margin-left:20px;padding-left:5px;}
-  .posts-time span i::before{margin-right:5px;}
-  .posts-time .ilikes:hover{color:#0064AC;cursor:pointer;}
+    .posts-time span{display: inline-block;margin-left:20px;padding-left:5px;}
+    .posts-time span i::before{margin-right:5px;}
+    .posts-time .ilikes:hover{color:#0064AC;cursor:pointer;}
+    .prenext{cursor:pointer;}
+
 	</style>
 
 </head>
@@ -33,6 +35,9 @@
 		<h3 class="posts-title">{$posts.posts_title}</h3>
 		<div class="posts-time"><span>发布时间：{$posts.posts_create_time}</span><span><i class="glyphicon glyphicon-eye-open">阅读({$posts.posts_views})</i></span><span class="ilikes" data-id="{$posts.posts_id}"><i class="glyphicon glyphicon-thumbs-up">点赞({$posts.posts_likes})</i></span></div>
 		<div id="posts-contents">{$posts.posts_content}</div>
+
+        <div> <a  class="prenext" href="{:U('page','','')}/{$thisprev.posts_id|default=0}">{$thisprev.title|default=''}</a><a class="prenext" style="float: right;" href="{:U('page','','')}/{$thisnext.posts_id|default=0}">{$thisnext.title|default=''}</a></div>
+
 		<div class="posts-share">
 			<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_ty" data-cmd="ty" title="分享到天涯社区"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a></div>
 			<literal>

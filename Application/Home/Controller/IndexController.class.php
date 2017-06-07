@@ -55,7 +55,6 @@ class IndexController extends Controller {
     public function page(){
         $posts=M("tw_posts");
         if(IS_POST){
-
             $pname='plikes'.$_POST["id"];
             if(!session($pname)){
                 session($pname,"true");

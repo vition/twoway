@@ -11,7 +11,8 @@ class IndexController extends Controller {
 	//默认执行方法
     public function index(){
 		if(session("isLogin")){
-			$this->success('成功登录', get_controller().'/base',1);
+			$this->redirect('base');
+			//$this->success('成功登录', get_controller().'/base',1);
 		}else{
 			$this->display("login");
 		}
@@ -19,7 +20,8 @@ class IndexController extends Controller {
 	//判断登录方法
 	public function login(){
 		if(session("isLogin")){
-			$this->success('已登录', 'base',1);
+			//$this->success('已登录', 'base',1);
+			$this->redirect('base');
 		}else{
 			if($this->checklogin(I("username"),I("userpasswd"))){
 				session("isLogin",True);
@@ -29,7 +31,8 @@ class IndexController extends Controller {
 				$user=M("tw_user");
 				$user->where("user_name='".I("username")."'")->setInc("user_login");
 				$this->logs()->insert($data);
-				$this->success('成功登录', 'base',1);
+				//$this->success('成功登录', 'base',1);
+				$this->redirect('base');
 				//$this->display("base");
 			}else{
 				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."尝试登录后台，但是登录失败","log_date"=>date("Y-m-d H:i:s",time()));

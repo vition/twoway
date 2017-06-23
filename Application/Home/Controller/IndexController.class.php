@@ -64,8 +64,7 @@ class IndexController extends Controller {
             }else{
                 echo json_encode(array("state"=>"error","msg"=>"今天已点赞，明天再来吧"));
             }
-             
-             
+
         }else{
             $param=get_param();
             if($param){

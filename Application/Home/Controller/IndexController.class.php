@@ -115,4 +115,9 @@ class IndexController extends Controller {
         $this->assign("news",$pdata);
         $this->display("./news");
     }
+
+    //招聘页面
+    public function hire() {
+        $this->display("./hire");
+    }
 }

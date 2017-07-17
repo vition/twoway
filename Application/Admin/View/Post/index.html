@@ -74,7 +74,7 @@
                     <tr>
                       <td>{$vo.id}</td>
                       <td>{$vo.name}</td>
-                      <td><button type="submit" id="add-post" class="btn btn-primary">编辑</button></td>
+                      <td><button type="submit" id="" class="btn btn-primary add-post">编辑</button></td>
                     </tr>
                   </volist>
                   
@@ -318,6 +318,17 @@
       "autoWidth": false
     });
   });
+
+  window.onload = function() {
+    var addPost = document.getElementsByClassName('add-post');
+    for (var i=0; i < addPost.length ; i++) {
+        (function(i){
+           addPost[i].onclick = function(){
+             alert(i);
+          }
+        })(i)            
+    }
+  }
 </script>
 </body>
 </html>

@@ -21,6 +21,16 @@
 		width: 70px;
 		height: 70px;
 	}
+
+	#myCarousel {
+		margin: 50px 0 0 0;
+	}
+	#navbar-collapse ul {
+		margin-top:0;
+	}
+	.carousel-inner img {
+		margin: 0 auto;
+	}
 	</style>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=bhtm8oON1GR2FwAaSr5UY3K4nke8BD28"></script>
 </head>
@@ -515,17 +525,17 @@
 		</div>
 
 		<!--footer-->
-		<div id="footer">
+		<div id="footer" style="background: black">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="footer-heading">
 							<h3><span>关于</span>TW</h3>
 							<p> 睿基（TWOWAY）始于二〇〇二年，总部设在广告创意鼻祖的广州是以“汽车巡展、赛事营销”为主打特色的创新汽车营销创意型公司经过12年的发展，已在北京、上海、武汉、成都、重庆、昆明等中国主要大城市设立区域特色分公司旗下各分公司传承优势，针对各区域开展特色业务，更贴近当地消费人文特点，专注并活跃于自身行业已得到多数客商的认可，被客户誉为“汽车策划小天才”</p>
 						</div>
 					</div>
 
-					<div class="col-md-4">
+					<div class="col-md-3">
 						<div class="footer-heading">
 							<h3><span>最新</span> 动态</h3>
 							<ul>
@@ -535,10 +545,30 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-md-4" id="logo">
+					<div class="col-md-6" id="logo">
 						<div class="footer-heading">
-							<h3><span>行业</span> 动态</h3>
-							<img src="__PUBLIC__/upload/images/logo1.jpg" alt="">
+							<h3><span>合作</span> 伙伴</h3>
+		
+						<!-- Wrapper for slides -->
+								<div id="myCarousel" class="carousel slide" style="background: black">
+									<div class="carousel-inner" style="background: black">
+										<div class="item active" style="background:black">
+											<img src="__PUBLIC__/upload/images/logo3.jpg" alt="第一张">
+										</div>
+										<div class="item" style="background:black;">
+											<img src="__PUBLIC__/upload/images/logo2.jpg" alt="第二张">
+										</div>
+										<div class="item" style="background:black;">
+											<img src="__PUBLIC__/upload/images/logo1.jpg" alt="第三张">
+										</div>
+									</div>
+									<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+										<span class="glyphicon glyphicon-chevron-left"></span>
+									</a>
+									<a href="#myCarousel" data-slide="next" class="carousel-control right">
+										<span class="glyphicon glyphicon-chevron-right"></span>
+									</a>
+								</div>		
 							
 						</div>
 					</div>
@@ -547,7 +577,12 @@
 		</div>
 
 		<!--bottom footer-->
-	<include file="./footer" />	
+	<include file="./footer" />
+	<script type="text/javascript">
+		$('myCarousel').carousel({
+			interval : 100,
+		});
+	</script>
 	<!-- <script type="text/javascript">
     //创建和初始化地图函数：
     function initMap(){

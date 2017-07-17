@@ -8,6 +8,12 @@ class IndexController extends Controller {
 
 	// 	}
 	// }
+	
+	//获取导航条
+	public function getNav() {
+		echo 11;
+	} 
+	
 	//默认执行方法
     public function index(){
 		if(session("isLogin")){
@@ -276,7 +282,7 @@ class IndexController extends Controller {
 		
 		$this->assign("list",$data);
 		$this->assign('webTitle',$this->get_web_title());
-		$this->display("userman");
+		// $this->display("userman");
 	}
 	//获取分组
 	protected function get_group(){
@@ -457,6 +463,14 @@ class IndexController extends Controller {
 	protected function logs(){
 		import('Vendor.Logs.Logs');
 		return new \Logs("tw_log");
+	}
+
+	//获取职位部门列表
+	protected function getList() {
+		$post = D('TwPost');
+		$res = $post->getList();
+		$this->assign('res',$res);
+		$this->display('Post/index');
 	}
 
 }

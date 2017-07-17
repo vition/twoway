@@ -61,3 +61,8 @@ ALTER TABLE tw_pages ADD pages_likes INT(9) NOT NULL DEFAULT 0;
 ALTER TABLE tw_posts ADD posts_views int (9) NOT NULL DEFAULT 1;
 ALTER TABLE tw_pages ADD pages_views int (9) NOT NULL DEFAULT 1;
 '''
+
+> 2017-7-14 修改首页地图
+* 修改首页地图
+* 新增招聘页面
+

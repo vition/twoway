@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{$webTitle}后台管理界面</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+ <include file="top" />
+  <!-- Left side column. contains the logo and sidebar -->
+  <include file="left" />
+
+  <!-- Content Wrapper. Contains pages content -->
+  <div class="content-wrapper">
+    <!-- Content Header (pages header) -->
+    <section class="content-header">
+      <h1>
+        新建页面
+        <small>Twoway</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
+        <li><a href="#">页面管理</a></li>
+        <li class="active">新建页面</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <!-- <h3 class="box-title">网站的基本信息</h3> -->
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputPassword1">页面标题</label>
+                  <input type="text" class="form-control pages-data" id="pages-title" name="pages_title" autocomplete=off  value="{$pages.pages_title|default=''}" placeholder="帖子标题">
+                  <input type="hidden" name="pages_id" class="pages-data" value="{$pages.pages_id|default=''}" >
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">字母别名</label>
+                  <input type="text" class="form-control pages-data" id="pages-alias" name="pages_alias" autocomplete=off  value="{$pages.pages_alias|default=''}" placeholder="ZMBM">
+                </div>
+				 <div class="form-group">
+                  <label for="exampleInputPassword1">封面图片</label>
+                  <input type="text" autocomplete=off  class="form-control pages-data" id="pages_cover" name="pages_cover" value="{$pages.pages_cover|default=''}" placeholder="http://www.twoway.com.cn/1.jpg">
+  				    <input type="file" id="loadimg">
+               <input type="hidden" id="cover-data" >
+                </div>
+				 <div class="form-group">
+                  <label for="exampleInputPassword1">页面标签</label>
+                  <input type="text" autocomplete=off  class="form-control pages-data" vlaue="{$pages.pages_tags|default=''}" name="pages_tags" placeholder="这填写网站的网站描述">
+                </div>
+				<div class="box-body pad">
+					  <form>
+							<textarea id="editor1" class="pages-data" name="pages_content" name="editor1" rows="10" cols="80">{$pages.pages_content|default=''}
+							</textarea>
+					  </form>
+					</div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                 <input type="hidden" id="pages-type" value="{$pagesType|default='new'}">
+                <button type="submit" id="submit-pages" class="btn btn-primary">提交修改</button>
+              </div>
+          </div>
+          <!-- /.box -->
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="__PUBLIC__/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="__PUBLIC__/Temp/bootstrap/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/Temp/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="__PUBLIC__/Temp/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
+<script src="__PUBLIC__/Temp/plugins/ckeditor/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+$(function () {
+
+	CKEDITOR.replace('editor1');
+	//bootstrap WYSIHTML5 - text editor
+	//$(".textarea").wysihtml5();
+    //标题触发生成字母
+    $("#pages-title").on("input propertychange",function(){
+        datas={};
+        datas["str"]=$("#pages-title").val();
+        $.ajax({
+            url:"{:U('letter')}",
+            type:"POST",
+            dataType:"html",
+            data:datas,
+            success:function(data){
+                $("#pages-alias").val(data);
+            }
+        })
+    })
+    //修改数据
+	$("#submit-pages").on("click",function(){
+        datas={};
+        datas["cover-data"]=$("#cover-data").val();
+        datas["pages-type"]=$("#pages-type").val();
+        datas["data"]={};
+        var pagesClass=$(".pages-data");
+        for(var i=0;i<pagesClass.length;i++){
+            var keyName=pagesClass.eq(i).attr("name");
+            var valName=pagesClass.eq(i).val();
+            
+            if(keyName=="pages_title" && valName==""){
+                    alert(pagesClass.eq(i).prev().text()+"不能为空");
+                    return;
+            }else if(keyName=="pages_content"){
+                    var content = CKEDITOR.instances.editor1.getData();
+                    if(content.length<1){
+                        alert(pagesClass.eq(i).prev().text()+"不能为空");
+                        return;
+                    }else{
+                        datas["data"][keyName]=content;
+                    }
+            }else if(keyName=="pages_id" && valName!=""){
+                datas["pages_id"]=valName;
+            }else{
+                datas["data"][keyName]=valName;
+            }
+        }
+        $.ajax({
+            url:"{:U('newpage')}",
+            data:datas,
+            dataType:"html",
+            type:"post", 
+            success:function(data){
+                //alert(data)
+                if(data!=""){
+                  alert(data)
+                }else{
+                  location.reload();
+                }
+                
+            }
+        })
+    })
+});
+
+ //加载图片
+	$("#loadimg").on("change",loadImg)
+ //加载图片函数
+function loadImg(){
+  var file = this.files[0]; //选择上传的文件
+  var fileName=file.name;
+  fN=fileName.split(".")
+  if(fN[fN.length-1]=="jpg" || fN[fN.length-1]=="png" || fN[fN.length-1]=="gif"){
+    if(file.size>2000000){
+      alert("文件不能大于2M")
+    }else{
+      var r = new FileReader();
+      r.readAsDataURL(file); //Base64
+      $(r).load(function(){
+        $("#cover-data").val(this.result);
+        $("#pages_cover").val(fileName);
+        $("#coverbox").css("display","none");
+      });
+    }
+  }else{
+    alert("不支持此文件类型")
+  }
+  
+  
+}
+</script>
+</body>
+</html>

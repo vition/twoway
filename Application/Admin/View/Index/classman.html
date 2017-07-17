@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{$webTitle}后台管理界面</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="__PUBLIC__/Temp/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="__PUBLIC__/Temp/othercss/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+ <include file="top" />
+  <!-- Left side column. contains the logo and sidebar -->
+  <include file="left" />
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        分类管理
+        <small>Preview</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Forms</a></li>
+        <li class="active">General Elements</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+          <!-- general form elements -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">新建分类</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">分类名称</label>
+                  <input type="hidden" id="class-id" />
+                  <input type="text" class="form-control" id="class-name" placeholder="分类名称">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">分类说明</label>
+                  <input type="text" class="form-control" id="class-explain" placeholder="分类说明">
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+				    <button type="submit" id="create-class" class="btn btn-primary">新增分类</button>
+                    <button type="submit" id="updata-class" class="btn btn-primary">修改分类</button>
+              </div>
+
+          </div>
+        </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+
+          <!-- general form elements disabled -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+              <h3 class="box-title">分类管理</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <form role="form">
+                <!-- select -->
+                <div class="form-group">
+                  <label>分类列表</label>
+                  <select class="form-control" id="class-group">
+                    <volist name="class" id="cla">
+                    <option value="{$cla.class_id}" data-explain="{$cla.class_explain}">{$cla.class_name}</option>
+                    </volist>
+                  </select>
+                </div>
+              </form>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">分类说明</label>
+                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
+                </div>
+                <div class="box-footer">
+                 <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
+                 <button type="submit" id="del-class" class="btn btn-primary">删除</button>
+                 </div>
+            </div>
+
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <include file="footer" />
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 2.2.3 -->
+<script src="__PUBLIC__/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="__PUBLIC__/Temp/bootstrap/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__PUBLIC__/Temp/plugins/fastclick/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="__PUBLIC__/Temp/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
+<script>
+    $(function(){
+       //初始化分类备注
+        $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
+        //更改分类时修改对应的备注
+        $("#class-group").on("change",function(){
+            $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
+        })
+        //点击修改按钮后执行
+        $("#edit-class").on("click",function(){
+             $("#class-id").val($("#class-group").find("option:selected").val());
+             $("#class-name").val($("#class-group").find("option:selected").text());
+             $("#class-explain").val($("#class-group").find("option:selected").data("explain"));
+        })
+        //新建分类
+        $("#create-class").on("click",function(){
+            datas={};
+            updata_class(datas);
+        })
+        //更新分类
+        $("#updata-class").on("click",function(){
+            datas={};
+            datas["class_id"]=$("#class-id").val();
+            updata_class(datas)
+
+        })
+        //删除分类
+        $("#del-class").on("click",function(){
+            datas={};
+            datas["del_id"]=$("#class-group").find("option:selected").val();
+            updata_class(datas)
+
+        })
+    })
+    //修改分类操作
+    function updata_class(datas){
+        datas["data"]={}
+        datas["data"]["class_name"]=$("#class-name").val();
+        datas["data"]["class_explain"]=$("#class-explain").val();
+        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
+            alert("分类名称不能为空");
+        }else{
+            $.ajax({
+                url:"{:U('classman')}",
+                data:datas,
+                dataType:"html",
+                type:"post", 
+                success:function(data){
+                    //alert(data)
+                    location.reload()
+                }
+            })
+        }
+        
+    }
+</script>
+</body>
+</html>

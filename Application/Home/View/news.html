@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>{$webname}</title>
+    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/flexslider.css">
+	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/Temp/home/css/style.css"> -->
+  <include file="./headstyle" />
+	<style>
+	#main-nav .navbar-header a {width:240px;background:url("__PUBLIC__/Temp/home/images/logo.png") no-repeat;background-size:auto 60px;  color: #fff;    margin-left: 5px;}
+  .newslist {border-top:5px solid #ADDBED;padding:20px;margin-top:10px;font-size: 1.1em;}
+  .newslist .row{margin-top:10px;}
+  .newslist a{color:#333333;}
+  .newslist a:hover{color:#0A88C9;}
+	</style>
+
+</head>
+<body id="top" data-spy="scroll">
+	<!--top header-->
+  <include file="./header" />
+	
+	<div class="container newslist">
+			<volist name="news" id="posts">
+        <div class="row">
+  				<div class="col-md-9"><a target="_blank" href="{:U('page','','')}/{$posts.posts_id}" >{$posts.posts_title}</a></div>
+          <div class="col-md-3">{$posts.posts_create_time}</div>
+        </div>
+			</volist>
+	</div>
+  <!--bottom footer--> 
+	<include file="./footer" /> 
+        
+	
+	<!-- jQuery -->
+    <script src="__PUBLIC__/Temp/home/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/Temp/home/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/Temp/home/js/jquery.flexslider.js"></script>
+    <script src="__PUBLIC__/Temp/home/js/jquery.inview.js"></script>
+
+    <script src="__PUBLIC__/Temp/home/js/script.js"></script>
+    <script src="__PUBLIC__/Temp/home/js/contactform.js"></script>
+	<script type="text/javascript">
+  </script>
+    
+</body>
+</html>

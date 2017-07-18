@@ -58,7 +58,8 @@
 
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">查询所有文章并管理</h3>
+              <h3 class="box-title">工具条</h3>
+              <button type="submit" id="" class="btn btn-primary add-post">编辑</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -74,7 +75,6 @@
                     <tr>
                       <td>{$vo.id}</td>
                       <td>{$vo.name}</td>
-                      <td><button type="submit" id="" class="btn btn-primary add-post">编辑</button></td>
                     </tr>
                   </volist>
                   
@@ -290,6 +290,23 @@
 </div>
 <!-- ./wrapper -->
 
+<div class="row">
+  <div class="col-md-6" style="position: absolute;top: 0;left: 0;z-index: 99999">      
+      <div class="form-group">
+        <label for="exampleInputPassword1">文章标签</label>
+        <input type="text" class="form-control posts-data" name="posts_tags" value="{$posts.posts_tags|default=''}" placeholder="这填写网站的网站描述">
+      </div>
+      <!-- /.box-body -->
+
+      <div class="box-footer">
+        <input type="hidden" id="post-type" value="{$postType|default='new'}">
+        <button type="submit" id="submit-posts" class="btn btn-primary">提交修改</button>
+      </div>
+  </div>
+</div>         <!-- /.box -->
+
+
+
 <!-- jQuery 2.2.3 -->
 <script src="__PUBLIC__/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -321,13 +338,7 @@
 
   window.onload = function() {
     var addPost = document.getElementsByClassName('add-post');
-    for (var i=0; i < addPost.length ; i++) {
-        (function(i){
-           addPost[i].onclick = function(){
-             alert(i);
-          }
-        })(i)            
-    }
+    
   }
 </script>
 </body>

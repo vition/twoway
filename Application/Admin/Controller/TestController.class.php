@@ -1,9 +1,20 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
+use Common\Tree;
 class TestController extends Controller {
+
+	public function __construct(){
+		$this->model=new TypeModel();
+		parent::__construct();
+	}
+
+
     public function index(){
-        $nav = D('TwNav');
-        print_r($nav->getTree());
+    	$tree = new Tree;
+        $nav = D('TwDepart');
+        $res = $nav->getList();
+
+
     }
 }

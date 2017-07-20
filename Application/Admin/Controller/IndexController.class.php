@@ -465,7 +465,9 @@ class IndexController extends Controller {
 		return new \Logs("tw_log");
 	}
 
-	//获取职位部门列表
+	
+
+	//获取员工列表
 	protected function getList() {
 		$post = D('TwUserm');
 		$res = $post->getList();
@@ -515,6 +517,14 @@ class IndexController extends Controller {
         }
     }
 
+	//获取部门列表
+	protected function getList_depart() {
+		$post = D('TwDepart');
+		$res = $post->getList();
+		$this->assign('res',$res);
+		$this->display('Depart/index');
+	}
+	
 	
 
 }

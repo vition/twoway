@@ -467,11 +467,55 @@ class IndexController extends Controller {
 
 	//获取职位部门列表
 	protected function getList() {
-		$post = D('TwPost');
+		$post = D('TwUserm');
 		$res = $post->getList();
 		$this->assign('res',$res);
-		$this->display('Post/index');
+		$this->display('Userm/index');
 	}
+
+	public function addUserm() {
+		if (IS_AJAX)
+        {
+            $Userm = D('TwUserm');
+            echo $Userm->register(I('post.user'),I('post.password'));
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	public function remove() {
+		if (IS_AJAX)
+        {
+            $Userm = D('TwUserm');
+            echo $Userm->remove(I('post.ids'));
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	public function one() {
+		if (IS_AJAX)
+        {
+            $Userm = D('TwUserm');
+            $this->ajaxReturn( $Userm->one(I('post.id')));
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	//根据ID修改一条记录
+    public function update()
+    {
+        if (IS_AJAX)
+        {
+            $Client = D('TwUserm');
+            echo $Client->update(I('post.id'), I('post.name'), I('post.password'));
+        } else {
+            $this->error('非法操作！');
+        }
+    }
+
+	
 
 }
 

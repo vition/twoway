@@ -1,7 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-class PostController extends Controller {
+class UsermController extends Controller {
 
 	public function index() {
 

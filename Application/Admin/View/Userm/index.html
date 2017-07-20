@@ -19,7 +19,19 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="__PUBLIC__/Temp/dist/css/skins/_all-skins.min.css">
-
+  <style>
+  		#mask{
+			background: #000;
+			opacity: 0.75;
+			filter: alpha(opacity=0.75);
+			height: 1000px;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			z-index: 1000
+		}
+  </style>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -59,22 +71,28 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">工具条</h3>
-              <button type="submit" id="" class="btn btn-primary add-post">编辑</button>
+              <button type="submit" id="add-post" class="btn btn-primary add-post">新增</button>
+              <button type="submit" id="update" class="btn btn-primary add-post">修改</button>
+              <button type="submit" id="userDelete" class="btn btn-primary add-post">删除</button>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>                  
                   <tr>
-                    <th>编号</th>
-                    <th>职位名称</th>
+                    <th>选项</th>
+                    <th>员工ID</th>
+                    <th>员工姓名</th>
+                    <th>密码</th>
                   </tr>
                 </thead>
                 <tbody>
                   <volist name="res" id="vo">
                     <tr>
+                      <td><input type="checkbox" value="{$vo.id}" id="{$vo.id}" name="cbox"></td>
                       <td>{$vo.id}</td>
                       <td>{$vo.name}</td>
+                      <td>{$vo.password}</td>
                     </tr>
                   </volist>
                   
@@ -289,21 +307,73 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<!-- 添加面板 -->
+	<div class='col-md-8' id='register' style='position:absolute;top:245px;left:88px; z-index:999999;display:none;'>
+        <div class='box box-primary'>
+            
+            <div class='box-header with-border'>
+              <h3 class='box-title'>添加账号</h3>
+            </div>
+            
+            <div class='box-body'>
+                <div class='form-group'>
+                  <label for='exampleInputEmail1'>账号名称：</label>
+                  <input type='text'  id="user" class='form-control' name='user' value='' placeholder="填写账号名称">
+                </div>
 
-<div class="row">
-  <div class="col-md-6" style="position: absolute;top: 0;left: 0;z-index: 99999">      
-      <div class="form-group">
-        <label for="exampleInputPassword1">文章标签</label>
-        <input type="text" class="form-control posts-data" name="posts_tags" value="{$posts.posts_tags|default=''}" placeholder="这填写网站的网站描述">
-      </div>
-      <!-- /.box-body -->
+                <div class='form-group'>
+                  <label for="exampleInputEmail1">密码：</label>
+                  <input type="password" id="password" class='form-control' name='password' value='' placeholder='请填写密码'>
+                </div>
 
-      <div class="box-footer">
-        <input type="hidden" id="post-type" value="{$postType|default='new'}">
-        <button type="submit" id="submit-posts" class="btn btn-primary">提交修改</button>
-      </div>
-  </div>
-</div>         <!-- /.box -->
+                <div class='form-group'>
+                  <label for="exampleInputEmail1">确认密码：</label>
+                  <input type="password" id="repassword" class='form-control' name='repassword' value='' placeholder='请再次填写密码'>
+                </div>
+                
+            </div>
+            
+            <div class='box-footer'>
+                 <button type='submit' id='sub' class='btn btn-primary'>确定提交</button>
+                 <button type='submit' id='sup' class='btn btn-primary'>取消</button>
+            </div>
+            
+        </div>
+    </div>
+
+<!-- 修改面板 -->
+<div class='col-md-8' id='update-dialgo' style='position:absolute;top:245px;left:88px; z-index:999999;display:none;'>
+        <div class='box box-primary'>
+            
+            <div class='box-header with-border'>
+              <h3 class='box-title'>修改资料</h3>
+            </div>
+            
+            <div class='box-body'>
+                <div class='form-group'>
+                  <label for='exampleInputEmail1'>账号名称：</label>
+                  <input type='text'  id="userD" class='form-control' name='user' readonly="true" value=''>
+                </div>
+
+                <div class='form-group'>
+                  <label for="exampleInputEmail1">新密码：</label>
+                  <input type="password" id="newpassword" class='form-control' name='password' value='' placeholder='请填写密码'>
+                </div>
+
+                <div class='form-group'>
+                  <label for="exampleInputEmail1">请确认新密码：</label>
+                  <input type="password" id="newrepassword" class='form-control' name='repassword' value='' placeholder='请再次填写密码'>
+                </div>
+                
+            </div>
+            
+            <div class='box-footer'>
+                 <button type='submit' id='subu' class='btn btn-primary'>确定提交</button>
+                 <button type='submit' id='supu' class='btn btn-primary'>取消</button>
+            </div>
+            
+        </div>
+    </div>
 
 
 
@@ -323,7 +393,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="__PUBLIC__/Temp/dist/js/demo.js"></script>
 <!-- page script -->
-<script>
+<script type="text/javascript" >
   $(function () {
     $("#example1").DataTable();
     $('#example2').DataTable({
@@ -334,10 +404,200 @@
       "info": true,
       "autoWidth": false
     });
+
+
   });
 
   window.onload = function() {
-    var addPost = document.getElementsByClassName('add-post');
+
+
+
+    var ThinkPHP = {
+            'MODULE' : '__MODULE__'
+        };
+    // 新增操作
+    var btn = document.getElementById('add-post');
+		btn.onclick = function() {
+
+			//获取页面的高度度和宽度
+				var sHeight = document.documentElement.scrollHeight;
+				// alert(sHeight);
+				var sWidth = document.documentElement.scrollWidth;
+				//可视区域的高度和宽度
+				var cHeight = document.documentElement.clientHeight;
+				// alert(cHeight);
+				var cWidth = document.documentElement.clientWidth;
+				var oMask = document.createElement('div');
+					oMask.id = 'mask';
+					oMask.style.height = sHeight + 'px';
+					oMask.style.width = sWidth + 'px';
+					document.body.appendChild(oMask);
+
+				var register = document.getElementById('register');
+					register.style.display = 'block';
+						
+				// 取消页面
+        var sup = document.getElementById('sup');
+        sup.onclick = function() {
+          document.body.removeChild(oMask);
+          register.style.display = 'none';
+        }
+
+				var sub = document.getElementById('sub');
+					sub.style.left = (sWidth-cWidth)/2 + "px";
+					sub.style.top = (sHeight-cHeight)/2 + "px";
+					sub.onclick = function () {
+						
+						
+						var password = $('#password');
+            var repassword = $('#repassword');
+						var user = $('#user');
+						var number = $('#number');
+
+            if (password.val() == repassword.val()) {
+              $.ajax({
+                url: ThinkPHP['MODULE'] + '/Index/addUserm',
+                type:'POST',
+                data : {
+                  user:user.val(),
+                  password : password.val()
+                },
+                success : function(data) {
+                  alert('新增成功');
+                  location.reload(true);
+                }
+              })
+
+            } else {
+              alert('密码和密码确认必须一致');
+              
+             
+            }
+						
+					}
+		}
+
+    //删除记录
+    var userDelete = document.getElementById('userDelete');
+    userDelete.onclick = function() {
+        var rows = document.getElementsByName('cbox');
+        var ids = [];
+        for (var i = 0; i < rows.length; i ++) {
+            if (rows[i].checked) {
+              ids.push(rows[i].id);
+            }          
+        }
+  
+        if (ids.length > 0) {
+            if(confirm('您真的要删除所选的？')) {
+              $.ajax({
+                url: ThinkPHP['MODULE'] + '/Index/remove',
+                type:'POST',
+                data : {
+                  ids : ids.join(',')
+                },
+                success : function(data) {
+                  alert('删除成功');
+                  location.reload(true);
+                }
+              })
+            }          
+        } else {
+          alert('请选择对象');
+        }     
+    }
+
+    //修改一条记录
+    var update = document.getElementById('update');
+      update.onclick = function() {
+        //获取页面的高度度和宽度
+        var sHeight = document.documentElement.scrollHeight;
+        // alert(sHeight);
+        var sWidth = document.documentElement.scrollWidth;
+        //可视区域的高度和宽度
+        var cHeight = document.documentElement.clientHeight;
+        // alert(cHeight);
+        var cWidth = document.documentElement.clientWidth;
+        var oMask = document.createElement('div');
+          oMask.id = 'mask';
+          oMask.style.height = sHeight + 'px';
+          oMask.style.width = sWidth + 'px';
+          document.body.appendChild(oMask);
+
+        var rows = document.getElementsByName('cbox');
+        var id = [];
+        for (var i = 0; i < rows.length; i ++) {
+            if (rows[i].checked) {
+              id.push(rows[i].id);
+            }          
+        }
+        
+        if (id.length==1) {
+          $.ajax({
+            url: ThinkPHP['MODULE'] + '/Index/one',
+            type:'POST',
+            data : {
+              id : id.join(',')
+            },
+            success : function(data) {
+                var data = data;
+                var updateD = document.getElementById('update-dialgo');                
+                updateD.style.display = 'block';
+                var userD = document.getElementById('userD');
+                userD.value = data.name;
+                var idi =data.id;
+                
+                // 取消页面
+                var supu = document.getElementById('supu');
+                supu.onclick = function() {
+                  document.body.removeChild(oMask);
+                  updateD.style.display = 'none';
+                }
+
+                //确认修改
+                var subu = document.getElementById('subu');
+                subu.onclick = function() {
+                  // alert(idi);
+                  var password = $('#newpassword');
+                  var repassword = $('#newrepassword');
+                  if (password.val() == repassword.val()) {
+                      var userD = $('#userD');
+                      $.ajax({
+                        url: ThinkPHP['MODULE'] + '/Index/update',
+                        type:'POST',
+                        data : {
+                          id : idi,
+                          name : userD.val(),
+                          password : password.val(),
+                        },
+                        success : function(data) {
+                          alert('修改成功');
+                          // location.reload(true);
+                        }
+                      })
+                  } else {
+                    alert('密码不一致');
+                  }
+
+                  
+                }
+
+            }           
+          })
+
+
+        } else {
+          alert('请选一项并且只能选一项');
+        }
+
+        
+
+      }
+      
+      
+
+      
+
     
   }
 </script>

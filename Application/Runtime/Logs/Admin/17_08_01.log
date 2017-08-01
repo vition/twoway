@@ -1641,3 +1641,365 @@ INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
 INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
 NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
 
+[ 2017-08-01T12:06:59+08:00 ] 127.0.0.1 /index.php/Admin/Index/updatasource.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:44:38+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:44:42+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/17
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:44:43+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0100s ]
+SQL: select * from tw_posts where posts_id =17 [ RunTime:0.0010s ]
+
+[ 2017-08-01T14:45:01+08:00 ] 127.0.0.1 /index.php/admin/index/newpostsUpdate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0100s ]
+SQL: UPDATE `tw_posts` SET `posts_class`='1',`posts_cover`='./Public/upload/images/1494843932.3258.jpeg',`posts_title`='2016第十三届经销商大会-厦门' WHERE `posts_id` = '17' [ RunTime:0.2700s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-08-01T14:45:04+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/17
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:45:05+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =17 [ RunTime:0.0010s ]
+
+[ 2017-08-01T14:45:13+08:00 ] 127.0.0.1 /index.php/Admin/Index/logsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:47:34+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:47:37+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/17
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:47:38+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =17 [ RunTime:0.0020s ]
+
+[ 2017-08-01T14:51:58+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:03+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:05+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =18 [ RunTime:0.0010s ]
+
+[ 2017-08-01T14:52:14+08:00 ] 127.0.0.1 /index.php/admin/index/newpostsUpdate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: UPDATE `tw_posts` SET `posts_class`='1',`posts_cover`='./Public/upload/images/1494844223.9116.jpeg',`posts_title`='2016供应商大会' WHERE `posts_id` = '18' [ RunTime:0.0840s ]
+INFO: [ log ] --START--
+SQL: SHOW COLUMNS FROM `tw_log` [ RunTime:0.0090s ]
+SQL: INSERT INTO `tw_log` (`user`,`type`,`module`,`create_time`) VALUES ('vition','修改文章','文章管理 >> 新建文章','2017-08-01 14:52:14') [ RunTime:0.0010s ]
+INFO: Run Admin\Behavior\LogBehavior [ RunTime:0.016000s ]
+INFO: [ log ] --END-- [ RunTime:0.016000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2017-08-01T14:52:17+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/18
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:19+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0040s ]
+SQL: select * from tw_posts where posts_id =18 [ RunTime:0.0010s ]
+
+[ 2017-08-01T14:52:21+08:00 ] 127.0.0.1 /index.php/Admin/Index/logsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:38+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:41+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:52:43+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0030s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from tw_posts where posts_id =
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from tw_posts where posts_id =
+
+[ 2017-08-01T14:52:50+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:54:08+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:54:11+08:00 ] 127.0.0.1 /index.php/Admin/Index/postsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:54:16+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:54:17+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T14:57:44+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T14:57:47+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0040s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T15:00:17+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T15:00:27+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T15:00:47+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T15:00:51+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0550s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T15:00:56+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T15:00:59+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0190s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T15:05:39+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T15:05:41+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0010s ]
+
+[ 2017-08-01T15:05:46+08:00 ] 127.0.0.1 /index.php/admin/index/newpostsUpdate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
+SQL: UPDATE `tw_posts` SET `posts_class`='1',`posts_cover`='./Public/upload/images/1494844688.5284.jpeg',`posts_title`='2016广本凌派试驾北京站',`posts_tags`='斯蒂芬',`posts_content`='&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183703_69971.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183704_67650.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183704_58602.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183705_39591.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183705_11151.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183706_17979.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;
+&lt;p style=&quot;text-align:center;&quot;&gt;
+	&lt;img src=&quot;/Public/Temp/plugins/editor/php/../attached/image/20170515/20170515183707_17992.jpg&quot; width=&quot;800&quot; height=&quot;533&quot; alt=&quot;&quot; /&gt; 
+&lt;/p&gt;' WHERE `posts_id` = '20' [ RunTime:0.1500s ]
+INFO: [ log ] --START--
+SQL: SHOW COLUMNS FROM `tw_log` [ RunTime:0.0110s ]
+SQL: INSERT INTO `tw_log` (`user`,`type`,`module`,`create_time`) VALUES ('vition','修改文章','文章管理 >> 新建文章','2017-08-01 15:05:46') [ RunTime:0.0010s ]
+INFO: Run Admin\Behavior\LogBehavior [ RunTime:0.017000s ]
+INFO: [ log ] --END-- [ RunTime:0.017000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-08-01T15:05:49+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts/20
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T15:05:50+08:00 ] 127.0.0.1 /index.php/admin/index/findselect
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0030s ]
+SQL: select * from tw_posts where posts_id =20 [ RunTime:0.0000s ]
+
+[ 2017-08-01T15:05:52+08:00 ] 127.0.0.1 /index.php/Admin/Index/logsman.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+

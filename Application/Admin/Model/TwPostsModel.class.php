@@ -10,7 +10,7 @@ class TwPostsModel extends Model
     	return $this->query($sql);    
     }
 
-    public function newpostsUpdate($id,$posts_class,$posts_cover,$posts_title) {
+    public function newpostsUpdate($id,$posts_class,$posts_cover,$posts_title,$posts_tags,$posts_content) {
     	//根据ID修改一条记录
    
         $updateData = array(
@@ -18,6 +18,8 @@ class TwPostsModel extends Model
             'posts_class'  =>  $posts_class,
             'posts_cover'     =>  $posts_cover,
             'posts_title'     =>  $posts_title,
+            'posts_tags'     =>  $posts_tags,
+            'posts_content'     =>  $posts_content,
         );
 
         $id = $this->save($updateData);

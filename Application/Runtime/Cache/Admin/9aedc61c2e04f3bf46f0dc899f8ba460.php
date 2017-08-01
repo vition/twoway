@@ -318,7 +318,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <?php if(is_array($list)): foreach($list as $key=>$vo): echo ($key); ?>|<?php echo ($vo); endforeach; endif; ?>
+      
 
       
 
@@ -567,6 +567,9 @@ $(function(){
 				var sel=document.getElementById("sel");
 				var post1=document.getElementById("post-t1");
 				var post3=document.getElementById("posts_cover");
+				var post2 = document.getElementById("post-t2");
+				var editor1 = document.getElementById("editor1");
+				// alert(post2.value);
 					// alert(select.value);
 				$.ajax({
                     url : '/index.php/admin/index/findselect',
@@ -613,7 +616,9 @@ $(function(){
 	                    	id : select.value,
 	                        posts_class : choose,
 	                        posts_title : post1.value,
-	                        posts_cover : post3.value
+	                        posts_cover : post3.value,
+	                        posts_tags  : post2.value,
+	                        posts_content : editor1.value
 	                    },
 	                    success : function (data)
 	                    {

@@ -319,7 +319,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <?php if(is_array($list)): foreach($list as $key=>$vo): echo ($key); ?>|<?php echo ($vo); endforeach; endif; ?>
+      
 
       
 
@@ -533,17 +533,17 @@ $(function(){
                 </tr>
                 </thead>
                 <tbody>
-					<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$posts): $mod = ($i % 2 );++$i;?><tr>
-						  <th><?php echo ($posts["posts_id"]); ?></th>
-						  <th><?php echo ($posts["class_name"]); ?></th>
-						  <th><a href="<?php echo U('newposts','','');?>/<?php echo ($posts["posts_id"]); ?>"><?php echo ($posts["posts_title"]); ?></a></th>
-						  <th><?php echo ($posts["posts_cover"]); ?></th>
-						  <th><?php echo ($posts["posts_author"]); ?></th>
-						  <th><?php echo ($posts["posts_create_time"]); ?></th>
-						  <th><?php echo ($posts["posts_edit_time"]); ?></th>
-						  <th><?php echo (ini_state($posts["posts_state"])); ?></th>
-						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-                </tfoot>
+        					<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$posts): $mod = ($i % 2 );++$i;?><tr>
+        						  <th><?php echo ($posts["posts_id"]); ?></th>
+        						  <th><?php echo ($posts["class_name"]); ?></th>
+        						  <th><a href="<?php echo U('newposts','','');?>/<?php echo ($posts["posts_id"]); ?>"><?php echo ($posts["posts_title"]); ?></a></th>
+        						  <th><?php echo ($posts["posts_cover"]); ?></th>
+        						  <th><?php echo ($posts["posts_author"]); ?></th>
+        						  <th><?php echo ($posts["posts_create_time"]); ?></th>
+        						  <th><?php echo ($posts["posts_edit_time"]); ?></th>
+        						  <th><?php echo (ini_state($posts["posts_state"])); ?></th>
+        						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->

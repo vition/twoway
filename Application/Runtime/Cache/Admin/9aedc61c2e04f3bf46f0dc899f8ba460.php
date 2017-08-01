@@ -572,7 +572,8 @@ $(function(){
 				// alert(post2.value);
 					// alert(select.value);
 				$.ajax({
-                    url : '/index.php/admin/index/findselect',
+					
+                    url : '<?php echo U("findselect");?>',
                     type : 'POST',
                     data : {
                         select : select.value
@@ -610,7 +611,8 @@ $(function(){
 		                }
 
 					$.ajax({
-	                    url : '/index.php/admin/index/newpostsUpdate',
+
+	                    url : '<?php echo U("newpostsUpdate");?>',
 	                    type : 'POST',
 	                    data : {
 	                    	id : select.value,

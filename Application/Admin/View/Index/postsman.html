@@ -76,19 +76,19 @@
                 </tr>
                 </thead>
                 <tbody>
-					<volist name="list" id="posts">
-						 <tr>
-						  <th>{$posts.posts_id}</th>
-						  <th>{$posts.class_name}</th>
-						  <th><a href="{:U('newposts','','')}/{$posts.posts_id}">{$posts.posts_title}</a></th>
-						  <th>{$posts.posts_cover}</th>
-						  <th>{$posts.posts_author}</th>
-						  <th>{$posts.posts_create_time}</th>
-						  <th>{$posts.posts_edit_time}</th>
-						  <th>{$posts.posts_state|ini_state}</th>
-						</tr>
-					</volist>
-                </tfoot>
+        					<volist name="list" id="posts">
+        						 <tr>
+        						  <th>{$posts.posts_id}</th>
+        						  <th>{$posts.class_name}</th>
+        						  <th><a href="{:U('newposts','','')}/{$posts.posts_id}">{$posts.posts_title}</a></th>
+        						  <th>{$posts.posts_cover}</th>
+        						  <th>{$posts.posts_author}</th>
+        						  <th>{$posts.posts_create_time}</th>
+        						  <th>{$posts.posts_edit_time}</th>
+        						  <th>{$posts.posts_state|ini_state}</th>
+        						</tr>
+        					</volist>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->

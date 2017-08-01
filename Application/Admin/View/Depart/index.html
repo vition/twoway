@@ -80,18 +80,18 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>                  
                   <tr>
-                    <th>选项</th>
                     <th>职位</th>
-                    <th>所属职位部门</th>
+                    <th>组别</th>
+                    <th>部门</th>                    
                   </tr>
                 </thead>
                 <tbody>
                   <volist name="res" id="vo">
                     <tr>
-                      <td><input type="checkbox" value="{$vo.id}" id="{$vo.id}" name="cbox"></td>
+                      
                       <td>{$vo.id}</td>
                       <td>{$vo.name}</td>
-                      <td>{$vo.pid}</td>
+                      <td>{$vo.password}</td>
                     </tr>
                   </volist>
                   
@@ -307,32 +307,30 @@
 </div>
 <!-- ./wrapper -->
 <!-- 添加面板 -->
-	<div class='col-md-8' id='register' style='position:absolute;top:245px;left:88px; z-index:999999;display:none;'>
+	<div class='col-md-8' id='register' style='position:absolute; z-index:999999;display:none;'>
         <div class='box box-primary'>
             
             <div class='box-header with-border'>
-              <h3 class='box-title'>添加职位/部门</h3>
+              <h3 class='box-title'>添加职位部门</h3>
             </div>
             
             <div class='box-body'>
-                
-                <div class='form-group'>
-                  <label for='input0'>所属职位部门：</label>
-                  <select name="pid" class="form-control" id="input0">
-                    <option value="0">顶级部门</option>
-                    <option id="texto" value="">2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                  </select>
-                </div>
-
                 <div class='form-group'>
                   <label for='exampleInputEmail1'>职位/部门：</label>
-                  <input type='text'  id="user" class='form-control' name='user' value='' placeholder="填写职位/部门">
+                  <input type='text'  id="newdepart" class='form-control' name='newdepart' value='' placeholder="填写职位/部门名称">
                 </div>
-                
+
+                <div class='form-group col-xs-2'>
+                  <select name="depart" class="form-control" id="depart">
+                    <option value="">----所属职位部门----</option>
+                    <volist name="res" id="vo">
+                      <option value="{$vo.id}">{$vo.style}{$vo.name}</option>
+                    </volist>
+                  </select>
+                </div>
             </div>
+
+
             
             <div class='box-footer'>
                  <button type='submit' id='sub' class='btn btn-primary'>确定提交</button>
@@ -396,10 +394,6 @@
 <!-- page script -->
 <script type="text/javascript" >
   $(function () {
-    $("#class-exp").val();
-
-
-    
     $("#example1").DataTable();
     $('#example2').DataTable({
       "paging": true,
@@ -410,8 +404,7 @@
       "autoWidth": false
     });
 
-    //初始化分类备注
-    $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
+
   });
 
   window.onload = function() {
@@ -423,23 +416,29 @@
         };
     // 新增操作
     var btn = document.getElementById('add-post');
-    var texto = document.getElementById('texto');
-    var cc =     texto.value = 'sudu';
-    alert(cc);
 		btn.onclick = function() {
 
+			  //获取页面的高度度和宽度
 				var sHeight = document.documentElement.scrollHeight;
 				var sWidth = document.documentElement.scrollWidth;
+				//可视区域的高度和宽度
 				var cHeight = document.documentElement.clientHeight;
 				var cWidth = document.documentElement.clientWidth;
-				var oMask = document.createElement('div');
+				
+        var oMask = document.createElement('div');
 					oMask.id = 'mask';
 					oMask.style.height = sHeight + 'px';
 					oMask.style.width = sWidth + 'px';
 					document.body.appendChild(oMask);
 
 				var register = document.getElementById('register');
+        
+          //面板属性调整
 					register.style.display = 'block';
+          var dHeight = register.offsetHeight;
+          var dWidth = register.offsetWidth;
+          register.style.left = (sWidth-dWidth)/2 + "px";
+          register.style.top = (sHeight-dHeight)/2 + "px";
 						
 				// 取消页面
         var sup = document.getElementById('sup');
@@ -453,31 +452,24 @@
 					sub.style.top = (sHeight-cHeight)/2 + "px";
 					sub.onclick = function () {
 						
-						
-						var password = $('#password');
-            var repassword = $('#repassword');
-						var user = $('#user');
-						var number = $('#number');
+						var newdepart = $('#newdepart');
+						var depart = $('#depart');
 
-            if (password.val() == repassword.val()) {
+            
               $.ajax({
-                url: ThinkPHP['MODULE'] + '/Index/addUserm',
+                url: ThinkPHP['MODULE'] + '/Index/addDepart',
                 type:'POST',
                 data : {
-                  user:user.val(),
-                  password : password.val()
+                  newdepart : newdepart.val(),
+                  depart : depart.val()
                 },
-                success : function(data) {
-                  alert('新增成功');
-                  location.reload(true);
-                }
+                // success : function(data) {
+                //   alert('新增成功');
+                //   location.reload(true);
+                // }
               })
 
-            } else {
-              alert('密码和密码确认必须一致');
-              
-             
-            }
+            
 						
 					}
 		}
@@ -521,8 +513,14 @@
         var sWidth = document.documentElement.scrollWidth;
         //可视区域的高度和宽度
         var cHeight = document.documentElement.clientHeight;
+        // alert(cHeight);
         var cWidth = document.documentElement.clientWidth;
         var oMask = document.createElement('div');
+          // oMask.id = 'mask';
+          // var h = oMask.style.height = sHeight + 'px';
+          // alert(h);
+          // oMask.style.width = sWidth + 'px';
+          
 
         var rows = document.getElementsByName('cbox');
         var id = [];

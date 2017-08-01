@@ -9,6 +9,7 @@ class IndexController extends Controller {
 	// 	}
 	// }
 	
+	
 	//获取导航条
 	public function getNav() {
 		echo 11;
@@ -20,6 +21,7 @@ class IndexController extends Controller {
 			$this->redirect('base');
 			//$this->success('成功登录', get_controller().'/base',1);
 		}else{
+
 			$this->display("login");
 		}
     }
@@ -28,21 +30,22 @@ class IndexController extends Controller {
 		if(session("isLogin")){
 			//$this->success('已登录', 'base',1);
 			$this->redirect('base');
+
 		}else{
 			if($this->checklogin(I("username"),I("userpasswd"))){
-				session("isLogin",True);
-				session("username",I("username"));
+				// session("isLogin",True);
+				// session("username",I("username"));
 				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."成功登录后台","log_date"=>date("Y-m-d H:i:s",time()));
 
 				$user=M("tw_user");
 				$user->where("user_name='".I("username")."'")->setInc("user_login");
-				$this->logs()->insert($data);
+				// $this->logs()->insert($data);
 				//$this->success('成功登录', 'base',1);
 				$this->redirect('base');
 				//$this->display("base");
 			}else{
 				$data=array("log_user"=>I("username"),"log_brief"=>"登录","log_content"=>I("username")."尝试登录后台，但是登录失败","log_date"=>date("Y-m-d H:i:s",time()));
-				$this->logs()->insert($data);
+				// $this->logs()->insert($data);
 				$this->error('请重新登录', 'index',1);
 				//$this->display("login");
 			}
@@ -53,8 +56,23 @@ class IndexController extends Controller {
 	static function checklogin($username,$userpasswd){
 		$Model=M("tw_user");
 		$loginData=array("user_name"=>$username,"user_psw"=>strtoupper(sha1($userpasswd)));
-		$data=$Model->where($loginData)->field("user_id")->select();
+		$data=$Model->where($loginData)->field("user_id,user_name,user_access")->select();
 		if($data[0]["user_id"]>0){
+			session("isLogin",True);
+			session('admin', array(
+                'access'        =>  $data[0]["user_access"],
+                'username'  =>  $data[0]["user_name"],
+            ));
+			//写入日志
+			$param = array(
+				'user' => session('admin')['username'],
+				'type' => '登录系统',
+				'module' => '人事管理 >> 登录账号',
+
+			);
+			tag('log',$param);
+			
+
 			return True;
 		}else{
 			return False;
@@ -63,7 +81,7 @@ class IndexController extends Controller {
 	//退出用户
 	protected function logout(){
 		session("isLogin",Null);
-		session("username",Null);
+		session('admin', null);
 		$this->success('退出成功', 'index');
 	}
 	//重定向call方法
@@ -101,6 +119,7 @@ class IndexController extends Controller {
 	}
 	//基本配置
 	protected function base(){
+
 		if(!empty($_POST)){
 			$config=M("tw_config");
 			foreach($_POST as $key=>$value){
@@ -113,9 +132,16 @@ class IndexController extends Controller {
 				echo "没有修改任何数据！";
 			}
 		}else{
+			// print_r($_SESSION);
 			$this->assign('config',$this->get_glob_config());
 			$this->assign('webTitle',$this->get_web_title());
+
+			
 			$this->display("base");
+
+			
+
+			
 		}
 		
 		
@@ -155,6 +181,9 @@ class IndexController extends Controller {
 	}
 	//新建文章
 	protected function newposts(){
+		echo $data["posts_cover"];
+		// print_r($_POST);
+		// print_r($this->get_pclass());
 		$this->assign("active",ACTION_NAME);
 		if(!empty($_POST)){
 			//新增或者修改数据
@@ -162,23 +191,44 @@ class IndexController extends Controller {
 			$data=array();
 			$posts=M("tw_posts");
 			
-			$data["posts_author"]=session("username");
+			$data["posts_author"]=session('admin')['username'];
 			foreach($_POST["data"] as $key=>$val){
 				$data[$key]=$val;
 			}
 			$data["posts_class"]=$this->class_str2int($_POST["data"]["posts_class"]);  //转换分类
 			if($_POST["cover-data"]!=""){
-				$data["posts_cover"]=blob2Img($_POST["cover-data"]);//转换图片数据
+				// die(print_r($_POST));
+				$data["posts_cover"] = blob2Img($_POST["cover-data"]);
+				
+				$img = new \Org\Util\Img($data["posts_cover"]);
+				
+
+				$data["posts_cover"] = $img->fixSizeImage(676,460);
+				 //$data["posts_cover"] = blob2Img($_POST["cover-data"]);//转换图片数据
+				// $data["posts_cover"] = $_POST["cover-data"];
+
 			}
 			
 			if($_POST["post-type"]=="new"){//新建文章
+
 				$findPosts=$posts->field("posts_id")->where("posts_title='{$_POST["data"]["posts_title"]}'")->find();
 				if($findPosts["posts_id"]>0){
 					echo "文章已存在或者标题重复了";
 				}else{
 					$data["posts_create_time"]=date("Y-m-d H:i:s",time());	
-					$data["posts_edit_time"]=date("Y-m-d H:i:s",time());	
-					$posts->add($data);//添加数据
+					$data["posts_edit_time"]=date("Y-m-d H:i:s",time());
+					// die(print_r($_POST));	
+					$res = $posts->add($data);//添加数据
+					if ($res) {
+						//写入日志
+			            $param = array(
+			                'user' => session('admin')['username'],
+			                'type' => '新建文章',
+			                'module' => '文章管理 >> 新建文章',
+
+			            );
+			            tag('log',$param);
+					}
 				}
 			
 			
@@ -186,6 +236,7 @@ class IndexController extends Controller {
 				$data["posts_edit_time"]=date("Y-m-d H:i:s");
 				//print_r($param);
 				$posts->where("posts_id={$_POST['posts_id']}")->save($data);//修改数据
+
 				echo $posts->getLastSql();
 			}
 		}else{
@@ -199,6 +250,7 @@ class IndexController extends Controller {
 				$this->assign("posts",$postData);
 			}
 			$this->assign("class",$this->get_pclass());
+
 			$this->assign('webTitle',$this->get_web_title());
 			$this->display("newposts");
 		}
@@ -460,15 +512,15 @@ class IndexController extends Controller {
 		}
 	}
 	//这里放回一个日志类
-	protected function logs(){
-		import('Vendor.Logs.Logs');
-		return new \Logs("tw_log");
-	}
+	// protected function logs(){
+	// 	import('Vendor.Logs.Logs');
+	// 	return new \Logs("tw_log");
+	// }
 
 	
 
 	//获取员工列表
-	protected function getList() {
+	protected function account_getList() {
 		$post = D('TwUserm');
 		$res = $post->getList();
 		$this->assign('res',$res);
@@ -517,15 +569,97 @@ class IndexController extends Controller {
         }
     }
 
-	//获取部门列表
-	protected function getList_depart() {
-		$post = D('TwDepart');
-		$res = $post->getList();
+	//获取档案列表
+	protected function staff_getlist() {
+
+		$post = D('TwStaff');
+		$res = $post->getlist();
+		$tree = new \Org\Util\Tree($res);
+		$res = $tree->getAll();
+		$this->assign('res',$res);
+		$this->display('Staff/index');
+	}
+
+	//获取档案列表
+	protected function depart_getlist() {
+
+		$post = D('TwStaff');
+		$res = $post->getlist();
+		$tree = new \Org\Util\Tree($res);
+		$res = $tree->getAll();
+		
+		
+
+		
 		$this->assign('res',$res);
 		$this->display('Depart/index');
 	}
 	
-	
+	public function findselect() {
+		if (IS_AJAX)
+        {
+            $User = D('TwPosts');
+            $this->ajaxReturn( $User->checkSelect(I('post.select')) ) ;
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	public function newpostsUpdate() {
+		if (IS_AJAX)
+        {
+            $User = D('TwPosts');
+            echo $User->newpostsUpdate(I('post.id'),I('post.posts_class'),I('post.posts_cover'),I('post.posts_title'));
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	//资源加载列表
+	public function resource() {
+		$User = D('TwSource');          
+        $res = $User->getList();
+        $this->assign('list',$res);
+		$this->display();
+	}
+
+
+	public function updatasource () {
+
+		$this->display();
+	}
+
+	//上传资源
+	public function addresource() {
+		if (IS_AJAX)
+        {
+            $User = D('TwSource');          
+            echo $User->addresource(I('post.cover-data'));
+        } else {
+            $this->error('非法操作！');
+        }
+		
+	}
+
+	//删除资源
+	public function resourceDel () {
+		if (IS_AJAX)
+        {
+            $User = D('TwSource');          
+            echo $User->resourceDel(I('post.id'));
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	//日志查看
+	public function logsman () {
+		
+		$User = D('TwLog');          
+        $res = $User->getlist();
+        $this->assign('list',$res);
+        $this->display();
+	}
 
 }
 

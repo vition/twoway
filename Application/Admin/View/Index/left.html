@@ -10,7 +10,7 @@
           <img src="__PUBLIC__/{$user.user_avatar|default='Temp/dist/img/avatar.png'}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>vition</p>
+          <p>{:session('admin')['username']}</p>
           <a href="#"><i class="fa fa-circle text-success"></i>在线</a>
         </div>
       </div>
@@ -26,102 +26,165 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <foreach name="list" item="vo" >
-          {$key}|{$vo}
-      </foreach>
+      
 
-      <ul class="sidebar-menu">
-        <li class="header">控制菜单</li>
-        <li class="treeview ">
-          <a target="_blank" href="__APP__">
-            <i class="fa fa-home"></i> <span>打开前端</span>
-          </a>
-        </li>
-        <li class="treeview ">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>全局配置</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class=""><a href={:U('base')}><i class="fa fa-circle-o"></i>基本信息</a></li>
-            <li><a href={:U('advconfig')}><i class="fa fa-circle-o"></i>高级配置</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i>
-            <span>文章管理</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={:U('newposts')}><i class="fa fa-circle-o"></i>新建文章</a></li>
-            <li><a href={:U('postsman')}><i class="fa fa-circle-o"></i>文章管理</a></li>
-            <li><a href={:U('classman')}><i class="fa fa-circle-o"></i>分类管理</a></li>
-          </ul>
-        </li>
-        <li>
-			 <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>单页管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
+      
+
+      
+
+
+      <?php if(session('admin')['access']): ?>
+        <ul class="sidebar-menu">
+          <li class="header">控制菜单</li>
+          <li class="treeview ">
+            <a target="_blank" href="__APP__">
+              <i class="fa fa-home"></i> <span>打开前端</span>
+            </a>
+          </li>
+          <li class="treeview ">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>全局配置</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class=""><a href={:U('base')}><i class="fa fa-circle-o"></i>基本信息</a></li>
+              <li><a href={:U('advconfig')}><i class="fa fa-circle-o"></i>高级配置</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i>
+              <span>文章管理</span>
+              <span class="pull-right-container">
+                <span class="label label-primary pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('newposts')}><i class="fa fa-circle-o"></i>新建文章</a></li>
+              <li><a href={:U('postsman')}><i class="fa fa-circle-o"></i>文章管理</a></li>
+              <li><a href={:U('classman')}><i class="fa fa-circle-o"></i>分类管理</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-files-o"></i>
+              <span>单页管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+          </li>
           <ul class="treeview-menu">
             <li><a href={:U('newpage')}><i class="fa fa-circle-o"></i>新建页面</a></li>
             <li><a href={:U('pagesman')}><i class="fa fa-circle-o"></i>页面管理</a></li>
           </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-user"></i>
-            <span>人事管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={:U('Index/getList')}><i class="fa fa-circle-o"></i>账号信息</a></li>
-            <li><a href={:U('Index/getList_depart')}><i class="fa fa-circle-o"></i>职位部门</a></li>
-            <li><a href={:U('Index/groupman')}><i class="fa fa-circle-o"></i>分组管理</a></li>
-          </ul>
-        </li>
-		 <li class="treeview">
-          <a href="#">
-            <i class="fa fa-photo"></i>
-            <span>资源管理</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={:U('updatasource')}><i class="fa fa-circle-o"></i>资源上传</a></li>
-            <li><a href={:U('resourceman')}><i class="fa fa-circle-o"></i>资源管理</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-cog"></i>
-            <span>其它功能</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href={:U('banner')}><i class="fa fa-circle-o"></i>Banner管理</a></li>
-            <li><a href={:U('commentman')}><i class="fa fa-circle-o"></i>评论管理</a></li>
-            <li><a href={:U('logsman')}><i class="fa fa-circle-o"></i>日志查看</a></li>
-          </ul>
-        </li>
-        <li class="header">高级代码</li>
-        <li><a href={:U('template')}><i class="fa fa-circle-o text-red"></i> <span>模板编辑</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
-      </ul>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-user"></i>
+              <span>人事管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('Index/account_getList')}><i class="fa fa-circle-o"></i>账号信息</a></li>
+              <li><a href={:U('Index/staff_getlist')}><i class="fa fa-circle-o"></i>员工档案</a></li>
+              <li><a href={:U('Index/depart_getlist')}><i class="fa fa-circle-o"></i>职位部门</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-photo"></i>
+              <span>资源管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('updatasource')}><i class="fa fa-circle-o"></i>资源上传</a></li>
+              <li><a href={:U('resource')}><i class="fa fa-circle-o"></i>资源管理</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>其它功能</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('banner')}><i class="fa fa-circle-o"></i>Banner管理</a></li>
+              <li><a href={:U('commentman')}><i class="fa fa-circle-o"></i>评论管理</a></li>
+              <li><a href={:U('logsman')}><i class="fa fa-circle-o"></i>日志查看</a></li>
+            </ul>
+          </li>
+          <li class="header">高级代码</li>
+          <li><a href={:U('template')}><i class="fa fa-circle-o text-red"></i> <span>模板编辑</span></a></li>
+          <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        </ul>
+      <?php else: ?> 
+        <ul class="sidebar-menu">
+          <li class="header">控制菜单</li>
+            <li class="treeview ">
+              <a target="_blank" href="__APP__">
+                <i class="fa fa-home"></i> <span>打开前端</span>
+            </a>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i>
+              <span>文章管理</span>
+              <span class="pull-right-container">
+                <span class="label label-primary pull-right">4</span>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('newposts')}><i class="fa fa-circle-o"></i>新建文章</a></li>
+              <li><a href={:U('postsman')}><i class="fa fa-circle-o"></i>文章管理</a></li>
+              <li><a href={:U('classman')}><i class="fa fa-circle-o"></i>分类管理</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-photo"></i>
+              <span>资源管理</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('updatasource')}><i class="fa fa-circle-o"></i>资源上传</a></li>
+              <li><a href={:U('resource')}><i class="fa fa-circle-o"></i>资源管理</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cog"></i>
+              <span>其它功能</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href={:U('banner')}><i class="fa fa-circle-o"></i>Banner管理</a></li>
+              <li><a href={:U('commentman')}><i class="fa fa-circle-o"></i>评论管理</a></li>
+              <li><a href={:U('logsman')}><i class="fa fa-circle-o"></i>日志查看</a></li>
+            </ul>
+          </li>
+        </ul>
+      <?php endif; ?>
+
+
+
+
+
+
+
+        
     </section>
     <!-- /.sidebar -->
   </aside>

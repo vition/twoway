@@ -25,6 +25,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -62,29 +63,35 @@
               <div class="box-body">
                 <div class="form-group">
                   <div class="form-group">
-					<label>文章分类</label>
-					<select name="posts_class"  class="form-control select2 posts-data" style="width: 100%;">
+					<label>文章分类 __MODULE__</label>
+					<select name="posts_class" id="sel" class="form-control select2 posts-data" style="width: 100%;">
+						
 					  <volist id="cl" name="class">
-						<option>{$cl.class_name}</option>
+						<option id='{$cl.class_id}' >{$cl.class_name}</option>
 					  </volist>
+						
+
 					</select>
 				  </div>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">文章标题</label>
-				  <input type="hidden" name="posts_id" class="posts-data" value="{$posts.posts_id|default=''}" >
-                  <input type="text" class="form-control posts-data" name="posts_title" placeholder="帖子标题" value="{$posts.posts_title|default=''}">
+				  <input type="hidden"  id="select" name="posts_id" class="posts-data" value="{$posts.posts_id|default=''}" >
+                  <input type="text" id='post-t1' class="form-control posts-data"  name="posts_title" placeholder="帖子标题" value="{$posts.posts_title|default=''}">
                 </div>
-				 <div class="form-group">
+
+				<div class="form-group">
                   <label for="exampleInputPassword1">封面图片(封面图片尺寸请使用676 X 460)</label>
                   <input type="text" class="form-control posts-data" id="posts_cover" name="posts_cover" value="{$posts.posts_cover|default=''}" placeholder="http://www.twoway.com.cn/1.jpg">
 				  <input type="file" id="loadimg">
 				  <input type="hidden" id="cover-data" >
                 </div>
+
 				 <div class="form-group">
                   <label for="exampleInputPassword1">文章标签</label>
-                  <input type="text" class="form-control posts-data" name="posts_tags" value="{$posts.posts_tags|default=''}" placeholder="这填写网站的网站描述">
+                  <input id='post-t2' type="text" class="form-control posts-data" name="posts_tags" value="{$posts.posts_tags|default=''}" placeholder="这填写网站的网站描述">
                 </div>
+
 				<div class="box-body pad">
 					   <label for="exampleInputPassword1">文章内容</label>
 					   <textarea id="editor1" class="posts-data" name="posts_content" rows="10" cols="80">{$posts.posts_content|default=''}</textarea>
@@ -94,9 +101,77 @@
 
               <div class="box-footer">
 				<input type="hidden" id="post-type" value="{$postType|default='new'}">
-                <button type="submit" id="submit-posts" class="btn btn-primary">提交修改</button>
+                <button type="submit" id="submit-posts" class="btn btn-primary">新增</button>
+                <button id="post-update" class="btn btn-primary">修改</button>
               </div>
           </div>
+			<script>
+				$(document).ready(function(){
+				var select=document.getElementById("select");
+				var postUpdate=document.getElementById("post-update");
+				var sel=document.getElementById("sel");
+				var post1=document.getElementById("post-t1");
+				var post3=document.getElementById("posts_cover");
+					// alert(select.value);
+				$.ajax({
+                    url : '/index.php/admin/index/findselect',
+                    type : 'POST',
+                    data : {
+                        select : select.value
+                    },
+                    success : function (data)
+                    {
+                    	;
+                    	var x=document.getElementById("sel");
+				  		var sel = x.getElementsByTagName('option');
+						for (var i = 0;  i < sel.length; i++) {
+						  	if (sel[i].id == data[0]['posts_class']) {
+						  		// alert(sel[i].id);
+						  		// alert(data[0]['posts_class']);
+						  		sel[i].selected =true;
+						  		break;
+						  	}
+						}
+                    }
+   				});
+
+				postUpdate.onclick = function() {
+					switch (sel.value)
+		                {
+		                    case '行业动态' :
+		                        var choose = 3;
+		                        break;
+
+		                    case 'TW项目' :
+		                        var choose = 1;
+		                        break;
+
+		                    case 'TW新闻' :
+		                        var choose = 2;
+		                        break;
+		                }
+
+					$.ajax({
+	                    url : '/index.php/admin/index/newpostsUpdate',
+	                    type : 'POST',
+	                    data : {
+	                    	id : select.value,
+	                        posts_class : choose,
+	                        posts_title : post1.value,
+	                        posts_cover : post3.value
+	                    },
+	                    success : function (data)
+	                    {
+	                    	alert('修改成功');
+	                    	location.reload(true);
+	                    }
+	   				});
+				}
+				
+				  
+				});
+			</script>
+
           <!-- /.box -->
       <!-- /.tab-pane -->
     </div>
@@ -122,6 +197,7 @@
 <script src="__PUBLIC__/Temp/plugins/editor/kindeditor.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="__PUBLIC__/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
 <script>
 $(function () {
 
@@ -169,6 +245,7 @@ $(function () {
 			type:"post", 
 			success:function(data){
 				if(data==""){
+					alert('新增成功');
 					location.reload();
 				}else{
 					alert(data)
@@ -177,7 +254,11 @@ $(function () {
 			}
 		})
 	})
+
+
 });
+
+
  //加载图片
 	$("#loadimg").on("change",loadImg)
  //加载图片函数
@@ -200,8 +281,6 @@ function loadImg(){
 	}else{
 		alert("不支持此文件类型")
 	}
-	
-	
 }
 </script>
 </body>

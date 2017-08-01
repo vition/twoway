@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>后台管理界面</title>
+  <title>{$webTitle}后台管理界面</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -39,7 +39,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        日志记录
+        文章管理
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -57,33 +57,63 @@
           <!-- /.box -->
 
           <div class="box">
-           <!--  <div class="box-header">
-              <h3 class="box-title">日志记录</h3>
-            </div> -->
+            <div class="box-header">
+              <h3 class="box-title">查询所有文章并管理</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
-                    <th>登录账号</th>
-                    <th>操作类型</th>
-                    <th>操作模块</th>
-                    <th>操作时间</th>
-                  </tr>
+                <tr>
+                  <th>ID号</th>      
+                  <th>图片封面</th>
+                  <th>操作</th>
+                </tr>
                 </thead>
-                <tbody>
-                  <volist name="list" id="vo">
-                    <tr>
-                      <td>{$vo.user}</td>
-                      <td>{$vo.type}</td>
-                      <td>{$vo.module}</td>
-                      <td>{$vo.create_time}</td>
-                    </tr>
-                  </volist>                
+                <tbody >
+        					<volist name="list" id="posts">
+        						 <tr id="del">
+                      <td>{$posts.id}</td>
+                      <td><img src="__PUBLIC__/{$posts.min_url}" alt=""></td>
+                      <td><button class="btn btn-primary de" value={$posts.id}>删除</button></td>
+        						</tr>
+        					</volist>
                 </tbody>
-                
               </table>
             </div>
+            <script>
+                window.onload = function() {
+                  var de = document.getElementsByClassName('de');
+                  for (var i = 0; i < de.length; i++) {
+                      de[i].id = de[i].value;
+                      de[i].onclick = function() {
+                        if(confirm('您真的要删除所选的')) {
+                           $.ajax({
+                                url : '{:U('resourceDel')}',
+                                type : 'POST',
+                                data : {
+                                    id : this.id,                            
+                                },
+                                success : function (data)
+                                {
+                                    alert('删除成功');
+                                    location.reload(true);
+                                }
+                          });
+                        }
+                        
+                      }
+                  }
+
+                  
+
+
+                  
+
+
+                  
+                }
+            </script>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

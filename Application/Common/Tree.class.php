@@ -1,6 +1,6 @@
 <?php
-namespace Admin\Common;
-class Treem {
+namespace Common;
+class Tree {
 	//原始数据
 	private $treeDataOriginal;
 	//id索引的数据
@@ -12,14 +12,12 @@ class Treem {
 	
 	public function __construct($data){
 		$this->treeDataOriginal=$data;
-		foreach($this->treeDataOriginal as $val1){
-			foreach ($val1 as $key => $val2) {
-				$this->treeDataId[$val2['id']]=$val2;
-				// $this->treeDataPid[$val2['pid']][$val2['id']]=$val;
-			}
-			
+		foreach($this->treeDataOriginal as $val){
+			$this->treeDataId[$val['id']]=$val;
+			$this->treeDataPid[$val['pid']][$val['id']]=$val;
 		}
-		return $this->treeDataOriginal;
+
+		return $this->$treeDataId;
 	}
 	
 	

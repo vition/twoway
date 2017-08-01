@@ -43,9 +43,23 @@ class TwUsermModel extends Model
             'name'     =>  $name
         );
 
-        return $id = $this->save($updateData);
-
-        
+        return $id = $this->save($updateData);       
     }
+
+    public function checkUser ($accounts,$password) {
+        // $CheckData = array(
+        //     'accounts' => $accounts,
+        //     'password' => $password
+        // );
+
+        $map = array(
+            'accounts'  =>  $accounts,
+            'password'  =>  $password
+        );
+
+        $res = $this-> where($map)->find();
+        return $res;
+    }
+
 	
 }

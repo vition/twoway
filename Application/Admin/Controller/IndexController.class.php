@@ -609,7 +609,9 @@ class IndexController extends Controller {
 		if (IS_AJAX)
         {
             $User = D('TwPosts');
-            echo $User->newpostsUpdate(I('post.id'),I('post.posts_class'),I('post.posts_cover'),I('post.posts_title'));
+            echo $User->newpostsUpdate(I('post.id'),I('post.posts_class'),
+            						   I('post.posts_cover'),I('post.posts_title'),
+            						   I('post.posts_tags'),I('post.posts_content'));
         } else {
             $this->error('非法操作！');
         }

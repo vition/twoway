@@ -2241,3 +2241,198 @@ INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
 SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0090s ]
 SQL: select * from tw_posts where posts_id =18 [ RunTime:0.0010s ]
 
+[ 2017-08-01T16:04:48+08:00 ] 127.0.0.1 /admin
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:04:50+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:15+08:00 ] 127.0.0.1 /index.php/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:16+08:00 ] 127.0.0.1 /index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:22+08:00 ] 127.0.0.1 /index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:24+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:38+08:00 ] 127.0.0.1 /index.php/Admin/Index/logout.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:39+08:00 ] 127.0.0.1 /index.php/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:45+08:00 ] 127.0.0.1 /index.php/Admin/Index/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:08:46+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:53:22+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:53:27+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:55:21+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:55:24+08:00 ] 127.0.0.1 /index.php/Admin/Index/advconfig.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:55:27+08:00 ] 127.0.0.1 /index.php/Admin/Index/base.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:57:55+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+ERR: 模板不存在:./Application/Admin/View/Index/account_register.html
+
+[ 2017-08-01T16:58:39+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.001000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:59:26+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:59:28+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T16:59:42+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:00:29+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:01:15+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:05:00+08:00 ] 127.0.0.1 /index.php/Admin/Index/newposts.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:05:02+08:00 ] 127.0.0.1 /index.php/Admin/Index/findselect.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `tw_posts` [ RunTime:0.0030s ]
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from tw_posts where posts_id =
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ [ SQL语句 ] : select * from tw_posts where posts_id =
+
+[ 2017-08-01T17:07:16+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:09:20+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:10:09+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:10:12+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:13:55+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T17:14:49+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+
+[ 2017-08-01T18:11:52+08:00 ] 127.0.0.1 /index.php/Admin/Index/account_register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant SHOW_PAGE_TRACE - assumed 'SHOW_PAGE_TRACE' E:\phpStudy\WWW\twoway\Application\Admin\Conf\config.php 第 9 行.
+

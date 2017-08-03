@@ -381,8 +381,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href=<?php echo U('Index/account_getList');?>><i class="fa fa-circle-o"></i>账号信息</a></li>
-              <li><a href=<?php echo U('Index/staff_getlist');?>><i class="fa fa-circle-o"></i>员工档案</a></li>
+              <li><a href=<?php echo U('Index/account_register');?>><i class="fa fa-circle-o"></i>账号注册</a></li>
+              <li><a href=<?php echo U('Index/account_getlist');?>><i class="fa fa-circle-o"></i>账号信息</a></li>
               <li><a href=<?php echo U('Index/depart_getlist');?>><i class="fa fa-circle-o"></i>职位部门</a></li>
             </ul>
           </li>
@@ -571,8 +571,7 @@ $(function(){
 				var editor1 = document.getElementById("editor1");
 				// alert(post2.value);
 					// alert(select.value);
-				$.ajax({
-					
+				$.ajax({					
                     url : '<?php echo U("findselect");?>',
                     type : 'POST',
                     data : {

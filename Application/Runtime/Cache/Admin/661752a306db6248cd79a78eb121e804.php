@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>后台管理界面</title>
+  <title><?php echo ($webTitle); ?>后台管理界面</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -19,6 +19,19 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/Public/Temp/dist/css/skins/_all-skins.min.css">
+  <style>
+    #mask{
+      background: #000;
+      opacity: 0.75;
+      filter: alpha(opacity=0.75);
+      height: 1000px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1000
+    }
+  </style>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +41,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" >
 
    <header class="main-header">
     <!-- Logo -->
@@ -496,7 +509,7 @@ $(function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        日志记录
+        文章管理
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -514,31 +527,121 @@ $(function(){
           <!-- /.box -->
 
           <div class="box">
-           <!--  <div class="box-header">
-              <h3 class="box-title">日志记录</h3>
-            </div> -->
+            <div class="box-header">
+              <h3 class="box-title">查询所有文章并管理</h3>
+            </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
-                    <th>登录账号</th>
-                    <th>操作类型</th>
-                    <th>操作模块</th>
-                    <th>操作时间</th>
-                  </tr>
+                <tr>
+                  <th>账号名称</th>      
+                  <th>注册时间</th>
+                  <th>最后登录时间</th>
+                  <th>登录次数</th>
+                  <th>操作</th>
+                </tr>
                 </thead>
-                <tbody>
-                  <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                      <td><?php echo ($vo["user"]); ?></td>
-                      <td><?php echo ($vo["type"]); ?></td>
-                      <td><?php echo ($vo["module"]); ?></td>
-                      <td><?php echo ($vo["create_time"]); ?></td>
-                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>                
+                <tbody >
+        					<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$posts): $mod = ($i % 2 );++$i;?><tr>
+                      <td><?php echo ($posts["user_name"]); ?></td>
+                      <td><?php echo ($posts["user_register"]); ?></td>
+                      <td><?php echo ($posts["user_last"]); ?></td>
+                      <td><?php echo ($posts["user_login"]); ?></td>
+                      <td><button class="btn btn-primary update" title='<?php echo ($posts["user_name"]); ?>' value=<?php echo ($posts["user_id"]); ?>>修改密码</button></td>
+        						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
-                
               </table>
             </div>
+            <script>
+                window.onload = function() {
+
+                  var update = document.getElementsByClassName('update');
+                  for (var i = 0; i < update.length; i++) {
+
+                      update[i].id = update[i].value;
+                      
+                      update[i].onclick = function() {
+                        var tmp = this.id;
+                        // alert(tmp);
+                        var sHeight  = document.documentElement.scrollHeight;
+                        var sWidth   = document.documentElement.scrollWidth;
+                        var cHeight  = document.documentElement.clientHeight;
+                        var cWidth   = document.documentElement.clientWidth;
+                        var oMask    = document.createElement('div');
+                            oMask.id = 'mask';
+                            oMask.style.height = sHeight + 'px';
+                            oMask.style.width = sWidth + 'px';
+                        
+
+                        var sub = document.getElementById('update-dialgo');
+                            sub.style.display = 'block';
+                            
+                              // $(document).ready(function(){
+                              //   alert(this.id);
+                              // });
+                            
+                            
+                        var dHeight = sub.offsetHeight;
+                        var dWidth = sub.offsetWidth;
+                                                         
+                            sub.style.left = (cWidth-dWidth)/2 + "px";
+                            sub.style.top = (cHeight-dHeight)/2 + "px";
+                            document.body.appendChild(oMask);
+
+                        var user_name = document.getElementById('user_name');                        
+                        
+                        // 取消页面
+                        var cancle = document.getElementById('cancle');
+                            cancle.onclick = function() {
+                              document.body.removeChild(oMask);
+                              sub.style.display = 'none';
+                            }  
+                        
+                        var decide = document.getElementById('decide');
+                        var newpassword = document.getElementById('newpassword');
+                        var newrepassword = document.getElementById('newrepassword');
+
+                            decide.onclick = function () 
+                            {
+                              if (newpassword.value == newrepassword.value && newpassword.value != '') {
+                                  $.ajax({
+                                        url : '<?php echo U("update_password");?>',
+                                        type : 'POST',
+                                        data : {
+                                            id : tmp,
+                                            password : newpassword.value,
+                                            repassword : newrepassword.value                           
+                                        },
+                                        success : function (data)
+                                        {
+                                            if (data>0) {
+                                              alert('修改成功');
+                                            }
+                                        }
+                                  });
+                                } else {
+                                  alert('密码不一致');
+                                }
+                             }
+                        // alert(this.value);
+                        // if(confirm('您真的要删除所选的')) {
+                        //    
+                        // }
+                        
+                      }
+                  }
+
+                  
+
+
+                  
+
+
+                  
+                }
+            </script>
+
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
@@ -748,6 +851,39 @@ $(function(){
 </div>
 <!-- ./wrapper -->
 
+<!-- 修改面板 -->
+<div class='col-md-8' id='update-dialgo' style='position:absolute; z-index:999999;display:none;'>
+    <div class='box box-primary'>
+        
+        <div class='box-header with-border'>
+          <h3 class='box-title'>修改资料</h3>
+        </div>
+        
+        <div class='box-body'>
+
+            <div class='form-group'>
+              <label for="exampleInputEmail1">新密码：</label>
+              <input type="password" id="newpassword" class='form-control' name='password' value='' placeholder='请填写密码'>
+            </div>
+
+            <div class='form-group'>
+              <label for="exampleInputEmail1">请确认新密码：</label>
+              <input type="password" id="newrepassword" class='form-control' name='repassword' value='' placeholder='请再次填写密码'>
+            </div>
+            
+        </div>
+        
+        <div class='box-footer'>
+             <button type='submit' id='decide' class='btn btn-primary'>确定提交</button>
+             <button type='submit' id='cancle' class='btn btn-primary'>取消</button>
+        </div>
+        
+    </div>
+</div>
+
+    
+
+
 <!-- jQuery 2.2.3 -->
 <script src="/Public/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -775,7 +911,11 @@ $(function(){
       "info": true,
       "autoWidth": false
     });
+
+    
   });
+
+  
 </script>
 </body>
 </html>

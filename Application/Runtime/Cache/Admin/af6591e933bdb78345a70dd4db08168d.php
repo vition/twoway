@@ -319,7 +319,7 @@
       </form>
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
-      <?php if(is_array($list)): foreach($list as $key=>$vo): echo ($key); ?>|<?php echo ($vo); endforeach; endif; ?>
+      
 
       
 
@@ -382,8 +382,8 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href=<?php echo U('Index/account_getList');?>><i class="fa fa-circle-o"></i>账号信息</a></li>
-              <li><a href=<?php echo U('Index/staff_getlist');?>><i class="fa fa-circle-o"></i>员工档案</a></li>
+              <li><a href=<?php echo U('Index/account_register');?>><i class="fa fa-circle-o"></i>账号注册</a></li>
+              <li><a href=<?php echo U('Index/account_getlist');?>><i class="fa fa-circle-o"></i>账号信息</a></li>
               <li><a href=<?php echo U('Index/depart_getlist');?>><i class="fa fa-circle-o"></i>职位部门</a></li>
             </ul>
           </li>

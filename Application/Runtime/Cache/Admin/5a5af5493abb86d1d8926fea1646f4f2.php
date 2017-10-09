@@ -494,91 +494,110 @@ $(function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        分类管理
-        <small>Preview</small>
+        账号注册
+        <small>Twoway</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
-      </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">新建分类</h3>
-            </div>
+          
             <!-- /.box-header -->
             <!-- form start -->
-
               <div class="box-body">
+                
                 <div class="form-group">
-                  <label for="exampleInputEmail1">分类名称</label>
-                  <input type="hidden" id="class-id" />
-                  <input type="text" class="form-control" id="class-name" placeholder="分类名称">
+                  <label for="exampleInputEmail1">账号名称：</label>
+                  <input type="text" class="form-control" id="username" name="web_name" value="" placeholder="填写账号名称">
                 </div>
+
                 <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-explain" placeholder="分类说明">
+                  <label for="exampleInputPassword1">密码：</label>
+                  <input type="password" id=password class="form-control" name="web_url" value="" placeholder="填写密码">
                 </div>
-              </div>
+				  
+                <div class="form-group">
+                  <label for="exampleInputPassword1">确认密码：</label>
+                  <input type="password" id=repassword class="form-control" name="web_keys" value="" placeholder="再次输入密码">
+                </div>
+
+                <div class="form-group">
+                    <label>组别</label>
+                    <select name="posts_class" id="group" class="form-control select2 posts-data"">
+                      <option value='1'>超级管理员</option>
+                      <option value='2'>管理员</option>
+                      <option value='3'>普通会员</option>
+                    </select>
+                </div>
+
               <!-- /.box-body -->
 
               <div class="box-footer">
-				    <button type="submit" id="create-class" class="btn btn-primary">新增分类</button>
-                    <button type="submit" id="updata-class" class="btn btn-primary">修改分类</button>
+                <button type="submit" id="register" class="btn btn-primary">快速注册</button>
               </div>
 
-          </div>
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
+              <script>
+                window.onload = function() {
+                  var register = document.getElementById('register');
+                  var username = document.getElementById('username');
+                  var password = document.getElementById('password');
+                  var repassword = document.getElementById('repassword');
+                  var group = document.getElementById('group');
+                  register.onclick = function () 
+                  {
+                    if (password.value =='' ) {
+                      alert('请输入密码');
+                    } else if(username.value =='' ){
+                        alert('请输入账号');
+                    } else {
+                      
 
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">分类管理</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <form role="form">
-                <!-- select -->
-                <div class="form-group">
-                  <label>分类列表</label>
-                  <select class="form-control" id="class-group">
-                    <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cla): $mod = ($i % 2 );++$i;?><option value="<?php echo ($cla["class_id"]); ?>" data-explain="<?php echo ($cla["class_explain"]); ?>"><?php echo ($cla["class_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                  </select>
-                </div>
-              </form>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
-                </div>
-                <div class="box-footer">
-                 <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
-                 <button type="submit" id="del-class" class="btn btn-primary">删除</button>
-                 </div>
-            </div>
+                      if (password.value == repassword.value) 
+                      {
 
-            <!-- /.box-body -->
+                          $.ajax({
+                            url: '<?php echo U("userRegister");?>',
+                            type:'POST',
+                            data : {
+                              username   :   username.value,
+                              password   :   password.value,
+                              repassword :   repassword.value,
+                              group      :   group.value
+                            },
+
+                            success : function(data) {
+                              if (data> 0) {
+                                alert('注册成功');
+                                location.reload(true);
+                              } else {
+                                alert('用户名被占用');
+                              }      
+                            }
+                          })  
+
+                      } else {
+                         alert('密码不一致');
+                      }
+                    }
+                    
+                  }
+                }
+              </script>
+ 
           </div>
           <!-- /.box -->
-        </div>
-        <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -593,60 +612,25 @@ $(function(){
 <!-- AdminLTE for demo purposes -->
 <script src="/Public/Temp/dist/js/demo.js"></script>
 <script>
-    $(function(){
-       //初始化分类备注
-        $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        //更改分类时修改对应的备注
-        $("#class-group").on("change",function(){
-            $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //点击修改按钮后执行
-        $("#edit-class").on("click",function(){
-             $("#class-id").val($("#class-group").find("option:selected").val());
-             $("#class-name").val($("#class-group").find("option:selected").text());
-             $("#class-explain").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //新建分类
-        $("#create-class").on("click",function(){
-            datas={};
-            updata_class(datas);
-        })
-        //更新分类
-        $("#updata-class").on("click",function(){
-            datas={};
-            datas["class_id"]=$("#class-id").val();
-            updata_class(datas)
-
-        })
-        //删除分类
-        $("#del-class").on("click",function(){
-            datas={};
-            datas["del_id"]=$("#class-group").find("option:selected").val();
-            updata_class(datas)
-
-        })
-    })
-    //修改分类操作
-    function updata_class(datas){
-        datas["data"]={}
-        datas["data"]["class_name"]=$("#class-name").val();
-        datas["data"]["class_explain"]=$("#class-explain").val();
-        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
-            alert("分类名称不能为空");
-        }else{
-            $.ajax({
-                url:"<?php echo U('classman');?>",
-                data:datas,
-                dataType:"html",
-                type:"post", 
-                success:function(data){
-                    //alert(data)
-                    location.reload()
-                }
-            })
-        }
-        
-    }
+	//提交修改配置
+	$("#submit-config").click(function(){
+		datas={};
+		form=$(".form-control");
+		for(var i=0;i<form.length;i++){
+			datas[form.eq(i).attr("name")]=form.eq(i).val();
+		}
+		$.ajax({
+			url:"<?php echo U('base');?>",
+			data:datas,
+			dataType:"html",
+			type:"post", 
+			success:function(data){
+				alert(data)
+			}
+		})
+	})
 </script>
+
+
 </body>
 </html>

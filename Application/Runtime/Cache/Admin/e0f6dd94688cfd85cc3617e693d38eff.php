@@ -1,4 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -12,6 +13,14 @@
   <link rel="stylesheet" href="/Public/Temp/othercss/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/Public/Temp/othercss/ionicons.min.css">
+  <!-- daterange picker -->
+  <!-- bootstrap datepicker -->
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="/Public/Temp/plugins/iCheck/all.css">
+  <!-- Bootstrap Color Picker -->
+  <!-- Bootstrap time Picker -->
+  <!-- Select2 -->
+
   <!-- Theme style -->
   <link rel="stylesheet" href="/Public/Temp/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -289,7 +298,7 @@
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <!-- jQuery 2.2.3 -->
+ <!-- jQuery 2.2.3 -->
 <script src="/Public/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
 
 <aside class="main-sidebar">
@@ -381,7 +390,7 @@
             </a>
             <ul class="treeview-menu">
               <li><a href=<?php echo U('Index/account_register');?>><i class="fa fa-circle-o"></i>账号注册</a></li>
-              <li><a href=<?php echo U('Index/account_getlist');?>><i class="fa fa-circle-o"></i>账号信息</a></li>
+              <li><a href=<?php echo U('Index/staff_getlist');?>><i class="fa fa-circle-o"></i>员工档案</a></li>
               <li><a href=<?php echo U('Index/depart_getlist');?>><i class="fa fa-circle-o"></i>职位部门</a></li>
             </ul>
           </li>
@@ -494,91 +503,125 @@ $(function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        分类管理
-        <small>Preview</small>
+        高级配置
+        <small>Twoway</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li class="active">Advanced Elements</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">新建分类</h3>
+
+      <!-- SELECT2 EXAMPLE -->
+
+          <!-- iCheck -->
+          <div class="box box-success">
+            <div class="box-header">
+              <h3 class="box-title">配置高级选项</h3>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">分类名称</label>
-                  <input type="hidden" id="class-id" />
-                  <input type="text" class="form-control" id="class-name" placeholder="分类名称">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-explain" placeholder="分类说明">
-                </div>
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-				    <button type="submit" id="create-class" class="btn btn-primary">新增分类</button>
-                    <button type="submit" id="updata-class" class="btn btn-primary">修改分类</button>
-              </div>
-
-          </div>
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">分类管理</h3>
-            </div>
-            <!-- /.box-header -->
             <div class="box-body">
-              <form role="form">
-                <!-- select -->
-                <div class="form-group">
-                  <label>分类列表</label>
-                  <select class="form-control" id="class-group">
-                    <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cla): $mod = ($i % 2 );++$i;?><option value="<?php echo ($cla["class_id"]); ?>" data-explain="<?php echo ($cla["class_explain"]); ?>"><?php echo ($cla["class_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                  </select>
-                </div>
-              </form>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
-                </div>
-                <div class="box-footer">
-                 <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
-                 <button type="submit" id="del-class" class="btn btn-primary">删除</button>
-                 </div>
-            </div>
+              <!-- Minimal style -->
 
+              <!-- radio -->
+			  <div><label>网站是否开启</label></div>
+              <div class="form-group">
+                <label>
+                  <input type="radio" name="web_start" data-bool="true" class="flat-green" <?php echo ($advconfig["web_start"][0]); ?>>
+                </label>
+				 <label>
+                  启动
+                </label>
+                <label>
+                  <input type="radio" name="web_start" data-bool="false" class="flat-green" <?php echo ($advconfig["web_start"][1]); ?>>
+                </label>
+                <label>
+                  关闭
+                </label>
+              </div>
+			  <div><label>网站是否对外开放</label></div>
+			  <div class="form-group">
+			  
+                <label>
+                  <input type="radio" name="web_open_up" data-bool="true" class="flat-green" <?php echo ($advconfig["web_open_up"][0]); ?>>
+					<label>
+					  所有人
+					</label>
+                </label>
+                <label>
+                  <input type="radio" name="web_open_up" data-bool="false" class="flat-green" <?php echo ($advconfig["web_open_up"][1]); ?>>
+                </label>
+					<label>
+					  仅会员
+					</label>
+              </div>
+			  <div><label>网站是否开放注册</label></div>
+			  <div class="form-group">
+                <label>
+                  <input type="radio" name="web_open_reg" data-bool="true" class="flat-green" <?php echo ($advconfig["web_open_reg"][0]); ?>>
+                </label>
+				<label>
+					开启
+                </label>
+                <label>
+                  <input type="radio" name="web_open_reg" data-bool="false" class="flat-green" <?php echo ($advconfig["web_open_reg"][1]); ?>>
+                </label>
+                <label>
+                  关闭
+                </label>
+              </div>
+			  <div><label>网站是否开始评论</label></div>
+			  <div class="form-group">
+                <label>
+                  <input type="radio" name="web_comment" data-bool="true" class="flat-green" <?php echo ($advconfig["web_comment"][0]); ?>>
+                </label>
+				<label>
+				 开启
+                </label>
+                <label>
+                  <input type="radio" name="web_comment" data-bool="false" class="flat-green" <?php echo ($advconfig["web_comment"][1]); ?>>
+                </label>
+                <label>
+                  关闭
+                </label>
+              </div>
+			  <div><label>是否开启评论审核</label></div>
+			  <div class="form-group">
+                <label>
+                  <input type="radio" name="web_com_review" data-bool="true" class="flat-green" <?php echo ($advconfig["web_com_review"][0]); ?>>
+                </label>
+				<label>
+				 开启
+                </label>
+                <label>
+                  <input type="radio" name="web_com_review" data-bool="false" class="flat-green" <?php echo ($advconfig["web_com_review"][1]); ?>>
+                </label>
+                <label>
+                  关闭
+                </label>
+              </div>
+            </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
-        <!--/.col (right) -->
+        <!-- /.col (right) -->
       </div>
       <!-- /.row -->
+
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  
+
+
+
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -586,67 +629,52 @@ $(function(){
 <script src="/Public/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="/Public/Temp/bootstrap/js/bootstrap.min.js"></script>
+<!-- Select2 -->
+<script src="/Public/Temp/plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="/Public/Temp/plugins/input-mask/jquery.inputmask.js"></script>
+<script src="/Public/Temp/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="/Public/Temp/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<!-- date-range-picker -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+<!-- bootstrap datepicker -->
+<!-- bootstrap color picker -->
+<!-- bootstrap time picker -->
+<!-- SlimScroll 1.3.0 -->
+<script src="/Public/Temp/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck 1.0.1 -->
+<script src="/Public/Temp/plugins/iCheck/icheck.min.js"></script>
 <!-- FastClick -->
 <script src="/Public/Temp/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/Public/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/Public/Temp/dist/js/demo.js"></script>
+<!-- Page script -->
 <script>
-    $(function(){
-       //初始化分类备注
-        $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        //更改分类时修改对应的备注
-        $("#class-group").on("change",function(){
-            $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //点击修改按钮后执行
-        $("#edit-class").on("click",function(){
-             $("#class-id").val($("#class-group").find("option:selected").val());
-             $("#class-name").val($("#class-group").find("option:selected").text());
-             $("#class-explain").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //新建分类
-        $("#create-class").on("click",function(){
-            datas={};
-            updata_class(datas);
-        })
-        //更新分类
-        $("#updata-class").on("click",function(){
-            datas={};
-            datas["class_id"]=$("#class-id").val();
-            updata_class(datas)
-
-        })
-        //删除分类
-        $("#del-class").on("click",function(){
-            datas={};
-            datas["del_id"]=$("#class-group").find("option:selected").val();
-            updata_class(datas)
-
-        })
-    })
-    //修改分类操作
-    function updata_class(datas){
-        datas["data"]={}
-        datas["data"]["class_name"]=$("#class-name").val();
-        datas["data"]["class_explain"]=$("#class-explain").val();
-        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
-            alert("分类名称不能为空");
-        }else{
-            $.ajax({
-                url:"<?php echo U('classman');?>",
-                data:datas,
-                dataType:"html",
-                type:"post", 
-                success:function(data){
-                    //alert(data)
-                    location.reload()
-                }
-            })
-        }
-        
-    }
+  $(function () {
+	//check的样式
+    $('input[type="checkbox"].flat-green, input[type="radio"].flat-green').iCheck({
+      checkboxClass: 'icheckbox_flat-green',
+      radioClass: 'iradio_flat-green'
+    });
+	//选项点击修改
+	$(".iCheck-helper").on("click",function(){
+		datas={}
+		datas["type"]=$(this).prev().attr("name")
+		datas["value"]=$(this).prev().data("bool")
+		$.ajax({
+			url:"<?php echo U('advconfig');?>",
+			data:datas,
+			dataType:"html",
+			type:"post", 
+			success:function(data){
+				alert(data)
+			}
+		})
+	})
+  });
 </script>
 </body>
 </html>

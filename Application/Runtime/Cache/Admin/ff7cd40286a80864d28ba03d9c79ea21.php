@@ -25,6 +25,7 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -494,13 +495,13 @@ $(function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        分类管理
-        <small>Preview</small>
+        新建文章
+        <small>Twoway</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
+        <li><a href="#">文章管理</a></li>
+        <li class="active">新建文章</li>
       </ol>
     </section>
 
@@ -508,77 +509,40 @@ $(function(){
     <section class="content">
       <div class="row">
         <!-- left column -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">新建分类</h3>
+              <!-- <h3 class="box-title">网站的基本信息</h3> -->
             </div>
             <!-- /.box-header -->
             <!-- form start -->
+              <div class="box-body">               
+                
 
-              <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">分类名称</label>
-                  <input type="hidden" id="class-id" />
-                  <input type="text" class="form-control" id="class-name" placeholder="分类名称">
+                  <label for="exampleInputPassword1">封面图片(封面图片尺寸请使用676 X 460)</label>
+                  <input type="text" class="form-control posts-data" id="posts_cover" name="posts_cover" value="<?php echo ((isset($posts["posts_cover"]) && ($posts["posts_cover"] !== ""))?($posts["posts_cover"]):''); ?>" placeholder="http://www.twoway.com.cn/1.jpg">
+                  <input type="file" id="loadimg">
+                  <input type="hidden" id="cover-data" >
                 </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-explain" placeholder="分类说明">
-                </div>
+                
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer">
-				    <button type="submit" id="create-class" class="btn btn-primary">新增分类</button>
-                    <button type="submit" id="updata-class" class="btn btn-primary">修改分类</button>
+                <input type="hidden" id="post-type" value="<?php echo ((isset($postType) && ($postType !== ""))?($postType):'new'); ?>">
+                <button type="submit" id="submit-posts" class="btn btn-primary">上传</button>
               </div>
-
-          </div>
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">分类管理</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <form role="form">
-                <!-- select -->
-                <div class="form-group">
-                  <label>分类列表</label>
-                  <select class="form-control" id="class-group">
-                    <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cla): $mod = ($i % 2 );++$i;?><option value="<?php echo ($cla["class_id"]); ?>" data-explain="<?php echo ($cla["class_explain"]); ?>"><?php echo ($cla["class_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                  </select>
-                </div>
-              </form>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
-                </div>
-                <div class="box-footer">
-                 <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
-                 <button type="submit" id="del-class" class="btn btn-primary">删除</button>
-                 </div>
-            </div>
-
-            <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
-        <!--/.col (right) -->
-      </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-  
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -592,61 +556,90 @@ $(function(){
 <script src="/Public/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/Public/Temp/dist/js/demo.js"></script>
+<script src="/Public/Temp/plugins/ckeditor/ckeditor.js"></script>
+<script src="/Public/Temp/plugins/editor/kindeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="/Public/Temp/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
 <script>
-    $(function(){
-       //初始化分类备注
-        $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        //更改分类时修改对应的备注
-        $("#class-group").on("change",function(){
-            $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //点击修改按钮后执行
-        $("#edit-class").on("click",function(){
-             $("#class-id").val($("#class-group").find("option:selected").val());
-             $("#class-name").val($("#class-group").find("option:selected").text());
-             $("#class-explain").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //新建分类
-        $("#create-class").on("click",function(){
-            datas={};
-            updata_class(datas);
-        })
-        //更新分类
-        $("#updata-class").on("click",function(){
-            datas={};
-            datas["class_id"]=$("#class-id").val();
-            updata_class(datas)
+$(function () {
 
-        })
-        //删除分类
-        $("#del-class").on("click",function(){
-            datas={};
-            datas["del_id"]=$("#class-group").find("option:selected").val();
-            updata_class(datas)
-
-        })
-    })
-    //修改分类操作
-    function updata_class(datas){
-        datas["data"]={}
-        datas["data"]["class_name"]=$("#class-name").val();
-        datas["data"]["class_explain"]=$("#class-explain").val();
-        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
-            alert("分类名称不能为空");
-        }else{
-            $.ajax({
-                url:"<?php echo U('classman');?>",
-                data:datas,
-                dataType:"html",
-                type:"post", 
-                success:function(data){
-                    //alert(data)
-                    location.reload()
-                }
-            })
-        }
-        
+  //CKEDITOR.replace('editor1');
+   KindEditor.ready(function(K) {
+                window.editor = K.create('#editor1',{resizeType : 1,width:"100%",height:"300px"});
+        });
+  //bootstrap WYSIHTML5 - text editor
+  //$(".textarea").wysihtml5();
+  //修改数据
+  $("#submit-posts").on("click",function(){
+    datas={};
+    datas["cover-data"]=$("#cover-data").val();
+    datas["post-type"]=$("#post-type").val();
+    datas["data"]={};
+    var postsClass=$(".posts-data");
+    for(var i=0;i<postsClass.length;i++){
+      var keyName=postsClass.eq(i).attr("name");
+      var valName=postsClass.eq(i).val();
+      
+      if(keyName=="posts_title" && valName==""){
+          alert(postsClass.eq(i).prev().text()+"不能为空");
+          return;
+      }else if(keyName=="posts_content"){
+          //var content = CKEDITOR.instances.editor1.getData();
+          var content = editor.html();
+          if(content.length<1){
+            alert(postsClass.eq(i).prev().text()+"不能为空");
+            return;
+          }else{
+            datas["data"][keyName]=content;
+          }
+      }else if(keyName=="posts_id" && valName!=""){
+        datas["posts_id"]=valName;
+      }else{
+        datas["data"][keyName]=valName;
+      }
+      
+      
     }
+    $.ajax({
+      url:"<?php echo U('addresource');?>",
+      data:datas,
+      dataType:"html",
+      type:"post", 
+      success:function(data){
+        alert('新增成功');     
+      }
+    })
+  })
+
+
+});
+
+
+ //加载图片
+  $("#loadimg").on("change",loadImg)
+ //加载图片函数
+function loadImg(){
+  var file = this.files[0]; //选择上传的文件
+  var fileName=file.name;
+  console.log(this.files);
+  fN=fileName.split(".")
+  if(fN[fN.length-1]=="jpg" || fN[fN.length-1]=="png" || fN[fN.length-1]=="gif"){
+    if(file.size>2000000){
+      alert("文件不能大于2M")
+    }else{
+      var r = new FileReader();
+      r.readAsDataURL(file); //Base64
+      $(r).load(function(){
+        $("#cover-data").val(this.result);
+        $("#posts_cover").val(fileName);
+        $("#coverbox").css("display","none");
+      });
+    }
+  }else{
+    alert("不支持此文件类型")
+  }
+}
 </script>
 </body>
 </html>

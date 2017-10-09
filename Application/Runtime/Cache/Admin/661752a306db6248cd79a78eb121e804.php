@@ -12,11 +12,26 @@
   <link rel="stylesheet" href="/Public/Temp/othercss/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="/Public/Temp/othercss/ionicons.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/Public/Temp/plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/Public/Temp/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="/Public/Temp/dist/css/skins/_all-skins.min.css">
+  <style>
+    #mask{
+      background: #000;
+      opacity: 0.75;
+      filter: alpha(opacity=0.75);
+      height: 1000px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1000
+    }
+  </style>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +41,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" >
 
    <header class="main-header">
     <!-- Logo -->
@@ -494,84 +509,144 @@ $(function(){
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        分类管理
-        <small>Preview</small>
+        文章管理
+        <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Forms</a></li>
-        <li class="active">General Elements</li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Data tables</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">新建分类</h3>
-            </div>
-            <!-- /.box-header -->
-            <!-- form start -->
+        <div class="col-xs-12">
+ 
+          <!-- /.box -->
 
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="exampleInputEmail1">分类名称</label>
-                  <input type="hidden" id="class-id" />
-                  <input type="text" class="form-control" id="class-name" placeholder="分类名称">
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-explain" placeholder="分类说明">
-                </div>
-              </div>
-              <!-- /.box-body -->
-
-              <div class="box-footer">
-				    <button type="submit" id="create-class" class="btn btn-primary">新增分类</button>
-                    <button type="submit" id="updata-class" class="btn btn-primary">修改分类</button>
-              </div>
-
-          </div>
-        </div>
-        <!--/.col (left) -->
-        <!-- right column -->
-        <div class="col-md-6">
-
-          <!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">分类管理</h3>
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">查询所有文章并管理</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form role="form">
-                <!-- select -->
-                <div class="form-group">
-                  <label>分类列表</label>
-                  <select class="form-control" id="class-group">
-                    <?php if(is_array($class)): $i = 0; $__LIST__ = $class;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$cla): $mod = ($i % 2 );++$i;?><option value="<?php echo ($cla["class_id"]); ?>" data-explain="<?php echo ($cla["class_explain"]); ?>"><?php echo ($cla["class_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                  </select>
-                </div>
-              </form>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">分类说明</label>
-                  <input type="text" class="form-control" id="class-exp" readonly="readonly" placeholder="">
-                </div>
-                <div class="box-footer">
-                 <button type="submit" id="edit-class" class="btn btn-primary">修改</button>
-                 <button type="submit" id="del-class" class="btn btn-primary">删除</button>
-                 </div>
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>账号名称</th>      
+                  <th>注册时间</th>
+                  <th>最后登录时间</th>
+                  <th>登录次数</th>
+                  <th>操作</th>
+                </tr>
+                </thead>
+                <tbody >
+        					<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$posts): $mod = ($i % 2 );++$i;?><tr>
+                      <td><?php echo ($posts["user_name"]); ?></td>
+                      <td><?php echo ($posts["user_register"]); ?></td>
+                      <td><?php echo ($posts["user_last"]); ?></td>
+                      <td><?php echo ($posts["user_login"]); ?></td>
+                      <td><button class="btn btn-primary update" title='<?php echo ($posts["user_name"]); ?>' value=<?php echo ($posts["user_id"]); ?>>修改密码</button></td>
+        						</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                </tbody>
+              </table>
             </div>
+            <script>
+                window.onload = function() {
+
+                  var update = document.getElementsByClassName('update');
+                  for (var i = 0; i < update.length; i++) {
+
+                      update[i].id = update[i].value;
+                      
+                      update[i].onclick = function() {
+                        var tmp = this.id;
+                        // alert(tmp);
+                        var sHeight  = document.documentElement.scrollHeight;
+                        var sWidth   = document.documentElement.scrollWidth;
+                        var cHeight  = document.documentElement.clientHeight;
+                        var cWidth   = document.documentElement.clientWidth;
+                        var oMask    = document.createElement('div');
+                            oMask.id = 'mask';
+                            oMask.style.height = sHeight + 'px';
+                            oMask.style.width = sWidth + 'px';
+                        
+
+                        var sub = document.getElementById('update-dialgo');
+                            sub.style.display = 'block';
+                            
+                              // $(document).ready(function(){
+                              //   alert(this.id);
+                              // });
+                            
+                            
+                        var dHeight = sub.offsetHeight;
+                        var dWidth = sub.offsetWidth;
+                                                         
+                            sub.style.left = (cWidth-dWidth)/2 + "px";
+                            sub.style.top = (cHeight-dHeight)/2 + "px";
+                            document.body.appendChild(oMask);
+
+                        var user_name = document.getElementById('user_name');                        
+                        
+                        // 取消页面
+                        var cancle = document.getElementById('cancle');
+                            cancle.onclick = function() {
+                              document.body.removeChild(oMask);
+                              sub.style.display = 'none';
+                            }  
+                        
+                        var decide = document.getElementById('decide');
+                        var newpassword = document.getElementById('newpassword');
+                        var newrepassword = document.getElementById('newrepassword');
+
+                            decide.onclick = function () 
+                            {
+                              if (newpassword.value == newrepassword.value && newpassword.value != '') {
+                                  $.ajax({
+                                        url : '<?php echo U("update_password");?>',
+                                        type : 'POST',
+                                        data : {
+                                            id : tmp,
+                                            password : newpassword.value,
+                                            repassword : newrepassword.value                           
+                                        },
+                                        success : function (data)
+                                        {
+                                            if (data>0) {
+                                              alert('修改成功');
+                                            }
+                                        }
+                                  });
+                                } else {
+                                  alert('密码不一致');
+                                }
+                             }
+                        // alert(this.value);
+                        // if(confirm('您真的要删除所选的')) {
+                        //    
+                        // }
+                        
+                      }
+                  }
+
+                  
+
+
+                  
+
+
+                  
+                }
+            </script>
 
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
-        <!--/.col (right) -->
+        <!-- /.col -->
       </div>
       <!-- /.row -->
     </section>
@@ -579,74 +654,268 @@ $(function(){
   </div>
   <!-- /.content-wrapper -->
   
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <!-- Home tab content -->
+      <div class="tab-pane" id="control-sidebar-home-tab">
+        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                <p>Will be 23 on April 24th</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-user bg-yellow"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                <p>New phone +1(800)555-1234</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                <p>nora@example.com</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+              <div class="menu-info">
+                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                <p>Execution time 5 seconds</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <ul class="control-sidebar-menu">
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Custom Template Design
+                <span class="label label-danger pull-right">70%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Update Resume
+                <span class="label label-success pull-right">95%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Laravel Integration
+                <span class="label label-warning pull-right">50%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <h4 class="control-sidebar-subheading">
+                Back End Framework
+                <span class="label label-primary pull-right">68%</span>
+              </h4>
+
+              <div class="progress progress-xxs">
+                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+              </div>
+            </a>
+          </li>
+        </ul>
+        <!-- /.control-sidebar-menu -->
+
+      </div>
+      <!-- /.tab-pane -->
+      <!-- Stats tab content -->
+      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <!-- /.tab-pane -->
+      <!-- Settings tab content -->
+      <div class="tab-pane" id="control-sidebar-settings-tab">
+        <form method="post">
+          <h3 class="control-sidebar-heading">General Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Report panel usage
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Some information about this general settings option
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Allow mail redirect
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Other sets of options are available
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Expose author name in posts
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+
+            <p>
+              Allow the user to show his name in blog posts
+            </p>
+          </div>
+          <!-- /.form-group -->
+
+          <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Show me as online
+              <input type="checkbox" class="pull-right" checked>
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Turn off notifications
+              <input type="checkbox" class="pull-right">
+            </label>
+          </div>
+          <!-- /.form-group -->
+
+          <div class="form-group">
+            <label class="control-sidebar-subheading">
+              Delete chat history
+              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+            </label>
+          </div>
+          <!-- /.form-group -->
+        </form>
+      </div>
+      <!-- /.tab-pane -->
+    </div>
+  </aside>
+  <!-- /.control-sidebar -->
+  <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+  <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<!-- 修改面板 -->
+<div class='col-md-8' id='update-dialgo' style='position:absolute; z-index:999999;display:none;'>
+    <div class='box box-primary'>
+        
+        <div class='box-header with-border'>
+          <h3 class='box-title'>修改资料</h3>
+        </div>
+        
+        <div class='box-body'>
+
+            <div class='form-group'>
+              <label for="exampleInputEmail1">新密码：</label>
+              <input type="password" id="newpassword" class='form-control' name='password' value='' placeholder='请填写密码'>
+            </div>
+
+            <div class='form-group'>
+              <label for="exampleInputEmail1">请确认新密码：</label>
+              <input type="password" id="newrepassword" class='form-control' name='repassword' value='' placeholder='请再次填写密码'>
+            </div>
+            
+        </div>
+        
+        <div class='box-footer'>
+             <button type='submit' id='decide' class='btn btn-primary'>确定提交</button>
+             <button type='submit' id='cancle' class='btn btn-primary'>取消</button>
+        </div>
+        
+    </div>
+</div>
+
+    
+
 
 <!-- jQuery 2.2.3 -->
 <script src="/Public/Temp/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="/Public/Temp/bootstrap/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="/Public/Temp/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/Public/Temp/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="/Public/Temp/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="/Public/Temp/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="/Public/Temp/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/Public/Temp/dist/js/demo.js"></script>
+<!-- page script -->
 <script>
-    $(function(){
-       //初始化分类备注
-        $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        //更改分类时修改对应的备注
-        $("#class-group").on("change",function(){
-            $("#class-exp").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //点击修改按钮后执行
-        $("#edit-class").on("click",function(){
-             $("#class-id").val($("#class-group").find("option:selected").val());
-             $("#class-name").val($("#class-group").find("option:selected").text());
-             $("#class-explain").val($("#class-group").find("option:selected").data("explain"));
-        })
-        //新建分类
-        $("#create-class").on("click",function(){
-            datas={};
-            updata_class(datas);
-        })
-        //更新分类
-        $("#updata-class").on("click",function(){
-            datas={};
-            datas["class_id"]=$("#class-id").val();
-            updata_class(datas)
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false
+    });
 
-        })
-        //删除分类
-        $("#del-class").on("click",function(){
-            datas={};
-            datas["del_id"]=$("#class-group").find("option:selected").val();
-            updata_class(datas)
+    
+  });
 
-        })
-    })
-    //修改分类操作
-    function updata_class(datas){
-        datas["data"]={}
-        datas["data"]["class_name"]=$("#class-name").val();
-        datas["data"]["class_explain"]=$("#class-explain").val();
-        if(datas["data"]["class_name"]=="" || datas["del_id"]=="undefined"){
-            alert("分类名称不能为空");
-        }else{
-            $.ajax({
-                url:"<?php echo U('classman');?>",
-                data:datas,
-                dataType:"html",
-                type:"post", 
-                success:function(data){
-                    //alert(data)
-                    location.reload()
-                }
-            })
-        }
-        
-    }
+  
 </script>
 </body>
 </html>

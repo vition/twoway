@@ -120,4 +120,12 @@ class IndexController extends Controller {
     public function hire() {
         $this->display("./hire");
     }
+
+    //上海站
+    public function shanghai() {
+        $project=M("tw_posts");
+        $pdata=$project->where("posts_class=4")->order('posts_edit_time DESC')->select();
+        $this->assign("project",$pdata);
+        $this->display("./shanghai");
+    }
 }

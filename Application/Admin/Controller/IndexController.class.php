@@ -39,6 +39,8 @@ class IndexController extends Controller {
 
 				$user=M("tw_user");
 				$user->where("user_name='".I("username")."'")->setInc("user_login");
+				$map['user_last'] = getTime();
+				$user->where("user_name='".I("username")."'")->save($map);
 				// $this->logs()->insert($data);
 				//$this->success('成功登录', 'base',1);
 				$this->redirect('base');
@@ -137,11 +139,7 @@ class IndexController extends Controller {
 			$this->assign('webTitle',$this->get_web_title());
 
 			
-			$this->display("base");
-
-			
-
-			
+			$this->display("base");	
 		}
 		
 		
@@ -519,24 +517,6 @@ class IndexController extends Controller {
 
 	
 
-	//获取员工列表
-	protected function account_getList() {
-		$post = D('TwUserm');
-		$res = $post->getList();
-		$this->assign('res',$res);
-		$this->display('Userm/index');
-	}
-
-	public function addUserm() {
-		if (IS_AJAX)
-        {
-            $Userm = D('TwUserm');
-            echo $Userm->register(I('post.user'),I('post.password'));
-        } else {
-            $this->error('非法操作！');
-        }
-	}
-
 	public function remove() {
 		if (IS_AJAX)
         {
@@ -569,31 +549,6 @@ class IndexController extends Controller {
         }
     }
 
-	//获取档案列表
-	protected function staff_getlist() {
-
-		$post = D('TwStaff');
-		$res = $post->getlist();
-		$tree = new \Org\Util\Tree($res);
-		$res = $tree->getAll();
-		$this->assign('res',$res);
-		$this->display('Staff/index');
-	}
-
-	//获取档案列表
-	protected function depart_getlist() {
-
-		$post = D('TwStaff');
-		$res = $post->getlist();
-		$tree = new \Org\Util\Tree($res);
-		$res = $tree->getAll();
-		
-		
-
-		
-		$this->assign('res',$res);
-		$this->display('Depart/index');
-	}
 	
 	public function findselect() {
 		if (IS_AJAX)
@@ -663,6 +618,32 @@ class IndexController extends Controller {
         $this->display();
 	}
 
+	public function account_register() {
+		$this->display();
+	}
+
+	public function userRegister() {
+		if (IS_AJAX)
+        {
+        	$User = D('TwUser');          
+        	echo $User->userRegister(I('post.username'),I('post.password'),I('post.repassword'),I('post.group'));
+            
+        } else {
+            $this->error('非法操作！');
+        }
+	}
+
+	public function account_getlist() {
+		$User = D('TwUser');          
+        $res = $User->getlist();
+        $this->assign('list',$res);
+		$this->display();
+	}
+
+	public function update_password() {
+		$User = D('TwUser');          
+        echo $User->update_password(I('post.id'),I('post.password'));
+	}
 }
 
 

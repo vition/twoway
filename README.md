@@ -84,11 +84,11 @@ CREATE TABLE IF NOT EXISTS `tw_source` (
 
 ```
 CREATE TABLE IF NOT EXISTS `tw_log` (
-    ->   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-    ->   `user` char(20) DEFAULT NULL,
-    ->   `type` char(5) DEFAULT NULL COMMENT '操作类型',
-    ->   `module` char(20) DEFAULT NULL COMMENT '操作模块',
-    ->   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-    ->   PRIMARY KEY (`id`)
-    -> ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+       `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+       `user` char(20) DEFAULT NULL,
+       `type` char(5) DEFAULT NULL COMMENT '操作类型',
+       `module` char(20) DEFAULT NULL COMMENT '操作模块',
+       `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+       PRIMARY KEY (`id`)
+     ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 ```
